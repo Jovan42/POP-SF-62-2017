@@ -5,12 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace POP_SF_62_2017.Model {
-    class Namestaj {
+    public class Namestaj {
         public string Naziv { get; set; }
         public int ID { get; set; }
         public double Cena { get; set; }
         public int Kolicina { get; set; }
         public int TipNamestajaID { get;  set; }
         public bool Obrisan { get; set; }
+
+        public Namestaj GetById(int id) {
+            foreach(Namestaj namestaj in Projekat.Instance.Namestaj)
+            {
+                if(namestaj.ID == id)
+                {
+                    return namestaj;
+                }
+            }
+            return null;
+        }
     }
 }
