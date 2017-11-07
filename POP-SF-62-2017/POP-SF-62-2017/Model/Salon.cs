@@ -17,13 +17,6 @@ namespace POP_SF_62_2017.Model {
         public int ZiroRacun { get; set; }
         public bool Obrisan { get; set; }
 
-        public Salon GetById(int id) {
-            foreach (Salon salon in Projekat.Instance.Saloni) {
-                if (salon.ID == id) {
-                    return salon;
-                }
-            }
-            return null;
-        }
+        
     }
 }

@@ -16,7 +16,7 @@ namespace POP_SF_62_2017.Model {
         private List<Prodaja> prodaje = new List<Prodaja>();
         private List<Salon> saloni = new List<Salon>();
 
-        public List<Namestaj> Namestaj {
+        public List<Namestaj> Namestaji {
             get {
                 this.namestaji = GenericSerializer.Deserialize<Namestaj>("namestaji.xml");
                 return this.namestaji;

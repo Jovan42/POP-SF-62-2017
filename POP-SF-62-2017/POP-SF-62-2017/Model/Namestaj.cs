@@ -14,7 +14,7 @@ namespace POP_SF_62_2017.Model {
         public bool Obrisan { get; set; }
 
         public Namestaj GetById(int id) {
-            foreach(Namestaj namestaj in Projekat.Instance.Namestaj)
+            foreach(Namestaj namestaj in Projekat.Instance.Namestaji)
             {
                 if(namestaj.ID == id)
                 {
