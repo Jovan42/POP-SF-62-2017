@@ -33,7 +33,7 @@ namespace POP_SF_62_2017.Util.Model {
     public static void Add(TipNamestaja a) {
         List<TipNamestaja> tipoviNamestaja = new List<TipNamestaja>();
         tipoviNamestaja = Projekat.Instance.TipoviNamestaja;
-        a.ID = tipoviNamestaja.Count() + 1;
+        a.ID = tipoviNamestaja.Count();
         tipoviNamestaja.Add(a);
         Projekat.Instance.TipoviNamestaja = tipoviNamestaja;
     }
@@ -53,5 +53,15 @@ namespace POP_SF_62_2017.Util.Model {
         }
         return false;
     }
-}
+
+        public static void Initialize() {
+            List<TipNamestaja> tipoviNamestaja = new List<TipNamestaja>();
+            tipoviNamestaja.Add(new TipNamestaja {
+                Naziv = "",
+                Obrisan = true,
+                ID = 0
+        });
+            Projekat.Instance.TipoviNamestaja = tipoviNamestaja;
+        }
+    }
 }

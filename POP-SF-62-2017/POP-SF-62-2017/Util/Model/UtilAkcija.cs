@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace POP_SF_62_2017.Util {
-    public class UtilAkcija {
+namespace POP_SF_62_2017.Util.Model {
+    public static class UtilAkcija {
         public static Akcija GetById(int id) {
             foreach (Akcija akcija in Projekat.Instance.Akcije) {
                 if (akcija.ID == id) {
@@ -24,7 +24,7 @@ namespace POP_SF_62_2017.Util {
                     akcija.Obrisan = true;
                     Projekat.Instance.Akcije = akcije;
                     return true;
-                    
+
                 }
             }
             return false;
@@ -33,7 +33,7 @@ namespace POP_SF_62_2017.Util {
         public static void Add(Akcija a) {
             List<Akcija> akcije = new List<Akcija>();
             akcije = Projekat.Instance.Akcije;
-            a.ID = akcije.Count() + 1;
+            a.ID = akcije.Count();
             akcije.Add(a);
             Projekat.Instance.Akcije = akcije;
         }
@@ -57,5 +57,20 @@ namespace POP_SF_62_2017.Util {
             }
             return false;
         }
+        public static void Initialize() {
+            List<Akcija> akcije = new List<Akcija>();
+            List<int> i = new List<int>();
+            i.Add(0);
+            akcije.Add(new Akcija {
+                ID = 0,
+                Popust = 0,
+                Pocetak = DateTime.MinValue,
+                Kraj = DateTime.MinValue,
+                NamestajNaAkcijiID = i,
+                Obrisan = true,
+            });
+            Projekat.Instance.Akcije = akcije;
+        }
     }
 }
+

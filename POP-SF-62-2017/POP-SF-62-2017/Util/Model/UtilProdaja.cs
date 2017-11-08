@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace POP_SF_62_2017.Util {
+namespace POP_SF_62_2017.Util.Model {
     class UtilProdaja {
         public static Prodaja GetById(int id) {
             foreach (Prodaja prodaja in Projekat.Instance.Prodaje) {
@@ -33,7 +33,7 @@ namespace POP_SF_62_2017.Util {
         public static void Add(Prodaja a) {
             List<Prodaja> prodaje = new List<Prodaja>();
             prodaje = Projekat.Instance.Prodaje;
-            a.ID = prodaje.Count() + 1;
+            a.ID = prodaje.Count();
             prodaje.Add(a);
             Projekat.Instance.Prodaje = prodaje;
         }
@@ -55,6 +55,21 @@ namespace POP_SF_62_2017.Util {
                 }
             }
             return false;
+        }
+
+        public static void Initialize() {
+            List<Prodaja> prodaje = new List<Prodaja>();
+            List<int> i = new List<int>();
+            i.Add(0);
+            prodaje.Add(new Prodaja {
+                ID = 0,
+                DatumProdaje = DateTime.MinValue,
+                DodatneUsluge = null,
+                Kupac = "",
+                ListaNamestaja = i,
+                Obrisan = true
+        });
+            Projekat.Instance.Prodaje = prodaje;
         }
     }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSalon xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Salon>
+    <ID>0</ID>
+    <Naziv />
+    <Adresa />
+    <Mail />
+    <Sajt />
+    <Telefon />
+    <PIB>0</PIB>
+    <MatBr>0</MatBr>
+    <ZiroRacun>0</ZiroRacun>
+    <Obrisan>true</Obrisan>
+  </Salon>
+</ArrayOfSalon>

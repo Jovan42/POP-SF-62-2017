@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace POP_SF_62_2017.Util {
+namespace POP_SF_62_2017.Util.Model {
     public class UtilNamestaj {
         public static Namestaj GetById(int id) {
             foreach (Namestaj namestaj in Projekat.Instance.Namestaji) {
@@ -33,7 +33,7 @@ namespace POP_SF_62_2017.Util {
         public static void Add(Namestaj a) {
             List<Namestaj> namestaji = new List<Namestaj>();
             namestaji = Projekat.Instance.Namestaji;
-            a.ID = namestaji.Count() + 1;
+            a.ID = namestaji.Count();
             namestaji.Add(a);
             Projekat.Instance.Namestaji = namestaji;
         }
@@ -56,6 +56,19 @@ namespace POP_SF_62_2017.Util {
                 }
             }
             return false;
+        }
+
+        public static void Initialize() {
+            List<Namestaj> namestaji = new List<Namestaj>();
+            namestaji.Add(new Namestaj {
+                ID = 0,
+                Cena = 0,
+                Kolicina = 0,
+                Naziv = "",
+                Obrisan = true,
+                TipNamestajaID = 0
+            });
+            Projekat.Instance.Namestaji = namestaji;
         }
     }
 }

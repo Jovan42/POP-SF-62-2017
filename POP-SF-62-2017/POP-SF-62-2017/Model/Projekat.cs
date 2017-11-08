@@ -87,5 +87,7 @@ namespace POP_SF_62_2017.Model {
                 GenericSerializer.Serialize<Korisnik>("korisnici.xml", this.korisnici);
             }
         }
+
+        
     }
 }

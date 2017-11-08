@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace POP_SF_62_2017.Util {
+namespace POP_SF_62_2017.Util.Model {
     public class UtilSalon {
         public static Salon GetById(int id) {
             foreach (Salon salon in Projekat.Instance.Saloni) {
@@ -33,7 +33,7 @@ namespace POP_SF_62_2017.Util {
         public static void Add(Salon a) {
             List<Salon> saloni = new List<Salon>();
             saloni = Projekat.Instance.Saloni;
-            a.ID = saloni.Count() + 1;
+            a.ID = saloni.Count();
             saloni.Add(a);
             Projekat.Instance.Saloni = saloni;
         }
@@ -52,12 +52,30 @@ namespace POP_SF_62_2017.Util {
                     salon.Sajt = s.Sajt;
                     salon.Telefon = s.Telefon;
                     salon.ZiroRacun = s.ZiroRacun;
+                    salon.Adresa = s.Adresa;
                     Projekat.Instance.Saloni = saloni;
                     return true;
 
                 }
             }
             return false;
+        }
+
+        public static void Initialize() {
+            List<Salon> saloni = new List<Salon>();
+            saloni.Add(new Salon {
+                ID = 0,
+                Adresa = "",
+                Naziv = "",
+                Mail = "",
+                MatBr = 0,
+                Obrisan = true,
+                PIB = 0,
+                Sajt = "",
+                Telefon = "",
+                ZiroRacun = 0,
+        });
+            Projekat.Instance.Saloni = saloni;
         }
     }
 }

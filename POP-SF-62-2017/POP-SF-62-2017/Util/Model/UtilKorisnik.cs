@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace POP_SF_62_2017.Util {
+namespace POP_SF_62_2017.Util.Model {
     public class UtilKorisnik {
         public static Korisnik GetById(int id) {
             foreach (Korisnik korisnik in Projekat.Instance.Korisnici) {
@@ -33,7 +33,7 @@ namespace POP_SF_62_2017.Util {
         public static void Add(Korisnik a) {
             List<Korisnik> korisnici = new List<Korisnik>();
             korisnici = Projekat.Instance.Korisnici;
-            a.ID = korisnici.Count() + 1;
+            a.ID = korisnici.Count();
             korisnici.Add(a);
             Projekat.Instance.Korisnici = korisnici;
         }
@@ -56,6 +56,19 @@ namespace POP_SF_62_2017.Util {
                 }
             }
             return false;
+        }
+        public static void Initialize() {
+            List<Korisnik> korisnici = new List<Korisnik>();
+            korisnici.Add(new Korisnik {
+                ID = 0,
+                Admin = true,
+                Ime = "Admin",
+                KorIme = "admin",
+                Lozinka = "admin",
+                Obrisan = false,
+                Prezime = "",
+        });
+            Projekat.Instance.Korisnici = korisnici;
         }
     }
 }
