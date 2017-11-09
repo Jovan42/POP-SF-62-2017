@@ -15,6 +15,16 @@ namespace POP_SF_62_2017.Util.Model {
             }
             return null;
         }
+        public static bool CheckPass(string user, string pass) {
+            List<Korisnik> korisnici = new List<Korisnik>();
+            korisnici = Projekat.Instance.Korisnici;
+            foreach (Korisnik korisnik in korisnici) {
+                if (korisnik.KorIme == user && korisnik.Lozinka == pass) {
+                    return true;
+                }
+            }
+            return false;
+        } 
 
         public static bool DeleteById(int id) {
             List<Korisnik> korisnici = new List<Korisnik>();

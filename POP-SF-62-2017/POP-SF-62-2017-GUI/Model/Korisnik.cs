@@ -15,9 +15,9 @@ namespace POP_SF_62_2017.Model {
         public bool Obrisan { get; set; }
 
         public Korisnik GetById(int id) {
-            foreach (Korisnik korisnici in Projekat.Instance.Korisnici) {
-                if (korisnici.ID == id) {
-                    return korisnici;
+            foreach (Korisnik korisnik in Projekat.Instance.Korisnici) {
+                if (korisnik.ID == id) {
+                    return korisnik;
                 }
             }
             return null;

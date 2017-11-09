@@ -10,7 +10,7 @@ namespace POP_SF_62_2017.Model {
         public string Naziv { get; set; }
         public bool Obrisan { get; set; }
 
-        public TipNamestaja GetById(int id) {
+        public static TipNamestaja GetById(int id) {
             foreach (TipNamestaja tipNamestaja in Projekat.Instance.TipoviNamestaja) {
                 if (tipNamestaja.ID == id) {
                     return tipNamestaja;

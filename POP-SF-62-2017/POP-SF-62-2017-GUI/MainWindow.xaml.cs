@@ -13,14 +13,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace POP_SF_62_2017.Windows {
+namespace POP_SF_62_2017_GUI {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class Login : Window {
-        public Login() {
+    public partial class MainWindow : Window {
+        public MainWindow() {
             InitializeComponent();
         }
-
     }
 }

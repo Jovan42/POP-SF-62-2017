@@ -13,6 +13,10 @@ namespace POP_SF_62_2017.Model {
         public int TipNamestajaID { get;  set; }
         public bool Obrisan { get; set; }
 
+        public override string ToString() {
+
+            return $"{Naziv}, {Cena}, {TipNamestaja.GetById(TipNamestajaID).Naziv}";
+        }
         public Namestaj GetById(int id) {
             foreach(Namestaj namestaj in Projekat.Instance.Namestaji)
             {

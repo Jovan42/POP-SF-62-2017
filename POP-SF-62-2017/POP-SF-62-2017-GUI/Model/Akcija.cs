@@ -11,6 +11,8 @@ namespace POP_SF_62_2017.Model {
         public DateTime Kraj { get; set; }
         public bool Obrisan { get; set; }
         public List<int> NamestajNaAkcijiID { get; set; }
-        public double Popust { get; set; }
+        public double Popust { get; set; } 
+
+
     }
 }
