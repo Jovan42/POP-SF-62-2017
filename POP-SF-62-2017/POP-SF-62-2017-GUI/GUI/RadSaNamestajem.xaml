@@ -4,26 +4,37 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_62_2017_GUI.GUI"
-        mc:Ignorable="d"
+        mc:Ignorable="d" ResizeMode="NoResize"
         Title="RadSaNamestajem" MaxHeight="600"
              SizeToContent="WidthAndHeight">
-    <Grid>
+    <Grid Background="#FF252526" Height="Auto" Width="Auto">
         <StackPanel Orientation="Vertical">
-            <ListBox Height="500" Name="lbNamestaj">
-
-            </ListBox>
-            <StackPanel Orientation ="Horizontal">
-                <Button Content="Dodaj namestaj" Name="btnDodajNamestaj" 
-                        Width="100" Height="30" Margin="5" 
-                        Click="btnDodajNamestaj_Click"></Button>
-
-                <Button Content="1" Width="100" Height="30" Margin="5"
-                        ></Button>
-
-                <Button Name="btnIzlaz" Content="Izlaz" Width="100" Height="30" Margin="5"
-                        HorizontalAlignment="Right" Click="btnIzlaz_Click"></Button>
-
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Id: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
+                <TextBox Name="tbId" IsEnabled="False" Height="25" Width="100" Margin="5"></TextBox>
             </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Nazi: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
+                <TextBox Name="tbNaziv" Width="100" Height="25" Margin="5"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Cena: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
+                <TextBox Name="tbCena" Width="100" Height="25" Margin="5"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Kolicina: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
+                <TextBox Name="tbKolicina" Width="100" Height="25" Margin="5"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Tip: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
+                <TextBox Name="tbTip" Width="100" Height="25" Margin="5"></TextBox>
+            </StackPanel>
+            <Grid>
+                <Button Content="Dodaj" Name="btnDodaj" Height="25" Width="60" HorizontalAlignment="Right" Margin="5"
+                        Click="btnDodaj_Click" Background="Gray" BorderBrush="White" Foreground="White"></Button>
+                <Button Content="Odustani" Name="btnOdustani" Height="25" Width="60" HorizontalAlignment="Left"
+                        Margin="5" Click="btnOdustani_Click" Background="Gray" BorderBrush="White" Foreground="White"></Button>
+            </Grid>
         </StackPanel>
     </Grid>
 </Window>

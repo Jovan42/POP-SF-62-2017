@@ -1,4 +1,6 @@
-﻿using System;
+﻿using POP_SF_62_2017.Model;
+using POP_SF_62_2017.Util.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,14 +21,31 @@ namespace POP_SF_62_2017_GUI.GUI {
     public partial class PregledNamestaja : Window {
         public PregledNamestaja() {
             InitializeComponent();
+            OsveziPrikaz();
+        }
+        private void OsveziPrikaz() {
+            lbNamestaji.ItemsSource = null;
+            lbNamestaji.ItemsSource = UtilNamestaj.getAllNamestaj();
+            lbNamestaji.SelectedIndex = 0;
         }
 
-        private void btnIzlaz_Click(object sender, RoutedEventArgs e) {
-
+        private void btnDodaj_Click(object sender, RoutedEventArgs e) {
+            new RadSaNamestajem().ShowDialog();
+            OsveziPrikaz();
         }
 
-        private void btnSacuvaj_Click(object sender, RoutedEventArgs e) {
+        private void btnIzmeni_Click(object sender, RoutedEventArgs e) {
+            new RadSaNamestajem((Namestaj)lbNamestaji.SelectedItem).ShowDialog();
+            OsveziPrikaz();
+        }
 
+        private void btnObrisi_Click(object sender, RoutedEventArgs e) {
+            Namestaj namestaj = (Namestaj)lbNamestaji.SelectedItem;
+            MessageBoxResult  dialogResult =  MessageBox.Show("Brisanje nameštaja", $"Jeste li sigurni da želite da obrišete nameštaj: {namestaj.Naziv}", MessageBoxButton.YesNo);
+            if (dialogResult == MessageBoxResult.Yes) {
+                UtilNamestaj.DeleteById(namestaj.ID);
+            }
+            OsveziPrikaz();
         }
     }
 }

@@ -24,7 +24,9 @@ namespace POP_SF_62_2017_GUI.GUI {
         int brPokusaja = 3;
         private void btnLogIn_Click(object sender, RoutedEventArgs e) {
             if(UtilKorisnik.CheckPass(tbUser.Text, tbPass.Password)) {
-
+                Meni meni = new Meni(UtilKorisnik.IsAdmin(tbUser.Text));
+                meni.Show();
+                this.Close();
             } else {
                 brPokusaja--;
                 MessageBox.Show($"Uneli ste pogreštno korinsičko ime i šifru, pokušajte opet... \n\nBroj preostalih pokušaja: {brPokusaja}\n", "Greška");

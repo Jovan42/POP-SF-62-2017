@@ -2,7 +2,7 @@
 <ArrayOfTipNamestaja xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <TipNamestaja>
     <ID>0</ID>
-    <Naziv />
+    <Naziv>Tip</Naziv>
     <Obrisan>true</Obrisan>
   </TipNamestaja>
 </ArrayOfTipNamestaja>

@@ -17,15 +17,6 @@ namespace POP_SF_62_2017.Model {
 
             return $"{Naziv}, {Cena}, {TipNamestaja.GetById(TipNamestajaID).Naziv}";
         }
-        public Namestaj GetById(int id) {
-            foreach(Namestaj namestaj in Projekat.Instance.Namestaji)
-            {
-                if(namestaj.ID == id)
-                {
-                    return namestaj;
-                }
-            }
-            return null;
-        }
+        
     }
 }

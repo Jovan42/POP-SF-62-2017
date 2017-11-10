@@ -7,6 +7,15 @@ using System.Threading.Tasks;
 
 namespace POP_SF_62_2017.Util.Model {
     public class UtilKorisnik {
+
+        public static bool IsAdmin(string username) {
+            foreach (Korisnik korisnik in Projekat.Instance.Korisnici) {
+                if (korisnik.KorIme == username) {
+                    return korisnik.Admin;
+                }
+            }
+            return false;
+        }
         public static Korisnik GetById(int id) {
             foreach (Korisnik korisnik in Projekat.Instance.Korisnici) {
                 if (korisnik.ID == id) {

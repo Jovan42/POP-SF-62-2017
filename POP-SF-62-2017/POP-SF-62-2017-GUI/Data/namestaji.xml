@@ -1,26 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfNamestaj xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Namestaj>
-    <Naziv />
+    <Naziv>Naziv Namestaja</Naziv>
     <ID>0</ID>
-    <Cena>0</Cena>
-    <Kolicina>0</Kolicina>
-    <TipNamestajaID>0</TipNamestajaID>
-    <Obrisan>true</Obrisan>
-  </Namestaj>
-  <Namestaj>
-    <Naziv>jkjkjk</Naziv>
-    <ID>1</ID>
-    <Cena>0</Cena>
-    <Kolicina>0</Kolicina>
+    <Cena>20000</Cena>
+    <Kolicina>10</Kolicina>
     <TipNamestajaID>0</TipNamestajaID>
     <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
-    <Naziv>sadasva</Naziv>
+    <Naziv>Naziv Namestaja</Naziv>
+    <ID>1</ID>
+    <Cena>20000</Cena>
+    <Kolicina>10</Kolicina>
+    <TipNamestajaID>0</TipNamestajaID>
+    <Obrisan>true</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Naziv>Naziv Namestaja</Naziv>
     <ID>2</ID>
-    <Cena>0</Cena>
-    <Kolicina>0</Kolicina>
+    <Cena>20000</Cena>
+    <Kolicina>10</Kolicina>
+    <TipNamestajaID>0</TipNamestajaID>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Naziv>Novi</Naziv>
+    <ID>3</ID>
+    <Cena>25000</Cena>
+    <Kolicina>20</Kolicina>
+    <TipNamestajaID>0</TipNamestajaID>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Naziv>Novi</Naziv>
+    <ID>4</ID>
+    <Cena>25000</Cena>
+    <Kolicina>20</Kolicina>
+    <TipNamestajaID>0</TipNamestajaID>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Naziv>Stolica</Naziv>
+    <ID>5</ID>
+    <Cena>25000</Cena>
+    <Kolicina>2</Kolicina>
     <TipNamestajaID>0</TipNamestajaID>
     <Obrisan>false</Obrisan>
   </Namestaj>

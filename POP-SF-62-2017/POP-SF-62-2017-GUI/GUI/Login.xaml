@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_62_2017_GUI.GUI"
         mc:Ignorable="d"
-        Title="Login" ResizeMode="CanResize" BorderBrush="#FF252526"     
+        Title="Login" ResizeMode="NoResize" BorderBrush="#FF252526"     
         SizeToContent="WidthAndHeight" PreviewKeyDown="Window_PreviewKeyDown">
     <Grid Background="#FF252526" Height="Auto" Width="Auto">
         <StackPanel Margin="5" Orientation="Vertical" Name="spUser">

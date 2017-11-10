@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace POP_SF_62_2017.Util.Model {
     public class UtilNamestaj {
+
         public static Namestaj GetById(int id) {
             foreach (Namestaj namestaj in Projekat.Instance.Namestaji) {
                 if (namestaj.ID == id) {
@@ -56,6 +57,14 @@ namespace POP_SF_62_2017.Util.Model {
                 }
             }
             return false;
+        }
+        public static List<Namestaj> getAllNamestaj() {
+            List<Namestaj>namestaji = new List<Namestaj>();
+            foreach (Namestaj namesetaj in Projekat.Instance.Namestaji) {
+                if (!namesetaj.Obrisan)
+                    namestaji.Add(namesetaj);
+            }
+            return namestaji;
         }
 
         public static void Initialize() {
