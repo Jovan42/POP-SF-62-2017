@@ -18,5 +18,9 @@ namespace POP_SF_62_2017.Model {
             }
             return null;
         }
+
+        public override string ToString() {
+            return $"{ID}. {Naziv}";
+        }
     }
 }

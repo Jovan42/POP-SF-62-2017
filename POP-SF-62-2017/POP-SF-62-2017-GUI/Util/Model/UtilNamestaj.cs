@@ -10,7 +10,7 @@ namespace POP_SF_62_2017.Util.Model {
 
         public static Namestaj GetById(int id) {
             foreach (Namestaj namestaj in Projekat.Instance.Namestaji) {
-                if (namestaj.ID == id) {
+                if (namestaj.ID == id && namestaj.Obrisan == false) {
                     return namestaj;
                 }
             }
@@ -58,7 +58,7 @@ namespace POP_SF_62_2017.Util.Model {
             }
             return false;
         }
-        public static List<Namestaj> getAllNamestaj() {
+        public static List<Namestaj> getAll() {
             List<Namestaj>namestaji = new List<Namestaj>();
             foreach (Namestaj namesetaj in Projekat.Instance.Namestaji) {
                 if (!namesetaj.Obrisan)

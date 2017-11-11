@@ -1,0 +1,47 @@
+﻿<Window x:Class="POP_SF_62_2017_GUI.GUI.RadSaModelom.RadSaProdajom"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_62_2017_GUI.GUI.RadSaModelom"
+        mc:Ignorable="d"
+        Title="Rad Sa Akcijom" MaxHeight="600"
+             SizeToContent="WidthAndHeight"
+        Name="window" ResizeMode="NoResize" >
+    <Grid Background="#FF252526" Height="Auto" Width="Auto">
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Id: " Width="60" Height="25" Margin="5" Foreground="White"></Label>
+                    <TextBox Name="tbId" IsEnabled="False" Height="25" Width="100" Margin="5"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Datum: " Width="60" Height="25" Margin="5" Foreground="White"></Label>
+                    <TextBox Name="tbDatum" Width="100" Height="25" Margin="5" IsEnabled="False"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Kupac: " Width="60" Height="25" Margin="5" Foreground="White"></Label>
+                    <TextBox Name="tbKupac" Width="100" Height="25" Margin="5"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label MaxWidth="100" Width="60" VerticalAlignment="Stretch" Margin="5"
+                           Foreground="White" >
+                        <TextBlock>Dodatne<LineBreak/>Usluge</TextBlock>
+                    </Label>
+                    <TextBox Name="tbDodatneUsluge" Width="100" Height="50" Margin="5" TextWrapping="Wrap"
+                             AcceptsReturn="True"  ></TextBox>
+                </StackPanel>
+                <Grid>
+                    <Button Content="Dodaj" Name="btnDodaj" Height="25" Width="60" HorizontalAlignment="Right" Margin="5"
+                        Click="btnDodaj_Click"  Background="Gray" BorderBrush="White" Foreground="White"></Button>
+                    <Button Content="Odustani" Name="btnOdustani" Height="25" Width="60" HorizontalAlignment="Left"
+                        Margin="5" Click="btnOdustani_Click"  Background="Gray" BorderBrush="White" Foreground="White"></Button>
+                </Grid>
+            </StackPanel>
+            <StackPanel Name="spNamestaji" Orientation="Vertical">
+
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
+

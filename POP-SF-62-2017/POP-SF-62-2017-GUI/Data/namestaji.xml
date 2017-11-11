@@ -14,7 +14,7 @@
     <Cena>20000</Cena>
     <Kolicina>10</Kolicina>
     <TipNamestajaID>0</TipNamestajaID>
-    <Obrisan>true</Obrisan>
+    <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
     <Naziv>Naziv Namestaja</Naziv>
@@ -25,7 +25,7 @@
     <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
-    <Naziv>Novi</Naziv>
+    <Naziv>Novi123654</Naziv>
     <ID>3</ID>
     <Cena>25000</Cena>
     <Kolicina>20</Kolicina>
@@ -45,6 +45,14 @@
     <ID>5</ID>
     <Cena>25000</Cena>
     <Kolicina>2</Kolicina>
+    <TipNamestajaID>0</TipNamestajaID>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Naziv>Namestaj 2</Naziv>
+    <ID>6</ID>
+    <Cena>2000</Cena>
+    <Kolicina>50</Kolicina>
     <TipNamestajaID>0</TipNamestajaID>
     <Obrisan>false</Obrisan>
   </Namestaj>

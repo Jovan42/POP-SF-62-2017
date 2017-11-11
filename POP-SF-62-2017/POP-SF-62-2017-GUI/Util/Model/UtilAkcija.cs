@@ -57,6 +57,16 @@ namespace POP_SF_62_2017.Util.Model {
             }
             return false;
         }
+
+        public static List<Akcija> getAll() {
+            List<Akcija> akcije = new List<Akcija>();
+            foreach (Akcija akcija in Projekat.Instance.Akcije) {
+                if (!akcija.Obrisan)
+                    akcije.Add(akcija);
+            }
+            return akcije;
+        }
+
         public static void Initialize() {
             List<Akcija> akcije = new List<Akcija>();
             List<int> i = new List<int>();

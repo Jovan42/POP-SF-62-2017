@@ -47,8 +47,9 @@ namespace POP_SF_62_2017.Util.Model {
                     prodaja.DatumProdaje = p.DatumProdaje;
                     prodaja.DodatneUsluge = p.DodatneUsluge;
                     prodaja.Kupac = p.Kupac;
-                    prodaja.ListaNamestaja = p.ListaNamestaja;
+                    prodaja.ProdatNamestaj = p.ProdatNamestaj;
                     prodaja.Obrisan = p.Obrisan;
+                    prodaja.Kolicina = p.Kolicina;
                     Projekat.Instance.Prodaje = prodaje;
                     return true;
 
@@ -57,16 +58,27 @@ namespace POP_SF_62_2017.Util.Model {
             return false;
         }
 
+        public static List<Prodaja> getAll() {
+            List<Prodaja> prodaje = new List<Prodaja>();
+            foreach (Prodaja prodaja in Projekat.Instance.Prodaje) {
+                if (!prodaja.Obrisan)
+                    prodaje.Add(prodaja);
+            }
+            return prodaje;
+        }
+
         public static void Initialize() {
             List<Prodaja> prodaje = new List<Prodaja>();
             List<int> i = new List<int>();
+            
             i.Add(0);
             prodaje.Add(new Prodaja {
                 ID = 0,
                 DatumProdaje = DateTime.MinValue,
                 DodatneUsluge = null,
                 Kupac = "",
-                ListaNamestaja = i,
+                ProdatNamestaj = i,
+                Kolicina = i,
                 Obrisan = true
         });
             Projekat.Instance.Prodaje = prodaje;

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_62_2017_GUI.GUI"
-        mc:Ignorable="d"
+        mc:Ignorable="d" Name="window"
         Title="Meni" Height="300" Width="300" ResizeMode="NoResize" BorderBrush="#FF252526">
     <Grid Background="#FF252526" Height="Auto" Width="Auto">
         <StackPanel Orientation="Vertical">
@@ -18,6 +18,8 @@
             <Button Content="Rad Sa Prodajama" Name="btnRadSaProdajama" Click="btnRadSaProdajama_Click" Margin="5"
                     Height="25" Background="Gray" BorderBrush="White" Foreground="White"></Button>
             <Button Content="Rad Sa Korisnicima" Name="btnRadSaKorisnicima" Click="btnRadSaKorisnicima_Click" Margin="5"
+                IsEnabled="False" Height="25" Background="Gray" BorderBrush="White" Foreground="White"></Button>
+            <Button Content="Rad Sa Salonom" Name="btnRadSaSalonima" Click="btnRadSaSalonima_Click"  Margin="5"
                 IsEnabled="False" Height="25" Background="Gray" BorderBrush="White" Foreground="White"></Button>
         </StackPanel>
         <Grid VerticalAlignment="Bottom">

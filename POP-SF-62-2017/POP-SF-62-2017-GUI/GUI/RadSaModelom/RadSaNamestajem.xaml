@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_62_2017_GUI.GUI"
         mc:Ignorable="d" ResizeMode="NoResize"
-        Title="RadSaNamestajem" MaxHeight="600"
-             SizeToContent="WidthAndHeight">
+        Title="Rad Sa Namestajem" MaxHeight="600"
+             SizeToContent="WidthAndHeight"
+        Name="window">
     <Grid Background="#FF252526" Height="Auto" Width="Auto">
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">

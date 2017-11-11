@@ -10,6 +10,6 @@
     <PIB>0</PIB>
     <MatBr>0</MatBr>
     <ZiroRacun>0</ZiroRacun>
-    <Obrisan>true</Obrisan>
+    <Obrisan>false</Obrisan>
   </Salon>
 </ArrayOfSalon>

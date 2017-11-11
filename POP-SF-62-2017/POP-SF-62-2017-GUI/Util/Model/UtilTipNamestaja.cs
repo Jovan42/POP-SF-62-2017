@@ -16,7 +16,16 @@ namespace POP_SF_62_2017.Util.Model {
         return null;
     }
 
-    public static bool DeleteById(int id) {
+        public static List<TipNamestaja> getAll() {
+            List<TipNamestaja> tipoviNamestaja = new List<TipNamestaja>();
+            foreach (TipNamestaja tipNamestaja in Projekat.Instance.TipoviNamestaja) {
+                if (!tipNamestaja.Obrisan)
+                    tipoviNamestaja.Add(tipNamestaja);
+            }
+            return tipoviNamestaja;
+        }
+
+        public static bool DeleteById(int id) {
         List<TipNamestaja> tipoviNamestaja = new List<TipNamestaja>();
         tipoviNamestaja = Projekat.Instance.TipoviNamestaja;
         foreach (TipNamestaja tipNamestaja in tipoviNamestaja) {

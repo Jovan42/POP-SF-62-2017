@@ -54,11 +54,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Enums\TipKlase.cs" />
     <Compile Include="GUI\Meni.xaml.cs">
       <DependentUpon>Meni.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\PregledNamestaja.xaml.cs">
-      <DependentUpon>PregledNamestaja.xaml</DependentUpon>
+    <Compile Include="GUI\Pregled.xaml.cs">
+      <DependentUpon>Pregled.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\RadSaModelom\RadSaAkcijom.xaml.cs">
+      <DependentUpon>RadSaAkcijom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\RadSaModelom\RadSaProdajom.xaml.cs">
+      <DependentUpon>RadSaProdajom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\RadSaModelom\RadSaTipomNamestaja.xaml.cs">
+      <DependentUpon>RadSaTipomNamestaja.xaml</DependentUpon>
     </Compile>
     <Compile Include="Util\GenericSerializer.cs" />
     <Compile Include="Util\Model\UtilAkcija.cs" />
@@ -75,11 +85,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUI\PregledNamestaja.xaml">
+    <Page Include="GUI\Pregled.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUI\RadSaNamestajem.xaml">
+    <Page Include="GUI\RadSaModelom\RadSaAkcijom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\RadSaModelom\RadSaNamestajem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -90,9 +104,17 @@
     <Compile Include="GUI\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\RadSaNamestajem.xaml.cs">
+    <Compile Include="GUI\RadSaModelom\RadSaNamestajem.xaml.cs">
       <DependentUpon>RadSaNamestajem.xaml</DependentUpon>
     </Compile>
+    <Page Include="GUI\RadSaModelom\RadSaProdajom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\RadSaModelom\RadSaTipomNamestaja.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Akcija.cs" />
@@ -131,9 +153,11 @@
     <Resource Include="Data\akcije.xml" />
     <Resource Include="Data\korisnici.xml" />
     <Resource Include="Data\namestaji.xml" />
-    <Resource Include="Data\prodaje.xml" />
     <Resource Include="Data\saloni.xml" />
     <Resource Include="Data\tipovi_namestaja.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\prodaje.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

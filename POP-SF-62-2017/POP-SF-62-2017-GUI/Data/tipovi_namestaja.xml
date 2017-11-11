@@ -2,7 +2,27 @@
 <ArrayOfTipNamestaja xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <TipNamestaja>
     <ID>0</ID>
+    <Naziv>kkkj</Naziv>
+    <Obrisan>false</Obrisan>
+  </TipNamestaja>
+  <TipNamestaja>
+    <ID>1</ID>
     <Naziv>Tip</Naziv>
+    <Obrisan>false</Obrisan>
+  </TipNamestaja>
+  <TipNamestaja>
+    <ID>2</ID>
+    <Naziv>Tip</Naziv>
+    <Obrisan>false</Obrisan>
+  </TipNamestaja>
+  <TipNamestaja>
+    <ID>3</ID>
+    <Naziv>Tip</Naziv>
+    <Obrisan>false</Obrisan>
+  </TipNamestaja>
+  <TipNamestaja>
+    <ID>4</ID>
+    <Naziv>kappa</Naziv>
     <Obrisan>true</Obrisan>
   </TipNamestaja>
 </ArrayOfTipNamestaja>
