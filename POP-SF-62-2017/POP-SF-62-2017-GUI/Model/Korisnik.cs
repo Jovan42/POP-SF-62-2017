@@ -14,13 +14,9 @@ namespace POP_SF_62_2017.Model {
         public bool Admin { get; set; }
         public bool Obrisan { get; set; }
 
-        public Korisnik GetById(int id) {
-            foreach (Korisnik korisnik in Projekat.Instance.Korisnici) {
-                if (korisnik.ID == id) {
-                    return korisnik;
-                }
-            }
-            return null;
+        public override string ToString() {
+            string tip = Admin ? "Admin" : "Korisnik";
+            return $"{tip} - {KorIme}: {Ime} {Prezime}";
         }
     }
 }

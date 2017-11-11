@@ -45,7 +45,7 @@ namespace POP_SF_62_2017_GUI.GUI {
                     lbNamestaji.ItemsSource = UtilAkcija.getAll();
                 break;
                 case TipKlase.KORISNIK:
-                    lbNamestaji.ItemsSource = UtilNamestaj.getAll();
+                    lbNamestaji.ItemsSource = UtilKorisnik.getAll();
                     window.Title += "a";
                 break;
                 case TipKlase.PRODAJA:
@@ -68,15 +68,29 @@ namespace POP_SF_62_2017_GUI.GUI {
         private void btnDodaj_Click(object sender, RoutedEventArgs e) {
             switch (tip) {
                 case TipKlase.NAMESTAJ:
-                new RadSaNamestajem().ShowDialog();
+                if (UtilTipNamestaja.getAll().Count == 0) {
+                    MessageBox.Show("Prvo morate dodati neki tip nameštaja", "Greška");
+                    new RadSaTipomNamestaja().ShowDialog();
+                    
+                } else 
+                    new RadSaNamestajem().ShowDialog();
                 break;
                 case TipKlase.AKCIJA:
-                new RadSaAkcijom().ShowDialog();
+                if (UtilNamestaj.getAll().Count == 0) {
+                    MessageBox.Show("Prvo morate dodati nameštaj da bi ste dodali akciju", "Greška");
+                    new RadSaTipomNamestaja().ShowDialog();
+                } else
+                    new RadSaAkcijom().ShowDialog();
                 break;
                 case TipKlase.KORISNIK:
+                new RadSaKorisnikom().ShowDialog();
                 break;
                 case TipKlase.PRODAJA:
-                new RadSaProdajom().ShowDialog();
+                if (UtilNamestaj.getAll().Count == 0) {
+                    MessageBox.Show("Prvo morate dodati nameštaj da bi ste dodali prodaju", "Greška");
+                    new RadSaTipomNamestaja().ShowDialog();
+                } else
+                    new RadSaProdajom().ShowDialog();
                 break;
                 case TipKlase.SALON:
                 break;
@@ -99,6 +113,7 @@ namespace POP_SF_62_2017_GUI.GUI {
                 new RadSaAkcijom((Akcija)lbNamestaji.SelectedItem).ShowDialog();
                 break;
                 case TipKlase.KORISNIK:
+                new RadSaKorisnikom((Korisnik)lbNamestaji.SelectedItem).ShowDialog();
                 break;
                 case TipKlase.PRODAJA:
                 new RadSaProdajom((Prodaja)lbNamestaji.SelectedItem).ShowDialog();
@@ -133,6 +148,11 @@ namespace POP_SF_62_2017_GUI.GUI {
                 }
                 break;
                 case TipKlase.KORISNIK:
+                Korisnik korisnik = (Korisnik)lbNamestaji.SelectedItem;
+                dialogResult = MessageBox.Show("Brisanje nameštaja", $"Jeste li sigurni da želite da obrišete nameštaj korisnika: {korisnik.KorIme} ", MessageBoxButton.YesNo);
+                if (dialogResult == MessageBoxResult.Yes) {
+                    UtilKorisnik.DeleteById(korisnik.ID);
+                }
                 break;
                 case TipKlase.PRODAJA:
                 Prodaja prodaja = (Prodaja)lbNamestaji.SelectedItem;

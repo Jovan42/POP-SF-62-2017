@@ -23,10 +23,10 @@
                 IsEnabled="False" Height="25" Background="Gray" BorderBrush="White" Foreground="White"></Button>
         </StackPanel>
         <Grid VerticalAlignment="Bottom">
-            <Button Content="Odjavi se" Name="btnIzlaz" Height="25" Width="100" HorizontalAlignment="Left"
-                    Click="btnIzlaz_Click" Margin="5" Background="Gray" BorderBrush="White" Foreground="White"></Button>
-            <Button Content="Izaz" Name="btnOdjaviSe" Height="25" Width="100" HorizontalAlignment="Right"
+            <Button Content="Odjavi se" Name="btnOdjaviSe" Height="25" Width="100" HorizontalAlignment="Left"
                     Click="btnOdjaviSe_Click" Margin="5" Background="Gray" BorderBrush="White" Foreground="White"></Button>
+            <Button Content="Izaz" Name="btnIzlaz" Height="25" Width="100" HorizontalAlignment="Right"
+                    Click="btnIzlaz_Click" Margin="5" Background="Gray" BorderBrush="White" Foreground="White"></Button>
 
         </Grid>
     </Grid>

@@ -15,7 +15,7 @@
                 <TextBox Name="tbId" IsEnabled="False" Height="25" Width="100" Margin="5"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Nazi: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
+                <Label Content="Naziv: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
                 <TextBox Name="tbNaziv" Width="100" Height="25" Margin="5"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -28,7 +28,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Tip: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbTip" Width="100" Height="25" Margin="5"></TextBox>
+                <ComboBox Name="comboTip" Width="100" Height="25" Margin="5"></ComboBox>
             </StackPanel>
             <Grid>
                 <Button Content="Dodaj" Name="btnDodaj" Height="25" Width="60" HorizontalAlignment="Right" Margin="5"

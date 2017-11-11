@@ -64,8 +64,14 @@
     <Compile Include="GUI\RadSaModelom\RadSaAkcijom.xaml.cs">
       <DependentUpon>RadSaAkcijom.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\RadSaModelom\RadSaKorisnikom.xaml.cs">
+      <DependentUpon>RadSaKorisnikom.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\RadSaModelom\RadSaProdajom.xaml.cs">
       <DependentUpon>RadSaProdajom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\RadSaModelom\RadSaSalonom.xaml.cs">
+      <DependentUpon>RadSaSalonom.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\RadSaModelom\RadSaTipomNamestaja.xaml.cs">
       <DependentUpon>RadSaTipomNamestaja.xaml</DependentUpon>
@@ -93,6 +99,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\RadSaModelom\RadSaKorisnikom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\RadSaModelom\RadSaNamestajem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -108,6 +118,10 @@
       <DependentUpon>RadSaNamestajem.xaml</DependentUpon>
     </Compile>
     <Page Include="GUI\RadSaModelom\RadSaProdajom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\RadSaModelom\RadSaSalonom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

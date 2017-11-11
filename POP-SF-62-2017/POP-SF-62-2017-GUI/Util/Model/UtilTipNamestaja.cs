@@ -14,7 +14,16 @@ namespace POP_SF_62_2017.Util.Model {
             }
         }
         return null;
-    }
+        }
+
+        public static TipNamestaja GetByName(string name) {
+            foreach (TipNamestaja tipNamestaja in Projekat.Instance.TipoviNamestaja) {
+                if (tipNamestaja.Naziv == name) {
+                    return tipNamestaja;
+                }
+            }
+            return null;
+        }
 
         public static List<TipNamestaja> getAll() {
             List<TipNamestaja> tipoviNamestaja = new List<TipNamestaja>();

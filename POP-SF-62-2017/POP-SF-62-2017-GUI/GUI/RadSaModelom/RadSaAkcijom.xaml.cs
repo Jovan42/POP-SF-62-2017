@@ -55,14 +55,23 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom
         }
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e) {
-            //TODO zastita od pogresnog unosa
-            if (izmena) {
-                UtilAkcija.ChangeById(getFromGUI(), Int32.Parse(tbId.Text));
-                Close();
-            } else {
-                UtilAkcija.Add(getFromGUI());
-                Close();
+            try {
+                double a;
+                if(!Double.TryParse(tbPopust.Text, out a))
+                    throw new Exception("Popust je pogrešno unet.");
+
+                if (izmena) {
+                    UtilAkcija.ChangeById(getFromGUI(), Int32.Parse(tbId.Text));
+                    Close();
+                } else {
+                    UtilAkcija.Add(getFromGUI());
+                    Close();
+                }
+            } catch (Exception ex) {
+
+                MessageBox.Show($"{ex.Message}. Pokušajte opet.", "Greška");
             }
+            
 
         }
 

@@ -76,6 +76,16 @@ namespace POP_SF_62_2017.Util.Model {
             }
             return false;
         }
+
+        public static List<Korisnik> getAll() {
+            List<Korisnik> korisnici = new List<Korisnik>();
+            foreach (Korisnik korisnik in Projekat.Instance.Korisnici) {
+                if (!korisnik.Obrisan)
+                    korisnici.Add(korisnik);
+            }
+            return korisnici;
+        }
+
         public static void Initialize() {
             List<Korisnik> korisnici = new List<Korisnik>();
             korisnici.Add(new Korisnik {

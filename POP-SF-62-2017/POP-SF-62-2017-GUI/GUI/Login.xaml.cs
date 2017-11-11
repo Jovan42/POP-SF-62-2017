@@ -40,18 +40,6 @@ namespace POP_SF_62_2017_GUI.GUI {
             this.Close();
         }
 
-        private void Window_PreviewKeyDown(object sender, KeyEventArgs e) {
-            if (e.Key == Key.Return) {
-                if (UtilKorisnik.CheckPass(tbUser.Text, tbPass.Password)) {
 
-                } else {
-                    brPokusaja--;
-                    MessageBox.Show($"Uneli ste pogreštno korinsičko ime i šifru, pokušajte opet... \n\nBroj preostalih pokušaja: {brPokusaja}\n", "Greška");
-                    if (brPokusaja == 0) {
-                        this.Close();
-                    }
-                }
-            }
-        }
     }
 }

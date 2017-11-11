@@ -39,6 +39,12 @@
                 </Grid>
             </StackPanel>
             <StackPanel Name="spNamestaji" Orientation="Vertical">
+                <StackPanel HorizontalAlignment="Left">
+                    <Label Content="Namestaji: " Width="70" Height="25" Margin="5" Foreground="White">
+                    </Label>
+                </StackPanel>
+                
+                
 
             </StackPanel>
         </StackPanel>

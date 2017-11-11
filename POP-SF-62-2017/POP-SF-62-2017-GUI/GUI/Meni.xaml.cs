@@ -1,5 +1,7 @@
 ﻿using POP_SF_62_2017.Model;
+using POP_SF_62_2017.Util.Model;
 using POP_SF_62_2017_GUI.Enums;
+using POP_SF_62_2017_GUI.GUI.RadSaModelom;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,8 +70,7 @@ namespace POP_SF_62_2017_GUI.GUI {
         }
 
         private void btnRadSaSalonima_Click(object sender, RoutedEventArgs e) {
-            new Pregled(TipKlase.SALON, admin).Show();
-            this.Close();
+            new RadSaSalonom(UtilSalon.GetById(0)).ShowDialog();
         }
     }
 }
