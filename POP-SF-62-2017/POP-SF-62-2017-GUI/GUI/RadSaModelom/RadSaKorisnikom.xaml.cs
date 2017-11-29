@@ -27,11 +27,11 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
 
         public RadSaKorisnikom(Korisnik korisnik) {
             InitializeComponent();
-            tbId.Text = korisnik.ID.ToString();
-            tbIme.Text = korisnik.Ime;
-            tbKorIme.Text = korisnik.KorIme;
-            tbPrezime.Text = korisnik.Prezime;
-            cbAdmin.IsChecked = korisnik.Admin;
+            tbId.DataContext = korisnik;
+            tbIme.DataContext = korisnik;
+            tbKorIme.DataContext = korisnik;
+            tbPrezime.DataContext = korisnik;
+            
             izmena = true;
         }
 
@@ -45,7 +45,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
                 if (izmena) {
                     UtilKorisnik.ChangeById(getFromGUI(), Int32.Parse(tbId.Text));
                 } else {
-                    UtilKorisnik.ChangeById(getFromGUI(), 0);
+                    UtilKorisnik.Add(getFromGUI());
                 }
             }
             Close();

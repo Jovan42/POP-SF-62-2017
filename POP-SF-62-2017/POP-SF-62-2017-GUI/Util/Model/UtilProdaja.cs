@@ -1,6 +1,7 @@
 ﻿using POP_SF_62_2017.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,12 +18,12 @@ namespace POP_SF_62_2017.Util.Model {
         }
 
         public static bool DeleteById(int id) {
-            List<Prodaja> prodaje = new List<Prodaja>();
+            ObservableCollection<Prodaja> prodaje = new ObservableCollection<Prodaja>();
             prodaje = Projekat.Instance.Prodaje;
             foreach (Prodaja prodaja in prodaje) {
                 if (prodaja.ID == id) {
                     prodaja.Obrisan = true;
-                    Projekat.Instance.Prodaje = prodaje;
+                    Projekat.Instance.SetProdaje(prodaje);
                     return true;
 
                 }
@@ -31,15 +32,15 @@ namespace POP_SF_62_2017.Util.Model {
         }
 
         public static void Add(Prodaja a) {
-            List<Prodaja> prodaje = new List<Prodaja>();
+            ObservableCollection<Prodaja> prodaje = new ObservableCollection<Prodaja>();
             prodaje = Projekat.Instance.Prodaje;
             a.ID = prodaje.Count();
             prodaje.Add(a);
-            Projekat.Instance.Prodaje = prodaje;
+            Projekat.Instance.SetProdaje(prodaje);
         }
 
         public static bool ChangeById(Prodaja p, int id) {
-            List<Prodaja> prodaje = new List<Prodaja>();
+            ObservableCollection<Prodaja> prodaje = new ObservableCollection<Prodaja>();
             prodaje = Projekat.Instance.Prodaje;
             foreach (Prodaja prodaja in prodaje) {
                 if (prodaja.ID == id) {
@@ -58,8 +59,8 @@ namespace POP_SF_62_2017.Util.Model {
             return false;
         }
 
-        public static List<Prodaja> getAll() {
-            List<Prodaja> prodaje = new List<Prodaja>();
+        public static ObservableCollection<Prodaja> getAll() {
+            ObservableCollection<Prodaja> prodaje = new ObservableCollection<Prodaja>();
             foreach (Prodaja prodaja in Projekat.Instance.Prodaje) {
                 if (!prodaja.Obrisan)
                     prodaje.Add(prodaja);
@@ -68,7 +69,7 @@ namespace POP_SF_62_2017.Util.Model {
         }
 
         public static void Initialize() {
-            List<Prodaja> prodaje = new List<Prodaja>();
+            ObservableCollection<Prodaja> prodaje = new ObservableCollection<Prodaja>();
             List<int> i = new List<int>();
             
             i.Add(0);
@@ -81,7 +82,7 @@ namespace POP_SF_62_2017.Util.Model {
                 Kolicina = i,
                 Obrisan = true
         });
-            Projekat.Instance.Prodaje = prodaje;
+            Projekat.Instance.SetProdaje(prodaje);
         }
     }
 }

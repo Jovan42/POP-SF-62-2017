@@ -32,8 +32,10 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom
         public RadSaTipomNamestaja(TipNamestaja tipNamestaja) {
             izmena = true;
             InitializeComponent();
-            tbId.Text = tipNamestaja.ID.ToString();
-            tbNaziv.Text = tipNamestaja.Naziv;
+
+            tbId.DataContext = tipNamestaja;
+            tbNaziv.DataContext = tipNamestaja;
+            
             btnDodaj.Content = "Izmeni";
             this.tipNamestaja = tipNamestaja;
             tbNaziv.Focus();

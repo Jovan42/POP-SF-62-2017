@@ -13,11 +13,11 @@
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Id: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbId" IsEnabled="False" Height="25" Width="100" Margin="5"></TextBox>
+                <TextBox Name="tbId" IsEnabled="False" Height="25" Width="100" Margin="5" Text="{Binding Path=ID}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Nazi: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbNaziv" Width="100" Height="25" Margin="5"></TextBox>
+                <TextBox Name="tbNaziv" Width="100" Height="25" Margin="5" Text="{Binding Path=Naziv}"></TextBox>
             </StackPanel>
             <Grid>
                 <Button Content="Dodaj" Name="btnDodaj" Height="25" Width="60" HorizontalAlignment="Right" Margin="5"

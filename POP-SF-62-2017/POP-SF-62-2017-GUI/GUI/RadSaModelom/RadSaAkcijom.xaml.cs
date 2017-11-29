@@ -43,11 +43,10 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom
                         checkBox.IsChecked = true;
                 }
             }
-
-            calKraj.DisplayDate = akcija.Kraj;
-            calPocetak.DisplayDate = akcija.Pocetak;
-            tbId.Text = akcija.ID.ToString();
-            tbPopust.Text = akcija.Popust.ToString();
+            tbId.DataContext = akcija;
+            calKraj.DataContext = akcija;
+            calPocetak.DataContext = akcija;
+            tbPopust.DataContext = akcija;
         }
 
         private void btnOdustani_Click(object sender, RoutedEventArgs e) {

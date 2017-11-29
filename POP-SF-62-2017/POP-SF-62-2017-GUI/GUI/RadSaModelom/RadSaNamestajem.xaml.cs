@@ -3,6 +3,7 @@ using POP_SF_62_2017.Util.Model;
 using POP_SF_62_2017_GUI.GUI.RadSaModelom;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,26 +23,32 @@ namespace POP_SF_62_2017_GUI.GUI {
     /// 
     public partial class RadSaNamestajem : Window {
         bool izmena = false;
-        Namestaj namestaj;
+        Namestaj namestaj, noviNamestaj = new Namestaj();
+        ObservableCollection<TipNamestaja> tipNamestaja;
         public RadSaNamestajem() {
             InitializeComponent();
             tbNaziv.Focus();
             populateComboBox();
+            comboTip.SelectedIndex = 0;
         }
 
         public RadSaNamestajem(Namestaj namestaj) {
-            izmena = true;
+            izmena = true;            
             InitializeComponent();
-            tbId.Text = namestaj.ID.ToString();
-            tbNaziv.Text = namestaj.Naziv;
-            tbCena.Text = namestaj.Cena.ToString();
-            populateComboBox();
-            
-
-            tbKolicina.Text = namestaj.Kolicina.ToString();
+            this.namestaj = namestaj;
+            noviNamestaj = namestaj;
             btnDodaj.Content = "Izmeni";
             this.namestaj = namestaj;
-            tbNaziv.Focus();
+            this.tipNamestaja = UtilTipNamestaja.getAll();
+
+            tbId.DataContext = noviNamestaj;
+            tbNaziv.DataContext = noviNamestaj;
+            tbCena.DataContext = noviNamestaj;
+            tbKolicina.DataContext = noviNamestaj;
+
+            comboTip.ItemsSource = tipNamestaja;
+            comboTip.DataContext = noviNamestaj;
+            
         }
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e) {
@@ -54,9 +61,11 @@ namespace POP_SF_62_2017_GUI.GUI {
                     throw new Exception("Cena namestaja je pogrešno uneta.");
                 if (izmena) {
                     UtilNamestaj.ChangeById(getNamestajFromGUI(), Int32.Parse(tbId.Text));
+                    
                     Close();
                 } else {
                     UtilNamestaj.Add(getNamestajFromGUI());
+                    noviNamestaj = namestaj;
                     Close();
                 }
             } catch (Exception ex) {
@@ -80,16 +89,15 @@ namespace POP_SF_62_2017_GUI.GUI {
             if (izmena)
                 n.ID = Int32.Parse(tbId.Text);
 
-            string tipId = comboTip.SelectedItem.ToString().Split('.')[0];
-            n.TipNamestajaID = Int32.Parse(tipId);
+            n.TipNamestajaID = ((TipNamestaja)comboTip.SelectedItem).ID;
+            
             return n;
         }
 
         private void populateComboBox() {
             foreach (TipNamestaja tip in UtilTipNamestaja.getAll()) {
-                comboTip.Items.Add($"{tip.ID}. {tip.Naziv}");
+                comboTip.Items.Add(tip);
             }
-
         }
     }
 }

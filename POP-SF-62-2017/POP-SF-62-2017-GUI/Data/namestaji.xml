@@ -1,3 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfNamestaj xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Namestaj>
+    <Naziv>Sto</Naziv>
+    <ID>0</ID>
+    <Cena>5000</Cena>
+    <Kolicina>50</Kolicina>
+    <TipNamestajaID>0</TipNamestajaID>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Naziv>Stolica</Naziv>
+    <ID>1</ID>
+    <Cena>6200</Cena>
+    <Kolicina>50</Kolicina>
+    <TipNamestajaID>1</TipNamestajaID>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Naziv>sadsa5</Naziv>
+    <ID>2</ID>
+    <Cena>5000</Cena>
+    <Kolicina>50</Kolicina>
+    <TipNamestajaID>0</TipNamestajaID>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Naziv>kdlsačkadlčs</Naziv>
+    <ID>3</ID>
+    <Cena>500</Cena>
+    <Kolicina>50</Kolicina>
+    <TipNamestajaID>0</TipNamestajaID>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
 </ArrayOfNamestaj>

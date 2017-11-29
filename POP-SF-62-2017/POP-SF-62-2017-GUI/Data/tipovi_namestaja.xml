@@ -5,4 +5,9 @@
     <Naziv>Kuhinja</Naziv>
     <Obrisan>false</Obrisan>
   </TipNamestaja>
+  <TipNamestaja>
+    <ID>1</ID>
+    <Naziv>Kupatilo</Naziv>
+    <Obrisan>false</Obrisan>
+  </TipNamestaja>
 </ArrayOfTipNamestaja>

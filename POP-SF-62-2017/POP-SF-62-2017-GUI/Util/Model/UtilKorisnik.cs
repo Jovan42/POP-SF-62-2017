@@ -1,6 +1,7 @@
 ﻿using POP_SF_62_2017.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,8 +26,8 @@ namespace POP_SF_62_2017.Util.Model {
             return null;
         }
         public static bool CheckPass(string user, string pass) {
-            List<Korisnik> korisnici = new List<Korisnik>();
-            korisnici = Projekat.Instance.Korisnici;
+            ObservableCollection<Korisnik> korisnici = Projekat.Instance.Korisnici;
+
             foreach (Korisnik korisnik in korisnici) {
                 if (korisnik.KorIme == user && korisnik.Lozinka == pass) {
                     return true;
@@ -36,12 +37,12 @@ namespace POP_SF_62_2017.Util.Model {
         } 
 
         public static bool DeleteById(int id) {
-            List<Korisnik> korisnici = new List<Korisnik>();
+            ObservableCollection<Korisnik> korisnici = new ObservableCollection<Korisnik>();
             korisnici = Projekat.Instance.Korisnici;
             foreach (Korisnik korisnik in korisnici) {
                 if (korisnik.ID == id) {
                     korisnik.Obrisan = true;
-                    Projekat.Instance.Korisnici = korisnici;
+                    Projekat.Instance.SetKorisnici(korisnici);
                     return true;
 
                 }
@@ -50,15 +51,15 @@ namespace POP_SF_62_2017.Util.Model {
         }
 
         public static void Add(Korisnik a) {
-            List<Korisnik> korisnici = new List<Korisnik>();
+            ObservableCollection<Korisnik> korisnici = new ObservableCollection<Korisnik>();
             korisnici = Projekat.Instance.Korisnici;
             a.ID = korisnici.Count();
             korisnici.Add(a);
-            Projekat.Instance.Korisnici = korisnici;
+            Projekat.Instance.SetKorisnici(korisnici);
         }
 
         public static bool ChangeById(Korisnik k, int id) {
-            List<Korisnik> korisnici = new List<Korisnik>();
+            ObservableCollection<Korisnik> korisnici = new ObservableCollection<Korisnik>();
             korisnici = Projekat.Instance.Korisnici;
             foreach (Korisnik korisnik in korisnici) {
                 if (korisnik.ID == id) {
@@ -70,15 +71,15 @@ namespace POP_SF_62_2017.Util.Model {
                     korisnik.Lozinka = k.Lozinka;
                     korisnik.Obrisan = k.Obrisan;
                     korisnik.Prezime = k.Prezime;
-                    Projekat.Instance.Korisnici = korisnici;
+                    Projekat.Instance.SetKorisnici(korisnici);
                     return true;
                 }
             }
             return false;
         }
 
-        public static List<Korisnik> getAll() {
-            List<Korisnik> korisnici = new List<Korisnik>();
+        public static ObservableCollection<Korisnik> getAll() {
+            ObservableCollection<Korisnik> korisnici = new ObservableCollection<Korisnik>();
             foreach (Korisnik korisnik in Projekat.Instance.Korisnici) {
                 if (!korisnik.Obrisan)
                     korisnici.Add(korisnik);
@@ -87,7 +88,7 @@ namespace POP_SF_62_2017.Util.Model {
         }
 
         public static void Initialize() {
-            List<Korisnik> korisnici = new List<Korisnik>();
+            ObservableCollection<Korisnik> korisnici = new ObservableCollection<Korisnik>();
             korisnici.Add(new Korisnik {
                 ID = 0,
                 Admin = true,
@@ -97,7 +98,7 @@ namespace POP_SF_62_2017.Util.Model {
                 Obrisan = false,
                 Prezime = "",
         });
-            Projekat.Instance.Korisnici = korisnici;
+            Projekat.Instance.SetKorisnici(korisnici);
         }
     }
 }

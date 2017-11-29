@@ -22,14 +22,16 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
   
         public RadSaSalonom(Salon salon) {
             InitializeComponent();
-            tbNaziv.Text = salon.Naziv;
-            tbAdresa.Text = salon.Adresa;
-            tbMail.Text = salon.Mail;
-            tbSajt.Text = salon.Sajt;
-            tbTelefon.Text = salon.Telefon;
-            tbPIB.Text = salon.PIB.ToString();
-            tbMatBr.Text = salon.MatBr.ToString();
-            tbRacun.Text = salon.ZiroRacun.ToString();
+
+
+            tbNaziv.DataContext = salon;
+            tbAdresa.DataContext = salon;
+            tbMail.DataContext = salon;
+            tbSajt.DataContext = salon;
+            tbTelefon.DataContext = salon;
+            tbPIB.DataContext = salon;
+            tbMatBr.DataContext = salon;
+            tbRacun.DataContext = salon;
         }
 
         private void btnIzmeni_Click(object sender, RoutedEventArgs e) {

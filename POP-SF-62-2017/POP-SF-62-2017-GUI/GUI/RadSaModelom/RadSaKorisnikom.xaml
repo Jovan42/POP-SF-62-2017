@@ -12,27 +12,27 @@
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Id: " Width="60" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbId" IsEnabled="False" Height="25" Width="100" Margin="5"></TextBox>
+                <TextBox Name="tbId" IsEnabled="False" Height="25" Width="100" Margin="5" Text="{Binding Path=ID}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Ime: " Width="60" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbIme" Width="100" Height="25" Margin="5"></TextBox>
+                <TextBox Name="tbIme" Width="100" Height="25" Margin="5" Text="{Binding Path=Ime}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Prezime: " Width="60" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbPrezime" Width="100" Height="25" Margin="5"></TextBox>
+                <TextBox Name="tbPrezime" Width="100" Height="25" Margin="5" Text="{Binding Path=Prezime}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Kor. Ime: " Width="60" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbKorIme" Width="100" Height="25" Margin="5"></TextBox>
+                <TextBox Name="tbKorIme" Width="100" Height="25" Margin="5" Text="{Binding Path=KorIme}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Lozinka: " Width="60" Height="25" Margin="5" Foreground="White"></Label>
-                <PasswordBox Name="tbLozinka" Width="100" Height="25" Margin="5"></PasswordBox>
+                <PasswordBox Name="tbLozinka" Width="100" Height="25" Margin="5" ></PasswordBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Lozinka: " Width="60" Height="25" Margin="5" Foreground="White"></Label>
-                <PasswordBox Name="tbLozinka2" Width="100" Height="25" Margin="5"></PasswordBox>
+                <PasswordBox Name="tbLozinka2" Width="100" Height="25" Margin="5" ></PasswordBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <Label Content="Admin: " Width="60" Height="25" Margin="5" Foreground="White"></Label>

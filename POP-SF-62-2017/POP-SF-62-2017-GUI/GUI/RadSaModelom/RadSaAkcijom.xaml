@@ -11,19 +11,19 @@
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Id: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbId" IsEnabled="False" Height="25" Width="100" Margin="5"></TextBox>
+                    <TextBox Name="tbId" IsEnabled="False" Height="25" Width="100" Margin="5" Text="{Binding Path=ID}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Od: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <Calendar Name="calPocetak"></Calendar>
+                    <Calendar Name="calPocetak" SelectedDate="{Binding Path=Pocetak}"></Calendar>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Do: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <Calendar Name="calKraj"></Calendar>
+                    <Calendar Name="calKraj" SelectedDate="{Binding Path=Kraj}"></Calendar>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Popust: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbPopust" Width="100" Height="25" Margin="5"></TextBox>
+                    <TextBox Name="tbPopust" Width="100" Height="25" Margin="5" Text="{Binding Path=Popust}"></TextBox>
             </StackPanel>
             
             <Grid>

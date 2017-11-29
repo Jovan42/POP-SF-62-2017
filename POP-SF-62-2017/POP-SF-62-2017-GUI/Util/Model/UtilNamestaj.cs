@@ -1,6 +1,7 @@
 ﻿using POP_SF_62_2017.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,29 +19,28 @@ namespace POP_SF_62_2017.Util.Model {
         }
 
         public static bool DeleteById(int id) {
-            List<Namestaj> namestaji = new List<Namestaj>();
+            ObservableCollection<Namestaj> namestaji = new ObservableCollection<Namestaj>();
             namestaji = Projekat.Instance.Namestaji;
             foreach (Namestaj namestaj in namestaji) {
                 if (namestaj.ID == id) {
                     namestaj.Obrisan = true;
-                    Projekat.Instance.Namestaji = namestaji;
+                    Projekat.Instance.SetNamestaj(namestaji);
                     return true;
-
                 }
             }
             return false;
         }
 
         public static void Add(Namestaj a) {
-            List<Namestaj> namestaji = new List<Namestaj>();
+            ObservableCollection<Namestaj> namestaji = new ObservableCollection<Namestaj>();
             namestaji = Projekat.Instance.Namestaji;
             a.ID = namestaji.Count();
             namestaji.Add(a);
-            Projekat.Instance.Namestaji = namestaji;
+            Projekat.Instance.SetNamestaj(namestaji);
         }
 
         public static bool ChangeById(Namestaj n, int id) {
-            List<Namestaj> namestaji = new List<Namestaj>();
+            ObservableCollection<Namestaj> namestaji = new ObservableCollection<Namestaj>();
             namestaji = Projekat.Instance.Namestaji;
             foreach (Namestaj namestaj in namestaji) {
                 if (namestaj.ID == id) {
@@ -51,15 +51,15 @@ namespace POP_SF_62_2017.Util.Model {
                     namestaj.Naziv = n.Naziv;
                     namestaj.Obrisan = n.Obrisan;
                     namestaj.TipNamestajaID = n.TipNamestajaID;
-                    Projekat.Instance.Namestaji = namestaji;
+                    Projekat.Instance.SetNamestaj(namestaji);
                     return true;
 
                 }
             }
             return false;
         }
-        public static List<Namestaj> getAll() {
-            List<Namestaj>namestaji = new List<Namestaj>();
+        public static ObservableCollection<Namestaj> getAll() {
+            ObservableCollection<Namestaj>namestaji = new ObservableCollection<Namestaj>();
             foreach (Namestaj namesetaj in Projekat.Instance.Namestaji) {
                 if (!namesetaj.Obrisan)
                     namestaji.Add(namesetaj);
@@ -68,7 +68,7 @@ namespace POP_SF_62_2017.Util.Model {
         }
 
         public static void Initialize() {
-            List<Namestaj> namestaji = new List<Namestaj>();
+            ObservableCollection<Namestaj> namestaji = new ObservableCollection<Namestaj>();
             namestaji.Add(new Namestaj {
                 ID = 0,
                 Cena = 0,
@@ -77,7 +77,7 @@ namespace POP_SF_62_2017.Util.Model {
                 Obrisan = true,
                 TipNamestajaID = 0
             });
-            Projekat.Instance.Namestaji = namestaji;
+            Projekat.Instance.SetNamestaj(namestaji);
         }
     }
 }

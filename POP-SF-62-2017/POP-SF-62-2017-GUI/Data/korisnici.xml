@@ -9,4 +9,13 @@
     <Admin>true</Admin>
     <Obrisan>false</Obrisan>
   </Korisnik>
+  <Korisnik>
+    <ID>1</ID>
+    <Ime>User</Ime>
+    <Prezime>User</Prezime>
+    <KorIme>user</KorIme>
+    <Lozinka>user</Lozinka>
+    <Admin>false</Admin>
+    <Obrisan>false</Obrisan>
+  </Korisnik>
 </ArrayOfKorisnik>

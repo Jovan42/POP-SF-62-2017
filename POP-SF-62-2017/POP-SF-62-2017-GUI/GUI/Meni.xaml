@@ -18,9 +18,9 @@
             <Button Content="Rad Sa Prodajama" Name="btnRadSaProdajama" Click="btnRadSaProdajama_Click" Margin="5"
                     Height="25" Background="Gray" BorderBrush="White" Foreground="White"></Button>
             <Button Content="Rad Sa Korisnicima" Name="btnRadSaKorisnicima" Click="btnRadSaKorisnicima_Click" Margin="5"
-                IsEnabled="False" Height="25" Background="Gray" BorderBrush="White" Foreground="White"></Button>
+                Height="25" Background="Gray" BorderBrush="White" Foreground="White"></Button>
             <Button Content="Rad Sa Salonom" Name="btnRadSaSalonima" Click="btnRadSaSalonima_Click"  Margin="5"
-                IsEnabled="False" Height="25" Background="Gray" BorderBrush="White" Foreground="White"></Button>
+                Height="25" Background="Gray" BorderBrush="White" Foreground="White"></Button>
         </StackPanel>
         <Grid VerticalAlignment="Bottom">
             <Button Content="Odjavi se" Name="btnOdjaviSe" Height="25" Width="100" HorizontalAlignment="Left"

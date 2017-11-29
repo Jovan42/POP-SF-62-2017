@@ -12,23 +12,23 @@
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Id: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbId" IsEnabled="False" Height="25" Width="100" Margin="5"></TextBox>
+                <TextBox Name="tbId" IsEnabled="False" Height="25" Width="100" Margin="5" Text="{Binding Path=ID}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Naziv: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbNaziv" Width="100" Height="25" Margin="5"></TextBox>
+                <TextBox Name="tbNaziv" Width="100" Height="25" Margin="5" Text="{Binding Path=Naziv}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Cena: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbCena" Width="100" Height="25" Margin="5"></TextBox>
+                <TextBox Name="tbCena" Width="100" Height="25" Margin="5" Text="{Binding Path=Cena}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Kolicina: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbKolicina" Width="100" Height="25" Margin="5"></TextBox>
+                <TextBox Name="tbKolicina" Width="100" Height="25" Margin="5" Text="{Binding Path=Kolicina}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Tip: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <ComboBox Name="comboTip" Width="100" Height="25" Margin="5"></ComboBox>
+                <ComboBox Name="comboTip" Width="100" Height="25" Margin="5" SelectedItem="{Binding Path=TipNamestaja}"></ComboBox>
             </StackPanel>
             <Grid>
                 <Button Content="Dodaj" Name="btnDodaj" Height="25" Width="60" HorizontalAlignment="Right" Margin="5"

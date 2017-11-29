@@ -22,6 +22,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
     
     public partial class RadSaProdajom : Window{
         List<TextBox> textBoxes = new List<TextBox>();
+        bool izmena = false;
         public RadSaProdajom() {
             InitializeComponent();
             DrawCheckBoxes();
@@ -31,11 +32,14 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
             InitializeComponent();
             DrawCheckBoxes();
             window.Title = "Rad sa prodajom";
-            tbDatum.Text = prodaja.DatumProdaje.ToString("dd. MM. yyy.");
-            tbId.Text = prodaja.ID.ToString();
-            tbKupac.Text = prodaja.Kupac;
-            tbDodatneUsluge.Text = String.Join(", ", prodaja.DodatneUsluge.ToArray());
 
+            tbId.DataContext = prodaja;
+            tbDatum.DataContext = prodaja;
+            tbKupac.DataContext = prodaja;
+            //TODO: TextBlock-List<string> binding
+            tbDodatneUsluge.DataContext = prodaja;
+            
+            //TODO: Dinamic binding
             foreach (int namestajID in prodaja.ProdatNamestaj) {
                 foreach (TextBox textBox in textBoxes) {
                     string tmp = "tb" + namestajID.ToString();
@@ -62,6 +66,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
                 text.Name = "tb" + namestaj.ID.ToString();
                 label.Margin = new Thickness(5);
                 textBoxes.Add(text);
+                
 
                 stackPanel.Children.Add(text);
                 stackPanel.Children.Add(label);
@@ -97,7 +102,11 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
         }
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e) {
-            UtilProdaja.Add(getFromGUI());
+            if (izmena) {
+                UtilProdaja.ChangeById(getFromGUI(), Int32.Parse(tbId.Text));
+            } else {
+                UtilProdaja.Add(getFromGUI());
+            }
             Close();
         }
 

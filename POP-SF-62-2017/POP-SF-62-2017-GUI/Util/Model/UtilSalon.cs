@@ -1,6 +1,7 @@
 ﻿using POP_SF_62_2017.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,12 +18,12 @@ namespace POP_SF_62_2017.Util.Model {
         }
 
         public static bool DeleteById(int id) {
-            List<Salon> saloni = new List<Salon>();
+            ObservableCollection<Salon> saloni = new ObservableCollection<Salon>();
             saloni = Projekat.Instance.Saloni;
             foreach (Salon salon in saloni) {
                 if (salon.ID == id) {
                     salon.Obrisan = true;
-                    Projekat.Instance.Saloni = saloni;
+                    Projekat.Instance.SetSaloni(saloni);
                     return true;
 
                 }
@@ -31,15 +32,15 @@ namespace POP_SF_62_2017.Util.Model {
         }
 
         public static void Add(Salon a) {
-            List<Salon> saloni = new List<Salon>();
+            ObservableCollection<Salon> saloni = new ObservableCollection<Salon>();
             saloni = Projekat.Instance.Saloni;
             a.ID = saloni.Count();
             saloni.Add(a);
-            Projekat.Instance.Saloni = saloni;
+            Projekat.Instance.SetSaloni(saloni);
         }
 
         public static bool ChangeById(Salon s, int id) {
-            List<Salon> saloni = new List<Salon>();
+            ObservableCollection<Salon> saloni = new ObservableCollection<Salon>();
             saloni = Projekat.Instance.Saloni;
             foreach (Salon salon in saloni) {
                 if (salon.ID == id) {
@@ -53,7 +54,7 @@ namespace POP_SF_62_2017.Util.Model {
                     salon.Telefon = s.Telefon;
                     salon.ZiroRacun = s.ZiroRacun;
                     salon.Adresa = s.Adresa;
-                    Projekat.Instance.Saloni = saloni;
+                    Projekat.Instance.SetSaloni(saloni);
                     return true;
 
                 }
@@ -62,7 +63,7 @@ namespace POP_SF_62_2017.Util.Model {
         }
 
         public static void Initialize() {
-            List<Salon> saloni = new List<Salon>();
+            ObservableCollection<Salon> saloni = new ObservableCollection<Salon>();
             saloni.Add(new Salon {
                 ID = 0,
                 Adresa = "",
@@ -75,7 +76,7 @@ namespace POP_SF_62_2017.Util.Model {
                 Telefon = "",
                 ZiroRacun = 0,
         });
-            Projekat.Instance.Saloni = saloni;
+            Projekat.Instance.SetSaloni(saloni);
         }
     }
 }

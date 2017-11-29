@@ -13,23 +13,23 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Id: " Width="60" Height="25" Margin="5" Foreground="White"></Label>
-                    <TextBox Name="tbId" IsEnabled="False" Height="25" Width="100" Margin="5"></TextBox>
+                    <TextBox Name="tbId" IsEnabled="False" Height="25" Width="100" Margin="5" Text="{Binding Path=ID}"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Datum: " Width="60" Height="25" Margin="5" Foreground="White"></Label>
-                    <TextBox Name="tbDatum" Width="100" Height="25" Margin="5" IsEnabled="False"></TextBox>
+                    <TextBox Name="tbDatum" Width="100" Height="25" Margin="5" IsEnabled="False" Text="{Binding Path=DatumProdaje, StringFormat=dd-MM-yyyy}"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Kupac: " Width="60" Height="25" Margin="5" Foreground="White"></Label>
-                    <TextBox Name="tbKupac" Width="100" Height="25" Margin="5"></TextBox>
+                    <TextBox Name="tbKupac" Width="100" Height="25" Margin="5" Text="{Binding Path=Kupac}"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label MaxWidth="100" Width="60" VerticalAlignment="Stretch" Margin="5"
+                    <Label MaxWidth="100" Width="60" VerticalAlignment="Stretch" Margin="5" 
                            Foreground="White" >
                         <TextBlock>Dodatne<LineBreak/>Usluge</TextBlock>
                     </Label>
                     <TextBox Name="tbDodatneUsluge" Width="100" Height="50" Margin="5" TextWrapping="Wrap"
-                             AcceptsReturn="True"  ></TextBox>
+                             AcceptsReturn="True" Text="{Binding Path=DodatneUsluge}"></TextBox>
                 </StackPanel>
                 <Grid>
                     <Button Content="Dodaj" Name="btnDodaj" Height="25" Width="60" HorizontalAlignment="Right" Margin="5"

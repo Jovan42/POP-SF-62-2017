@@ -26,18 +26,20 @@ namespace POP_SF_62_2017_GUI.GUI {
             InitializeComponent();
             this.admin = admin;
             if (admin) {
-                btnRadSaKorisnicima.IsEnabled = true;
-                btnRadSaSalonima.IsEnabled = true;
+                
                 window.Title += " - ADMIN";
             } else {
                 window.Title += " - KORISNIK";
+                btnRadSaSalonima.Visibility = Visibility.Hidden;
+                btnRadSaKorisnicima.Visibility = Visibility.Hidden;
             }
 
         }
 
+        
         private void btnRadSaNamestajem_Click(object sender, RoutedEventArgs e) {
-            new Pregled(TipKlase.NAMESTAJ, admin).Show();
-            this.Close();
+        new Pregled(TipKlase.NAMESTAJ, admin).Show();
+        this.Close();
         }
 
         private void btnRadSaAkcijama_Click(object sender, RoutedEventArgs e) {
@@ -46,8 +48,8 @@ namespace POP_SF_62_2017_GUI.GUI {
         }
 
         private void btnRadSaTipovimaNamestaja_Click(object sender, RoutedEventArgs e) {
-            new Pregled(TipKlase.TIP_NAMESTAJA, admin).Show();
-            this.Close();
+           new Pregled(TipKlase.TIP_NAMESTAJA, admin).Show();
+           this.Close();
         }
 
         private void btnRadSaProdajama_Click(object sender, RoutedEventArgs e) {
@@ -56,8 +58,8 @@ namespace POP_SF_62_2017_GUI.GUI {
         }
 
         private void btnRadSaKorisnicima_Click(object sender, RoutedEventArgs e) {
-            new Pregled(TipKlase.KORISNIK, admin).Show();
-            this.Close();
+           new Pregled(TipKlase.KORISNIK, admin).Show();
+           this.Close();
         }
 
         private void btnIzlaz_Click(object sender, RoutedEventArgs e) {

@@ -1,6 +1,7 @@
 ﻿using POP_SF_62_2017.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,12 +18,12 @@ namespace POP_SF_62_2017.Util.Model {
         }
 
         public static bool DeleteById(int id) {
-            List<Akcija> akcije = new List<Akcija>();
+            ObservableCollection<Akcija> akcije = new ObservableCollection<Akcija>();
             akcije = Projekat.Instance.Akcije;
             foreach (Akcija akcija in akcije) {
                 if (akcija.ID == id) {
                     akcija.Obrisan = true;
-                    Projekat.Instance.Akcije = akcije;
+                    Projekat.Instance.SetAkcije(akcije);
                     return true;
 
                 }
@@ -31,15 +32,15 @@ namespace POP_SF_62_2017.Util.Model {
         }
 
         public static void Add(Akcija a) {
-            List<Akcija> akcije = new List<Akcija>();
+            ObservableCollection<Akcija> akcije = new ObservableCollection<Akcija>();
             akcije = Projekat.Instance.Akcije;
             a.ID = akcije.Count();
             akcije.Add(a);
-            Projekat.Instance.Akcije = akcije;
+            Projekat.Instance.SetAkcije(akcije);
         }
 
         public static bool ChangeById(Akcija a, int id) {
-            List<Akcija> akcije = new List<Akcija>();
+            ObservableCollection<Akcija> akcije = new ObservableCollection<Akcija>();
             akcije = Projekat.Instance.Akcije;
             foreach (Akcija akcija in akcije) {
                 if (akcija.ID == id) {
@@ -50,7 +51,7 @@ namespace POP_SF_62_2017.Util.Model {
                     akcija.Obrisan = a.Obrisan;
                     akcija.Pocetak = a.Pocetak;
                     akcija.Popust = a.Popust;
-                    Projekat.Instance.Akcije = akcije;
+                    Projekat.Instance.SetAkcije(akcije);
                     return true;
 
                 }
@@ -58,8 +59,8 @@ namespace POP_SF_62_2017.Util.Model {
             return false;
         }
 
-        public static List<Akcija> getAll() {
-            List<Akcija> akcije = new List<Akcija>();
+        public static ObservableCollection<Akcija> getAll() {
+            ObservableCollection<Akcija> akcije = new ObservableCollection<Akcija>();
             foreach (Akcija akcija in Projekat.Instance.Akcije) {
                 if (!akcija.Obrisan)
                     akcije.Add(akcija);
@@ -68,7 +69,7 @@ namespace POP_SF_62_2017.Util.Model {
         }
 
         public static void Initialize() {
-            List<Akcija> akcije = new List<Akcija>();
+            ObservableCollection<Akcija> akcije = new ObservableCollection<Akcija>();
             List<int> i = new List<int>();
             i.Add(0);
             akcije.Add(new Akcija {
@@ -79,7 +80,7 @@ namespace POP_SF_62_2017.Util.Model {
                 NamestajNaAkcijiID = i,
                 Obrisan = true,
             });
-            Projekat.Instance.Akcije = akcije;
+            Projekat.Instance.SetAkcije(akcije);
         }
     }
 }

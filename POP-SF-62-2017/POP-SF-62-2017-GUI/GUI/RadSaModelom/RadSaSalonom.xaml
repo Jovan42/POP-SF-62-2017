@@ -12,35 +12,35 @@
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
                 <Label Content="Nazi: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbNaziv" Width="150" Height="25" Margin="5"></TextBox>
+                <TextBox Name="tbNaziv" Width="150" Height="25" Margin="5" Text="{Binding Path=ID}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Adresa: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbAdresa" Width="150" Height="25" Margin="5"></TextBox>
+                <TextBox Name="tbAdresa" Width="150" Height="25" Margin="5" Text="{Binding Path=Adresa}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Mail: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbMail" Width="150" Height="25" Margin="5"></TextBox>
+                <TextBox Name="tbMail" Width="150" Height="25" Margin="5" Text="{Binding Path=Mail}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Sajt: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbSajt" Width="150" Height="25" Margin="5"></TextBox>
+                <TextBox Name="tbSajt" Width="150" Height="25" Margin="5" Text="{Binding Path=Sajt}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Telefon: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbTelefon" Width="150" Height="25" Margin="5"></TextBox>
+                <TextBox Name="tbTelefon" Width="150" Height="25" Margin="5" Text="{Binding Path=Telefon}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="PIB: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbPIB" Width="150" Height="25" Margin="5"></TextBox>
+                <TextBox Name="tbPIB" Width="150" Height="25" Margin="5" Text="{Binding Path=PIB}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Mat. Br.: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbMatBr" Width="150" Height="25" Margin="5"></TextBox>
+                <TextBox Name="tbMatBr" Width="150" Height="25" Margin="5" Text="{Binding Path=MatBr}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Racun: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbRacun" Width="150" Height="25" Margin="5"></TextBox>
+                <TextBox Name="tbRacun" Width="150" Height="25" Margin="5" Text="{Binding Path=ZiroRacun}"></TextBox>
             </StackPanel>
             <Grid>
                 <Button Content="Izmeni" Name="btnIzmeni" Height="25" Width="60" HorizontalAlignment="Right" Margin="5"

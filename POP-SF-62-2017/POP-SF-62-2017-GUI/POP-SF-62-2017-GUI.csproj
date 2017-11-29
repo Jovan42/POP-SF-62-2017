@@ -61,6 +61,7 @@
     <Compile Include="GUI\Pregled.xaml.cs">
       <DependentUpon>Pregled.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\RadSaModelom\ListToStringConverter.cs" />
     <Compile Include="GUI\RadSaModelom\RadSaAkcijom.xaml.cs">
       <DependentUpon>RadSaAkcijom.xaml</DependentUpon>
     </Compile>

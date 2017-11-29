@@ -21,12 +21,14 @@ namespace POP_SF_62_2017_GUI.GUI {
     /// Interaction logic for PregledNamestaja.xaml
     /// </summary>
     public partial class Pregled : Window {
+        public Namestaj IzabraniNamestaj { get; set; }
         bool admin;
         private TipKlase tip;
         public Pregled(TipKlase tip, bool admin) {
             this.admin = admin;
             this.tip = tip;
             InitializeComponent();
+
             OsveziPrikaz();
 
             if(tip == TipKlase.PRODAJA) {
@@ -35,29 +37,32 @@ namespace POP_SF_62_2017_GUI.GUI {
         }
         private void OsveziPrikaz() {
             lbNamestaji.ItemsSource = null;
-            window.Title = $"Pregled {tip.ToString().ToLower()}";
+            //window.Title = $"Pregled {tip.ToString().ToLower()}";
             switch (tip) {
                 case TipKlase.NAMESTAJ:
-                    lbNamestaji.ItemsSource = UtilNamestaj.getAll();
-                    window.Title += "a";
+                lbNamestaji.ItemsSource = UtilNamestaj.getAll();
+                lbNamestaji.DataContext = this;
+                lbNamestaji.IsSynchronizedWithCurrentItem = true;
                 break;
                 case TipKlase.AKCIJA:
-                    lbNamestaji.ItemsSource = UtilAkcija.getAll();
+                lbNamestaji.ItemsSource = UtilAkcija.getAll();
+                lbNamestaji.DataContext = this;
+                lbNamestaji.IsSynchronizedWithCurrentItem = true;
                 break;
                 case TipKlase.KORISNIK:
                     lbNamestaji.ItemsSource = UtilKorisnik.getAll();
-                    window.Title += "a";
+                    //window.Title += "a";
                 break;
                 case TipKlase.PRODAJA:
                     lbNamestaji.ItemsSource = UtilProdaja.getAll();
                 break;
                 case TipKlase.SALON:
                     lbNamestaji.ItemsSource = UtilNamestaj.getAll();
-                    window.Title += "a";
+                    //window.Title += "a";
                 break;
                 case TipKlase.TIP_NAMESTAJA:
                     lbNamestaji.ItemsSource = UtilTipNamestaja.getAll();
-                    window.Title = $"Pregled tipova nameštaja";
+                    //window.Title = $"Pregled tipova nameštaja";
                 break;
                 default:
                 break;
@@ -135,28 +140,28 @@ namespace POP_SF_62_2017_GUI.GUI {
             switch (tip) {
                 case TipKlase.NAMESTAJ:
                     Namestaj namestaj = (Namestaj)lbNamestaji.SelectedItem;
-                    dialogResult = MessageBox.Show("Brisanje nameštaja", $"Jeste li sigurni da želite da obrišete nameštaj: {namestaj.Naziv}", MessageBoxButton.YesNo);
+                    dialogResult = MessageBox.Show($"Jeste li sigurni da želite da obrišete nameštaj: {namestaj.Naziv}", "Brisanje nameštaja", MessageBoxButton.YesNo);
                     if (dialogResult == MessageBoxResult.Yes) {
                         UtilNamestaj.DeleteById(namestaj.ID);
                     }
                 break;
                 case TipKlase.AKCIJA:
                 Akcija akcija = (Akcija)lbNamestaji.SelectedItem;
-                dialogResult = MessageBox.Show("Brisanje nameštaja", $"Jeste li sigurni da želite da obrišete nameštaj akciju: ", MessageBoxButton.YesNo);
+                dialogResult = MessageBox.Show($"Jeste li sigurni da želite da obrišete nameštaj akciju: ", "Brisanje akcije", MessageBoxButton.YesNo);
                 if (dialogResult == MessageBoxResult.Yes) {
                     UtilAkcija.DeleteById(akcija.ID);
                 }
                 break;
                 case TipKlase.KORISNIK:
                 Korisnik korisnik = (Korisnik)lbNamestaji.SelectedItem;
-                dialogResult = MessageBox.Show("Brisanje nameštaja", $"Jeste li sigurni da želite da obrišete nameštaj korisnika: {korisnik.KorIme} ", MessageBoxButton.YesNo);
+                dialogResult = MessageBox.Show($"Jeste li sigurni da želite da obrišete nameštaj korisnika: {korisnik.KorIme} ", "Brisanje korisnika", MessageBoxButton.YesNo);
                 if (dialogResult == MessageBoxResult.Yes) {
                     UtilKorisnik.DeleteById(korisnik.ID);
                 }
                 break;
                 case TipKlase.PRODAJA:
                 Prodaja prodaja = (Prodaja)lbNamestaji.SelectedItem;
-                dialogResult = MessageBox.Show("Brisanje nameštaja", $"Jeste li sigurni da želite da obrišete nameštaj akciju: ", MessageBoxButton.YesNo);
+                dialogResult = MessageBox.Show($"Jeste li sigurni da želite da obrišete nameštaj akciju: ", "Brisanje akcije", MessageBoxButton.YesNo);
                 if (dialogResult == MessageBoxResult.Yes) {
                     UtilAkcija.DeleteById(prodaja.ID);
                 }
@@ -165,7 +170,7 @@ namespace POP_SF_62_2017_GUI.GUI {
                 break;
                 case TipKlase.TIP_NAMESTAJA:
                 TipNamestaja tipNamestaja = (TipNamestaja)lbNamestaji.SelectedItem;
-                dialogResult = MessageBox.Show("Brisanje nameštaja", $"Jeste li sigurni da želite da obrišete nameštaj: {tipNamestaja.Naziv}", MessageBoxButton.YesNo);
+                dialogResult = MessageBox.Show($"Jeste li sigurni da želite da obrišete tip nameštaja: {tipNamestaja.Naziv}", "Brisanje tipa nameštaja", MessageBoxButton.YesNo);
                 if (dialogResult == MessageBoxResult.Yes) {
                     UtilTipNamestaja.DeleteById(tipNamestaja.ID);
                 }
@@ -173,7 +178,6 @@ namespace POP_SF_62_2017_GUI.GUI {
                 default:
                 break;
             }
-            
             OsveziPrikaz();
         }
 

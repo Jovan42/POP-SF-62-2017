@@ -1,3 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfProdaja xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Prodaja>
+    <ID>0</ID>
+    <DatumProdaje>2017-11-29T00:06:18.2749592+01:00</DatumProdaje>
+    <ProdatNamestaj>
+      <int>0</int>
+    </ProdatNamestaj>
+    <Kolicina>
+      <int>50</int>
+    </Kolicina>
+    <Kupac>sdadsa</Kupac>
+    <DodatneUsluge>
+      <string>sss</string>
+    </DodatneUsluge>
+    <Obrisan>false</Obrisan>
+  </Prodaja>
+  <Prodaja>
+    <ID>1</ID>
+    <DatumProdaje>2017-11-29T00:17:03.2836775+01:00</DatumProdaje>
+    <ProdatNamestaj>
+      <int>0</int>
+    </ProdatNamestaj>
+    <Kolicina>
+      <int>50</int>
+    </Kolicina>
+    <Kupac>sdadsa</Kupac>
+    <DodatneUsluge>
+      <string>usluga</string>
+    </DodatneUsluge>
+    <Obrisan>false</Obrisan>
+  </Prodaja>
 </ArrayOfProdaja>
