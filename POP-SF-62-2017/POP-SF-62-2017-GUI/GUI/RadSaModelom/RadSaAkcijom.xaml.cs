@@ -22,6 +22,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom
     public partial class RadSaAkcijom : Window
     {
         List<CheckBox> checkBoxes = new List<CheckBox>();
+        Akcija akcija = new Akcija();
         bool izmena = false;
 
         public RadSaAkcijom()
@@ -43,10 +44,12 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom
                         checkBox.IsChecked = true;
                 }
             }
-            tbId.DataContext = akcija;
-            calKraj.DataContext = akcija;
-            calPocetak.DataContext = akcija;
-            tbPopust.DataContext = akcija;
+
+            this.akcija = akcija.getCoppy();
+            tbId.DataContext = this.akcija;
+            calKraj.DataContext = this.akcija;
+            calPocetak.DataContext = this.akcija;
+            tbPopust.DataContext = this.akcija;
         }
 
         private void btnOdustani_Click(object sender, RoutedEventArgs e) {
@@ -97,12 +100,15 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom
         }
 
         public void DrawCheckBoxes() {
+            //TODO: Data binding
             foreach (Namestaj namestaj in UtilNamestaj.getAll()) {
                 StackPanel stackPanel = new StackPanel();
 
                 CheckBox check = new CheckBox();
                 check.Margin = new Thickness(5);
                 check.Name = "cb" + namestaj.ID.ToString();
+
+
                 Label label = new Label();
                 label.Foreground = Brushes.White;
                 label.Content = namestaj.Naziv;

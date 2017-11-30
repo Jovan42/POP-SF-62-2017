@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace POP_SF_62_2017.Model  {
-    public class Namestaj : INotifyPropertyChanged {
+    public class Namestaj : INotifyPropertyChanged, ICloneable {
         private string naziv;
 
         public string Naziv {
@@ -59,7 +59,8 @@ namespace POP_SF_62_2017.Model  {
         public TipNamestaja TipNamestaja {
             get {
                 if (tipNamestaja == null)
-                    return Util.Model.UtilTipNamestaja.GetById(tipNamestajaID);
+                    
+                return Util.Model.UtilTipNamestaja.GetById(tipNamestajaID);
                 else
                     return tipNamestaja;
             }
@@ -85,5 +86,28 @@ namespace POP_SF_62_2017.Model  {
             }
         }
 
+        public Namestaj getCoppy() {
+            return new Namestaj() {
+                ID = id,
+                Cena = cena,
+                Kolicina = kolicina,
+                Naziv = naziv,
+                Obrisan = obrisan,
+                TipNamestajaID = tipNamestajaID,
+                TipNamestaja = tipNamestaja
+            };
+        }
+
+        public object Clone() {
+            return new Namestaj() {
+                ID = id,
+                Cena = cena,
+                Kolicina = kolicina,
+                Naziv = naziv,
+                Obrisan = obrisan,
+                TipNamestajaID = tipNamestajaID,
+                TipNamestaja = tipNamestaja
+            };
+        }
     }
 }

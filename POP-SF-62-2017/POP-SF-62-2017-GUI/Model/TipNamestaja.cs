@@ -49,5 +49,9 @@ namespace POP_SF_62_2017.Model {
             }
 
         }
+
+        public TipNamestaja getCoppy() {
+            return new TipNamestaja { ID = id, Naziv = naziv, Obrisan = obrisan };
+        }
     }
 }

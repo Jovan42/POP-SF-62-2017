@@ -38,9 +38,6 @@
                     <Label Content="Namestaji: " Width="70" Height="25" Margin="5" Foreground="White">
                     </Label>
                 </StackPanel>
-
-
-
             </StackPanel>
         </StackPanel>
     </Grid>

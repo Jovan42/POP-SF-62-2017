@@ -19,6 +19,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
     /// Interaction logic for RadSaKorisnikom.xaml
     /// </summary>
     public partial class RadSaKorisnikom : Window {
+        Korisnik korisnik = new Korisnik();
         bool izmena = false;
 
         public RadSaKorisnikom() {
@@ -27,10 +28,13 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
 
         public RadSaKorisnikom(Korisnik korisnik) {
             InitializeComponent();
-            tbId.DataContext = korisnik;
-            tbIme.DataContext = korisnik;
-            tbKorIme.DataContext = korisnik;
-            tbPrezime.DataContext = korisnik;
+
+            this.korisnik = korisnik.getCoppy();
+            tbId.DataContext = this.korisnik;
+            tbIme.DataContext = this.korisnik;
+            tbKorIme.DataContext = this.korisnik;
+            tbPrezime.DataContext = this.korisnik;
+            cbAdmin.DataContext = this.korisnik;
             
             izmena = true;
         }

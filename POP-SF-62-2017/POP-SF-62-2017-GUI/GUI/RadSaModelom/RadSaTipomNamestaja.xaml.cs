@@ -22,7 +22,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom
     public partial class RadSaTipomNamestaja : Window
     {
         bool izmena = false;
-        TipNamestaja tipNamestaja;
+        TipNamestaja tipNamestaja = new TipNamestaja();
         public RadSaTipomNamestaja()
         {
             InitializeComponent();
@@ -33,8 +33,10 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom
             izmena = true;
             InitializeComponent();
 
-            tbId.DataContext = tipNamestaja;
-            tbNaziv.DataContext = tipNamestaja;
+            //TODO: Praviti kopiju objekta
+            this.tipNamestaja = tipNamestaja.getCoppy();
+            tbId.DataContext = this.tipNamestaja;
+            tbNaziv.DataContext = this.tipNamestaja;
             
             btnDodaj.Content = "Izmeni";
             this.tipNamestaja = tipNamestaja;

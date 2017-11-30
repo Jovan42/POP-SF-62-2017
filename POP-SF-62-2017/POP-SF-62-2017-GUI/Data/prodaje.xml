@@ -30,4 +30,51 @@
     </DodatneUsluge>
     <Obrisan>false</Obrisan>
   </Prodaja>
+  <Prodaja>
+    <ID>2</ID>
+    <DatumProdaje>2017-11-29T02:19:44.756707+01:00</DatumProdaje>
+    <ProdatNamestaj>
+      <int>0</int>
+    </ProdatNamestaj>
+    <Kolicina>
+      <int>50</int>
+    </Kolicina>
+    <Kupac>sdadsasadaads</Kupac>
+    <DodatneUsluge>
+      <string />
+    </DodatneUsluge>
+    <Obrisan>false</Obrisan>
+  </Prodaja>
+  <Prodaja>
+    <ID>3</ID>
+    <DatumProdaje>2017-11-29T02:19:58.6200913+01:00</DatumProdaje>
+    <ProdatNamestaj>
+      <int>0</int>
+    </ProdatNamestaj>
+    <Kolicina>
+      <int>50</int>
+    </Kolicina>
+    <Kupac>sdadsa</Kupac>
+    <DodatneUsluge>
+      <string />
+    </DodatneUsluge>
+    <Obrisan>false</Obrisan>
+  </Prodaja>
+  <Prodaja>
+    <ID>4</ID>
+    <DatumProdaje>2017-11-30T14:55:05.0745103+01:00</DatumProdaje>
+    <ProdatNamestaj>
+      <int>0</int>
+      <int>3</int>
+    </ProdatNamestaj>
+    <Kolicina>
+      <int>50</int>
+      <int>150</int>
+    </Kolicina>
+    <Kupac>skdaljsad</Kupac>
+    <DodatneUsluge>
+      <string />
+    </DodatneUsluge>
+    <Obrisan>false</Obrisan>
+  </Prodaja>
 </ArrayOfProdaja>

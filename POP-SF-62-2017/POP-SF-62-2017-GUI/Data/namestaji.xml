@@ -21,13 +21,21 @@
     <ID>2</ID>
     <Cena>5000</Cena>
     <Kolicina>50</Kolicina>
-    <TipNamestajaID>0</TipNamestajaID>
+    <TipNamestajaID>1</TipNamestajaID>
     <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
     <Naziv>kdlsačkadlčs</Naziv>
     <ID>3</ID>
     <Cena>500</Cena>
+    <Kolicina>50</Kolicina>
+    <TipNamestajaID>0</TipNamestajaID>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Naziv>Novi</Naziv>
+    <ID>4</ID>
+    <Cena>5000</Cena>
     <Kolicina>50</Kolicina>
     <TipNamestajaID>0</TipNamestajaID>
     <Obrisan>false</Obrisan>

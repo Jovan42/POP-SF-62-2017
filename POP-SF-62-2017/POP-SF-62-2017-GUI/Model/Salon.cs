@@ -84,5 +84,20 @@ namespace POP_SF_62_2017.Model {
                 PropertyChanged(this, new PropertyChangedEventArgs(properyName));
             }
         }
+
+        public Salon getCoppy() {
+            return new Salon() {
+                ID = id,
+                Adresa = adresa,
+                Naziv = naziv,
+                Mail = mail,
+                MatBr = matBr,
+                Obrisan = obrisan,
+                PIB = pib,
+                Sajt = sajt,
+                Telefon = telefon,
+                ZiroRacun = ziroRacun,
+            };
+        }
     }
 }

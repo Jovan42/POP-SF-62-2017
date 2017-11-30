@@ -26,6 +26,7 @@ namespace POP_SF_62_2017.Model {
             Saloni = GenericSerializer.Deserialize<Salon>("saloni.xml");
         }    
         
+        //TODO: Serijalizacija
         public void SetNamestaj(ObservableCollection<Namestaj> namestaj) {
             GenericSerializer.Serialize<Namestaj>("namestaji.xml", namestaj);
         }

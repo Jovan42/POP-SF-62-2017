@@ -22,6 +22,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
     
     public partial class RadSaProdajom : Window{
         List<TextBox> textBoxes = new List<TextBox>();
+        Prodaja prodaja = new Prodaja();
         bool izmena = false;
         public RadSaProdajom() {
             InitializeComponent();
@@ -32,14 +33,16 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
             InitializeComponent();
             DrawCheckBoxes();
             window.Title = "Rad sa prodajom";
-
-            tbId.DataContext = prodaja;
-            tbDatum.DataContext = prodaja;
-            tbKupac.DataContext = prodaja;
-            //TODO: TextBlock-List<string> binding
-            tbDodatneUsluge.DataContext = prodaja;
+            izmena = true;
+            btnDodaj.Content = "Izmeni";
+            this.prodaja = prodaja.getCoppy();
+            tbId.DataContext = this.prodaja;
+            tbDatum.DataContext = this.prodaja;
+            tbKupac.DataContext = this.prodaja;
+             
+            tbDodatneUsluge.DataContext = this.prodaja;
             
-            //TODO: Dinamic binding
+            
             foreach (int namestajID in prodaja.ProdatNamestaj) {
                 foreach (TextBox textBox in textBoxes) {
                     string tmp = "tb" + namestajID.ToString();
@@ -51,14 +54,18 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
 
         public void DrawCheckBoxes() {
 
+            //TODO: Dynamic binding
             foreach (Namestaj namestaj in UtilNamestaj.getAll()) {
                 StackPanel stackPanel = new StackPanel();
 
                 Label label = new Label();
                 label.Foreground = Brushes.White;
-                label.Content = namestaj.Naziv;
+                //label.Content = namestaj.Naziv;
                 label.Margin = new Thickness(5);
                 stackPanel.Orientation = Orientation.Horizontal;
+                Binding binding= new Binding("Naziv");
+                BindingOperations.SetBinding(label, Label.ContentProperty, binding);
+                label.DataContext = namestaj;
 
                 TextBox text = new TextBox();
                 text.Height = 25;
@@ -66,6 +73,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
                 text.Name = "tb" + namestaj.ID.ToString();
                 label.Margin = new Thickness(5);
                 textBoxes.Add(text);
+                
                 
 
                 stackPanel.Children.Add(text);

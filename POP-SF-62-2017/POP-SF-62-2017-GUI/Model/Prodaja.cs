@@ -83,5 +83,17 @@ namespace POP_SF_62_2017.Model {
             }
 
         }
+
+        public Prodaja getCoppy() {
+            return new Prodaja() {
+                ID = id,
+                DatumProdaje = datumProdaje,
+                DodatneUsluge = dodatneUsluge,
+                Kupac = kupac,
+                ProdatNamestaj = prodatNamestaj,
+                Kolicina = kolicina,
+                Obrisan = obrisan
+            };
+        }
     }
 }

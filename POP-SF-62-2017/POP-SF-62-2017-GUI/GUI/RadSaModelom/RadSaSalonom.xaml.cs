@@ -19,19 +19,19 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
     /// Interaction logic for RadSaSalonom.xaml
     /// </summary>
     public partial class RadSaSalonom : Window {
-  
+        Salon salon = new Salon();
         public RadSaSalonom(Salon salon) {
             InitializeComponent();
 
-
-            tbNaziv.DataContext = salon;
-            tbAdresa.DataContext = salon;
-            tbMail.DataContext = salon;
-            tbSajt.DataContext = salon;
-            tbTelefon.DataContext = salon;
-            tbPIB.DataContext = salon;
-            tbMatBr.DataContext = salon;
-            tbRacun.DataContext = salon;
+            this.salon = salon.getCoppy(); 
+            tbNaziv.DataContext = this.salon;
+            tbAdresa.DataContext = this.salon;
+            tbMail.DataContext = this.salon;
+            tbSajt.DataContext = this.salon;
+            tbTelefon.DataContext = this.salon;
+            tbPIB.DataContext = this.salon;
+            tbMatBr.DataContext = this.salon;
+            tbRacun.DataContext = this.salon;
         }
 
         private void btnIzmeni_Click(object sender, RoutedEventArgs e) {

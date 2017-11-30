@@ -2,12 +2,12 @@
 <ArrayOfTipNamestaja xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <TipNamestaja>
     <ID>0</ID>
-    <Naziv>Kuhinja</Naziv>
+    <Naziv>Kuhinjaa123456</Naziv>
     <Obrisan>false</Obrisan>
   </TipNamestaja>
   <TipNamestaja>
     <ID>1</ID>
-    <Naziv>Kupatilo</Naziv>
+    <Naziv>Kupatilosssjn</Naziv>
     <Obrisan>false</Obrisan>
   </TipNamestaja>
 </ArrayOfTipNamestaja>

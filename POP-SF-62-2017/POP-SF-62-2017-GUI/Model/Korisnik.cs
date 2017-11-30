@@ -70,5 +70,17 @@ namespace POP_SF_62_2017.Model {
                 PropertyChanged(this, new PropertyChangedEventArgs(properyName));
             }
         }
+
+        public Korisnik getCoppy() {
+            return new Korisnik() {
+                ID = id,
+                Admin = admin,
+                Ime = ime,
+                KorIme = korIme,
+                Lozinka = lozinka,
+                Obrisan = obrisan,
+                Prezime = prezime,
+            };
+        }
     }
 }

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace POP_SF_62_2017.Model {
-    public class Akcija  : INotifyPropertyChanged {
+    public class Akcija  : INotifyPropertyChanged, ICloneable {
         private int id;
 
         public int ID {
@@ -65,6 +65,28 @@ namespace POP_SF_62_2017.Model {
             if (PropertyChanged != null) {
                 PropertyChanged(this, new PropertyChangedEventArgs(properyName));
             }
+        }
+
+        public Akcija getCoppy() {
+            return new Akcija() {
+                ID = id,
+                Popust = popust,
+                Pocetak = pocetak,
+                Kraj = kraj,
+                NamestajNaAkcijiID = namestajNaAkcijiID,
+                Obrisan = obrisan,
+            };
+        }
+
+        public object Clone() {
+            return new Akcija() {
+                ID = id,
+                Popust = popust,
+                Pocetak = pocetak,
+                Kraj = kraj,
+                NamestajNaAkcijiID = namestajNaAkcijiID,
+                Obrisan = obrisan,
+            };
         }
     }
 }

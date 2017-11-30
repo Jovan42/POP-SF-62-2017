@@ -23,7 +23,7 @@ namespace POP_SF_62_2017_GUI.GUI {
     /// 
     public partial class RadSaNamestajem : Window {
         bool izmena = false;
-        Namestaj namestaj, noviNamestaj = new Namestaj();
+        Namestaj namestaj = new Namestaj();
         ObservableCollection<TipNamestaja> tipNamestaja;
         public RadSaNamestajem() {
             InitializeComponent();
@@ -35,19 +35,20 @@ namespace POP_SF_62_2017_GUI.GUI {
         public RadSaNamestajem(Namestaj namestaj) {
             izmena = true;            
             InitializeComponent();
-            this.namestaj = namestaj;
-            noviNamestaj = namestaj;
+            
             btnDodaj.Content = "Izmeni";
+
+            //TODO: Rad sa kopijom mi daje gresku
             this.namestaj = namestaj;
             this.tipNamestaja = UtilTipNamestaja.getAll();
 
-            tbId.DataContext = noviNamestaj;
-            tbNaziv.DataContext = noviNamestaj;
-            tbCena.DataContext = noviNamestaj;
-            tbKolicina.DataContext = noviNamestaj;
+            tbId.DataContext = this.namestaj;
+            tbNaziv.DataContext = this.namestaj;
+            tbCena.DataContext = this.namestaj;
+            tbKolicina.DataContext = this.namestaj;
 
             comboTip.ItemsSource = tipNamestaja;
-            comboTip.DataContext = noviNamestaj;
+            comboTip.DataContext = this.namestaj;
             
         }
 
@@ -65,7 +66,6 @@ namespace POP_SF_62_2017_GUI.GUI {
                     Close();
                 } else {
                     UtilNamestaj.Add(getNamestajFromGUI());
-                    noviNamestaj = namestaj;
                     Close();
                 }
             } catch (Exception ex) {

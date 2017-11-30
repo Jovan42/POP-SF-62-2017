@@ -36,7 +36,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <Label Content="Admin: " Width="60" Height="25" Margin="5" Foreground="White"></Label>
-                <CheckBox Name="cbAdmin"  Margin="5" VerticalAlignment="Center"></CheckBox>
+                <CheckBox Name="cbAdmin"  Margin="5" VerticalAlignment="Center" IsChecked="{Binding Path=Admin}"></CheckBox>
             </StackPanel>
             <Grid>
                 <Button Content="Dodaj" Name="btnDodaj" Height="25" Width="60" HorizontalAlignment="Right" Margin="5"
