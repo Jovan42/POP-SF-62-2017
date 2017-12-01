@@ -17,7 +17,8 @@ namespace POP_SF_62_2017.Model {
         public ObservableCollection<Prodaja> Prodaje { get; set; }
         public ObservableCollection<Salon> Saloni { get; set; }
 
-       private Projekat() {
+        //Deserijalizacija
+        private Projekat() {
             TipoviNamestaja = GenericSerializer.Deserialize<TipNamestaja>("tipovi_namestaja.xml");
             Namestaji = GenericSerializer.Deserialize<Namestaj>("namestaji.xml");
             Akcije = GenericSerializer.Deserialize<Akcija>("akcije.xml");
@@ -26,7 +27,7 @@ namespace POP_SF_62_2017.Model {
             Saloni = GenericSerializer.Deserialize<Salon>("saloni.xml");
         }    
         
-        //TODO: Serijalizacija
+        //Serijalizacija
         public void SetNamestaj(ObservableCollection<Namestaj> namestaj) {
             GenericSerializer.Serialize<Namestaj>("namestaji.xml", namestaj);
         }
@@ -45,5 +46,6 @@ namespace POP_SF_62_2017.Model {
         public void SetSaloni(ObservableCollection<Salon> saloni) {
             GenericSerializer.Serialize<Salon>("saloni.xml", saloni);
         }
+        //TODO: DAL
     }
 }

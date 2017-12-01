@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using POP_SF_62_2017.Util.Model;
+using POP_SF_62_2017_GUI.DataAccess;
+using POP_SF_62_2017.Model;
+using System.Collections.ObjectModel;
+using POP_SF_62_2017_GUI.Model;
 
 namespace POP_SF_62_2017_GUI.GUI {
     /// <summary>
@@ -20,6 +24,10 @@ namespace POP_SF_62_2017_GUI.GUI {
     public partial class Login : Window {
         public Login() {
             InitializeComponent();
+            ObservableCollection<Entitet> a = AkcijaDataProvider.Instance.GetAll();
+            foreach(Entitet ax in a) {
+                tbUser.Text += " " + ((Akcija)ax).Popust.ToString();
+            }
         }
         int brPokusaja = 3;
         private void btnLogIn_Click(object sender, RoutedEventArgs e) {

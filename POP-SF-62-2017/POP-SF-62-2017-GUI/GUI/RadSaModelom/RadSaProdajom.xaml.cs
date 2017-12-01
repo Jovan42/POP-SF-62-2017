@@ -35,7 +35,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
             window.Title = "Rad sa prodajom";
             izmena = true;
             btnDodaj.Content = "Izmeni";
-            this.prodaja = prodaja.getCoppy();
+            this.prodaja = prodaja;
             tbId.DataContext = this.prodaja;
             tbDatum.DataContext = this.prodaja;
             tbKupac.DataContext = this.prodaja;
@@ -94,10 +94,11 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
                 ProdatNamestaj = new List<int>(),
                 Kolicina = new List<int>()
             };
-            prodaja.DodatneUsluge = tbDodatneUsluge.Text.Split(',').ToList();
+            //TODO
+            /*prodaja.DodatneUsluge = tbDodatneUsluge.Text.Split(',').ToList();
             foreach (string usluga in prodaja.DodatneUsluge) {
                 usluga.Trim();
-            }
+            }*/
             
             foreach (TextBox text in textBoxes) {
                 if (text.Text != null && text.Text != "" && Int32.Parse(text.Text) != 0) {

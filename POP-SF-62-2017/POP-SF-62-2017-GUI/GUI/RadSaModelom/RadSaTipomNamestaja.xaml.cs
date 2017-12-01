@@ -34,7 +34,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom
             InitializeComponent();
 
             //TODO: Praviti kopiju objekta
-            this.tipNamestaja = tipNamestaja.getCoppy();
+            this.tipNamestaja = tipNamestaja;
             tbId.DataContext = this.tipNamestaja;
             tbNaziv.DataContext = this.tipNamestaja;
             

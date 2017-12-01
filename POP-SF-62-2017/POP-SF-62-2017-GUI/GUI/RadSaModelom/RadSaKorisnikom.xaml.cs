@@ -29,7 +29,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
         public RadSaKorisnikom(Korisnik korisnik) {
             InitializeComponent();
 
-            this.korisnik = korisnik.getCoppy();
+            this.korisnik = korisnik;
             tbId.DataContext = this.korisnik;
             tbIme.DataContext = this.korisnik;
             tbKorIme.DataContext = this.korisnik;

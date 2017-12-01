@@ -1,12 +1,24 @@
-﻿using System;
+﻿using POP_SF_62_2017_GUI.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//Model.Korisnik
+//  - int ID
+//  - string Ime
+//  - string Prezime
+//  - string KorIme
+//  - string Lozinka
+//  - bool Admin
+//  - bool Obrisan
 namespace POP_SF_62_2017.Model {
-    public class Korisnik : INotifyPropertyChanged {
+    
+    public class Korisnik : Entitet {
+
+        #region Fields and properties
         private int id;
 
         public int ID {
@@ -61,9 +73,8 @@ namespace POP_SF_62_2017.Model {
             return $"{tip} - {KorIme}: {Ime} {Prezime}";
         }
 
-
         public event PropertyChangedEventHandler PropertyChanged;
-
+#endregion
 
         protected void onPropertyChanged(string properyName) {
             if (PropertyChanged != null) {
@@ -71,7 +82,7 @@ namespace POP_SF_62_2017.Model {
             }
         }
 
-        public Korisnik getCoppy() {
+        public object Clone() {
             return new Korisnik() {
                 ID = id,
                 Admin = admin,

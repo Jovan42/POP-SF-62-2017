@@ -1,4 +1,5 @@
 ﻿using POP_SF_62_2017.Util.Model;
+using POP_SF_62_2017_GUI.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,8 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//Model.Akcija
+//  - int ID
+//  - DateTime Početak
+//  - DateTime Kraj
+//  - bool Obrisan
+
 namespace POP_SF_62_2017.Model {
-    public class Akcija  : INotifyPropertyChanged, ICloneable {
+    public class Akcija : Entitet {
+
+        #region Fields and properties
         private int id;
 
         public int ID {
@@ -49,6 +58,11 @@ namespace POP_SF_62_2017.Model {
             set { popust = value; onPropertyChanged("Popust"); }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+#endregion
+
+        //  "<Pocetak> - <Kraj> - Popust = <Popust>%
+        //      <Namestaj.Naziv> ..."
         public override string ToString() {
             string tmp = "";
             foreach (int namestajNaAkciji in NamestajNaAkcijiID) {
@@ -58,24 +72,11 @@ namespace POP_SF_62_2017.Model {
             return $"({Pocetak.ToString("dd.MM.yyyy.")} - {Kraj.ToString("dd.MM.yyyy.")}) - Popust = {Popust}%:" + tmp;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
 
         protected void onPropertyChanged(string properyName) {
             if (PropertyChanged != null) {
                 PropertyChanged(this, new PropertyChangedEventArgs(properyName));
             }
-        }
-
-        public Akcija getCoppy() {
-            return new Akcija() {
-                ID = id,
-                Popust = popust,
-                Pocetak = pocetak,
-                Kraj = kraj,
-                NamestajNaAkcijiID = namestajNaAkcijiID,
-                Obrisan = obrisan,
-            };
         }
 
         public object Clone() {

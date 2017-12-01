@@ -23,7 +23,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
         public RadSaSalonom(Salon salon) {
             InitializeComponent();
 
-            this.salon = salon.getCoppy(); 
+            this.salon = salon; 
             tbNaziv.DataContext = this.salon;
             tbAdresa.DataContext = this.salon;
             tbMail.DataContext = this.salon;

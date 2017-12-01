@@ -1,12 +1,20 @@
-﻿using System;
+﻿using POP_SF_62_2017_GUI.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//Model.TipNamestaja
+//  - int ID
+//  - int Naziv
+//  - bool Obrisan
+
 namespace POP_SF_62_2017.Model {
-    public class TipNamestaja : INotifyPropertyChanged {
+    public class TipNamestaja : Entitet {
+
+        #region Fields and properties
         private int id;
 
         public int ID {
@@ -36,12 +44,12 @@ namespace POP_SF_62_2017.Model {
             return null;
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+#endregion
+
         public override string ToString() {
             return $"{Naziv}";
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
 
         protected void onPropertyChanged(string properyName) {
             if (PropertyChanged != null) {
@@ -50,7 +58,7 @@ namespace POP_SF_62_2017.Model {
 
         }
 
-        public TipNamestaja getCoppy() {
+        public object Clone() {
             return new TipNamestaja { ID = id, Naziv = naziv, Obrisan = obrisan };
         }
     }

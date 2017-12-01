@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using POP_SF_62_2017.Model;
 using POP_SF_62_2017.Util.Model;
+using POP_SF_62_2017_GUI.DataAccess;
 
 namespace POP_SF_62_2017_GUI.GUI.RadSaModelom
 {
@@ -34,18 +35,22 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom
         public RadSaAkcijom(Akcija akcija) {
             InitializeComponent();
             btnDodaj.Content = "Izmeni";
-            DrawCheckBoxes();
+
+            dgNamestaji.ItemsSource= UtilNamestaj.getAll();
+            
+
+
             izmena = true;
 
-            foreach (int namestajID in akcija.NamestajNaAkcijiID) {
+            /*foreach (int namestajID in akcija.NamestajNaAkcijiID) {
                 foreach (CheckBox checkBox in checkBoxes) {
                     string tmp = "cb" + namestajID.ToString();
                     if (checkBox.Name == tmp)
                         checkBox.IsChecked = true;
                 }
-            }
+            }*/
 
-            this.akcija = akcija.getCoppy();
+            this.akcija = akcija;
             tbId.DataContext = this.akcija;
             calKraj.DataContext = this.akcija;
             calPocetak.DataContext = this.akcija;

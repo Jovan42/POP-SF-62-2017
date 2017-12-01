@@ -1,4 +1,5 @@
 ﻿using POP_SF_62_2017.Util.Model;
+using POP_SF_62_2017_GUI.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,9 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace POP_SF_62_2017.Model {
-    public class Prodaja : INotifyPropertyChanged {
+//Model.Prodaja
+//  - int ID
+//  - DateTime DatumProdaje
+//  - List<int> ProdatNamestaj
+//  - List<int> Kolicina
+//  - string Kupac
+//  - Map<string, double> DodatneUsluge //TODO 
+//  - bool Obrisan
 
+namespace POP_SF_62_2017.Model {
+    public class Prodaja : Entitet {
+
+        #region Fields and properties
         private int id;
 
         public int ID {
@@ -58,7 +69,12 @@ namespace POP_SF_62_2017.Model {
             set { obrisan = value; onPropertyChanged("Obrisan"); }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
+        //"<DatumProdaje>
+        //  <Namestaj.Naziv>: <Kolicina>
+        //..."
         public override string ToString() {
             string tmp = "";
             foreach (int prodatNamestaj in ProdatNamestaj) {
@@ -70,13 +86,6 @@ namespace POP_SF_62_2017.Model {
             return $"({DatumProdaje.ToString("dd. MM. yyyy.")})" + tmp;
         }
 
-        private static int GetProdatNamestaj(int prodatNamestaj) {
-            return prodatNamestaj;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-
         protected void onPropertyChanged(string properyName) {
             if (PropertyChanged != null) {
                 PropertyChanged(this, new PropertyChangedEventArgs(properyName));
@@ -84,7 +93,7 @@ namespace POP_SF_62_2017.Model {
 
         }
 
-        public Prodaja getCoppy() {
+        public object Clone() {
             return new Prodaja() {
                 ID = id,
                 DatumProdaje = datumProdaje,

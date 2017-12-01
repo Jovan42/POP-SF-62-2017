@@ -1,12 +1,27 @@
-﻿using System;
+﻿using POP_SF_62_2017_GUI.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//Model.Salon
+//  - int ID
+//  - string Naziv
+//  - string Adresa
+//  - string Mail
+//  - string Sajt
+//  - string Telefon
+//  - int PIB
+//  - int MatBrint
+//  - int ZiroRacun
+//  - bool Obrisan
+
 namespace POP_SF_62_2017.Model {
-    public class Salon : INotifyPropertyChanged {
+    public class Salon : Entitet {
+
+        #region Fields and properties
         private int id;
 
         public int ID {
@@ -78,6 +93,7 @@ namespace POP_SF_62_2017.Model {
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+#endregion
 
         protected void onPropertyChanged(string properyName) {
             if (PropertyChanged != null) {
@@ -85,7 +101,7 @@ namespace POP_SF_62_2017.Model {
             }
         }
 
-        public Salon getCoppy() {
+        public object Clone() {
             return new Salon() {
                 ID = id,
                 Adresa = adresa,

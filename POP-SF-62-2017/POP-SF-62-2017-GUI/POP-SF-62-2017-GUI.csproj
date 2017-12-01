@@ -54,6 +54,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataAccess\AkcijaDataProvider.cs" />
+    <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="DataAccess\KorisnikDataProvider.cs" />
+    <Compile Include="DataAccess\NamestajDataProvider.cs" />
+    <Compile Include="DataAccess\ProdajaDataProvider.cs" />
+    <Compile Include="DataAccess\SalonDataProvider.cs" />
+    <Compile Include="DataAccess\TipNamestajaDataProvider.cs" />
     <Compile Include="Enums\TipKlase.cs" />
     <Compile Include="GUI\Meni.xaml.cs">
       <DependentUpon>Meni.xaml</DependentUpon>
@@ -77,6 +84,7 @@
     <Compile Include="GUI\RadSaModelom\RadSaTipomNamestaja.xaml.cs">
       <DependentUpon>RadSaTipomNamestaja.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Entitet.cs" />
     <Compile Include="Util\GenericSerializer.cs" />
     <Compile Include="Util\Model\UtilAkcija.cs" />
     <Compile Include="Util\Model\UtilKorisnik.cs" />

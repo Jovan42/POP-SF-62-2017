@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POP_SF_62_2017_GUI.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -6,8 +7,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
+//Model.Namestaj
+//  - int ID
+//  - string Naziv
+//  - double Cena
+//  - int Kolicina
+//  - int TipNamestajaID
+//  - bool Obrisan
+//  - TipNamestaja TipNamestaja [XmlIgnore]
+
 namespace POP_SF_62_2017.Model  {
-    public class Namestaj : INotifyPropertyChanged, ICloneable {
+    public class Namestaj : Entitet {
+
+        #region Fields and properties
+
         private string naziv;
 
         public string Naziv {
@@ -71,31 +84,20 @@ namespace POP_SF_62_2017.Model  {
             }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
 
+#endregion
+
+        //"<Naziv>, <Cena>, <TipNamestaja.Naziv>"
         public override string ToString() {
 
             return $"{Naziv}, {Cena}, {TipNamestaja.GetById(TipNamestajaID).Naziv}";
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
         
         protected void OnPropertyChanged(string properyName) {
             if(PropertyChanged != null) {
                 PropertyChanged(this, new PropertyChangedEventArgs(properyName));
             }
-        }
-
-        public Namestaj getCoppy() {
-            return new Namestaj() {
-                ID = id,
-                Cena = cena,
-                Kolicina = kolicina,
-                Naziv = naziv,
-                Obrisan = obrisan,
-                TipNamestajaID = tipNamestajaID,
-                TipNamestaja = tipNamestaja
-            };
         }
 
         public object Clone() {
