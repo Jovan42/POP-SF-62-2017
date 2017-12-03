@@ -46,6 +46,5 @@ namespace POP_SF_62_2017.Model {
         public void SetSaloni(ObservableCollection<Salon> saloni) {
             GenericSerializer.Serialize<Salon>("saloni.xml", saloni);
         }
-        //TODO: DAL
     }
 }

@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using POP_SF_62_2017.Util.Model;
+﻿using System.Windows;
 using POP_SF_62_2017_GUI.DataAccess;
 using POP_SF_62_2017.Model;
 using System.Collections.ObjectModel;
 using POP_SF_62_2017_GUI.Model;
+using System;
+using System.Collections.Generic;
 
 namespace POP_SF_62_2017_GUI.GUI {
     /// <summary>
@@ -24,15 +13,13 @@ namespace POP_SF_62_2017_GUI.GUI {
     public partial class Login : Window {
         public Login() {
             InitializeComponent();
-            ObservableCollection<Entitet> a = AkcijaDataProvider.Instance.GetAll();
-            foreach(Entitet ax in a) {
-                tbUser.Text += " " + ((Akcija)ax).Popust.ToString();
-            }
+                       
         }
         int brPokusaja = 3;
         private void btnLogIn_Click(object sender, RoutedEventArgs e) {
-            if(UtilKorisnik.CheckPass(tbUser.Text, tbPass.Password)) {
-                Meni meni = new Meni(UtilKorisnik.IsAdmin(tbUser.Text));
+            
+            if(KorisnikDataProvider.Instance.CheckPass(tbUser.Text, tbPass.Password)) {
+                Meni meni = new Meni(KorisnikDataProvider.Instance.IsAdmin(tbUser.Text));
                 meni.Show();
                 this.Close();
             } else {

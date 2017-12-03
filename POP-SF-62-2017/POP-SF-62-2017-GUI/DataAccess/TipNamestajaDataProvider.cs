@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace POP_SF_62_2017_GUI.DataAccess {
     class TipNamestajaDataProvider : DataAccess {
-        public static KorisnikDataProvider Instance { get; } = new KorisnikDataProvider();
+        public static TipNamestajaDataProvider Instance { get; } = new TipNamestajaDataProvider();
 
         #region DataAccess Implementation
         public void Add(Entitet e) {
@@ -53,13 +53,13 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             return false;
         }
 
-        public ObservableCollection<Entitet> GetAll() {
+        public ObservableCollection<TipNamestaja> GetAll() {
             ObservableCollection<TipNamestaja> tipoviNamestaja = new ObservableCollection<TipNamestaja>();
             foreach (TipNamestaja korisnk in Projekat.Instance.TipoviNamestaja) {
                 if (!korisnk.Obrisan)
                     tipoviNamestaja.Add(korisnk);
             }
-            return new ObservableCollection<Entitet>(tipoviNamestaja);
+            return tipoviNamestaja;
         }
 
         public Entitet GetByID(int id) {

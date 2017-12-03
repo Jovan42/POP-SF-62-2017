@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using POP_SF_62_2017.Model;
-using POP_SF_62_2017.Util.Model;
+using POP_SF_62_2017_GUI.DataAccess;
 
 namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
     /// <summary>
@@ -20,6 +9,8 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
     /// </summary>
     public partial class RadSaSalonom : Window {
         Salon salon = new Salon();
+
+        //Konstruktor u slučaju da argument niej prosleđem (dodavanje novog objekta)
         public RadSaSalonom(Salon salon) {
             InitializeComponent();
 
@@ -44,7 +35,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
                 if (!Int32.TryParse(tbRacun.Text, out a))
                     throw new Exception("Žiro račun salona je pogrešno unet.");
 
-                UtilSalon.ChangeById(getFromGUI(), 0);
+                SalonDataProvider.Instance.EditByID(getFromGUI(), 0);
                 this.Close();
             } catch (Exception ex) {
                 MessageBox.Show($"{ex.Message}. Pokušajte opet.", "Greška");

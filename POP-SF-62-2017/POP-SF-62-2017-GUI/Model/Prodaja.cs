@@ -1,4 +1,4 @@
-﻿using POP_SF_62_2017.Util.Model;
+﻿using POP_SF_62_2017_GUI.DataAccess;
 using POP_SF_62_2017_GUI.Model;
 using System;
 using System.Collections.Generic;
@@ -34,18 +34,11 @@ namespace POP_SF_62_2017.Model {
             set { datumProdaje = value; onPropertyChanged("DatumProdaje"); }
         }
 
-        private List<int> prodatNamestaj;
+        private List<ProdatNamestaj> prodatNamestaj;
 
-        public List<int> ProdatNamestaj {
+        public List<ProdatNamestaj> ProdatNamestaj {
             get { return prodatNamestaj; }
             set { prodatNamestaj = value; onPropertyChanged("ProdatNamestaj"); }
-        }
-
-        private List<int> kolicina;
-
-        public List<int> Kolicina {
-            get { return kolicina; }
-            set { kolicina = value; onPropertyChanged("Kolicina"); }
         }
 
         private string kupac;
@@ -77,10 +70,11 @@ namespace POP_SF_62_2017.Model {
         //..."
         public override string ToString() {
             string tmp = "";
-            foreach (int prodatNamestaj in ProdatNamestaj) {
-                if (UtilNamestaj.GetById(prodatNamestaj) != null && !(UtilNamestaj.GetById(prodatNamestaj).Obrisan)) {
-                    int index = ProdatNamestaj.IndexOf(prodatNamestaj);
-                    tmp += $"\n\t{UtilNamestaj.GetById(prodatNamestaj).Naziv}: {Kolicina[index]}";
+            foreach (ProdatNamestaj prodatNamestaj in ProdatNamestaj) {
+                if (NamestajDataProvider.Instance.GetByID(prodatNamestaj.NamestajID) != null &&
+                    !(((Namestaj)NamestajDataProvider.Instance.GetByID(prodatNamestaj.NamestajID)).Obrisan)) {
+                    tmp += $"\n\t{((Namestaj)NamestajDataProvider.Instance.GetByID(prodatNamestaj.NamestajID)).Naziv}: " +
+                        $"{prodatNamestaj.Kolicina}";
                 }
             }
             return $"({DatumProdaje.ToString("dd. MM. yyyy.")})" + tmp;
@@ -94,15 +88,25 @@ namespace POP_SF_62_2017.Model {
         }
 
         public object Clone() {
-            return new Prodaja() {
+            Prodaja prodaja = new Prodaja() {
                 ID = id,
                 DatumProdaje = datumProdaje,
                 DodatneUsluge = dodatneUsluge,
                 Kupac = kupac,
                 ProdatNamestaj = prodatNamestaj,
-                Kolicina = kolicina,
                 Obrisan = obrisan
             };
+            if (DatumProdaje == null) DatumProdaje = DateTime.Now;
+            return prodaja;
+        }
+
+        public int getKolicinaFromNamestajID(int id) {
+            foreach (ProdatNamestaj prodatNamestaj in ProdatNamestaj) {
+                if (prodatNamestaj.NamestajID == id)
+                    return prodatNamestaj.Kolicina;
+            }
+            return 0;
         }
     }
+
 }

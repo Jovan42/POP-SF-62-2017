@@ -33,15 +33,17 @@
                         Margin="5" Click="btnOdustani_Click"  Background="Gray" BorderBrush="White" Foreground="White"></Button>
             </Grid>
         </StackPanel>
-            <StackPanel Name="spNamestaji" Orientation="Vertical">
-                <StackPanel HorizontalAlignment="Left">
-                    <Label Content="Namestaji: " Width="70" Height="25" Margin="5" Foreground="White">
-                    </Label>
-                    <DataGrid Name="dgNamestaji">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="400">
+                <StackPanel Name="spNamestaji" Orientation="Vertical">
+                    <StackPanel HorizontalAlignment="Left">
+                        <Label Content="Namestaji: " Width="70" Height="25" Margin="5" Foreground="White">
+                        </Label>
+                        <DataGrid Name="dgNamestaji" Margin="5" CanUserAddRows="False">
 
-                    </DataGrid>
+                        </DataGrid>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
+            </ScrollViewer>
         </StackPanel>
     </Grid>
 </Window>

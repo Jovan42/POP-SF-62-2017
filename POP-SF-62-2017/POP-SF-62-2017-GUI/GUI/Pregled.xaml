@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_62_2017_GUI.GUI"
         mc:Ignorable="d"  Name="window"
-         Height="510" MinHeight="320" Width="500">
-    <Grid Background="#FF252526" Height="Auto" Width="Auto" HorizontalAlignment="Stretch" >
+         Height="540"  Width="500">
+    <Grid Background="#FF252526" Height="500" Width="Auto" HorizontalAlignment="Stretch" >
         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" >
             <DataGrid Name="dgNamestaji" VerticalAlignment="Top" HorizontalAlignment="Left" Width ="500"
-                     IsReadOnly="True" CanUserAddRows="False" MinHeight="425" MaxHeight="400"
+                     IsReadOnly="True" CanUserAddRows="False" MinHeight="425" MaxHeight="40"
                       SelectedItem="{Binding Path=Izabrano}" AutoGeneratingColumn="dgNamestaji_AutoGeneratingColumn"></DataGrid>
             <Grid HorizontalAlignment="Stretch" >
             <Button Content="Dodaj" Width="80" Height="25" Margin="5" Name="btnDodaj" Click="btnDodaj_Click"

@@ -40,4 +40,12 @@
     <TipNamestajaID>0</TipNamestajaID>
     <Obrisan>false</Obrisan>
   </Namestaj>
+  <Namestaj>
+    <Naziv>sadksa</Naziv>
+    <ID>5</ID>
+    <Cena>500</Cena>
+    <Kolicina>50</Kolicina>
+    <TipNamestajaID>1</TipNamestajaID>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
 </ArrayOfNamestaj>

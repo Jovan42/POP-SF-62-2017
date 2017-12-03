@@ -1,18 +1,7 @@
 ﻿using POP_SF_62_2017.Model;
-using POP_SF_62_2017.Util.Model;
+using POP_SF_62_2017_GUI.DataAccess;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
     /// <summary>
@@ -22,10 +11,12 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
         Korisnik korisnik = new Korisnik();
         bool izmena = false;
 
+        //Konstruktor u slučaju da argument nije prosleđen (dodavanje novog objekta)
         public RadSaKorisnikom() {
             InitializeComponent();
         }
 
+        //Konstruktor u slučaju da je argument prosleđen (izmena postojećeg)
         public RadSaKorisnikom(Korisnik korisnik) {
             InitializeComponent();
 
@@ -42,14 +33,15 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
         private void btnOdustani_Click(object sender, RoutedEventArgs e) {
             this.Close();
         }
+
         private void btnDodaj_Click(object sender, RoutedEventArgs e) {
-            if (tbLozinka.Password != tbLozinka2.Password) {
+            if (tbLozinka.Password != tbLozinka2.Password || tbKorIme.Text == "") {
                 MessageBox.Show("Lozinke koje ste uneli su različite. Pokušajte opet...", "Greška");
             } else {
                 if (izmena) {
-                    UtilKorisnik.ChangeById(getFromGUI(), Int32.Parse(tbId.Text));
+                    KorisnikDataProvider.Instance.EditByID(getFromGUI(), Int32.Parse(tbId.Text));
                 } else {
-                    UtilKorisnik.Add(getFromGUI());
+                    KorisnikDataProvider.Instance.Add(getFromGUI());
                 }
             }
             Close();

@@ -1,4 +1,4 @@
-﻿using POP_SF_62_2017.Util.Model;
+﻿using POP_SF_62_2017_GUI.DataAccess;
 using POP_SF_62_2017_GUI.Model;
 using System;
 using System.Collections.Generic;
@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 //  - int ID
 //  - DateTime Početak
 //  - DateTime Kraj
+//  - List<int> NamestajNaAkcijiID
 //  - bool Obrisan
 
 namespace POP_SF_62_2017.Model {
@@ -66,12 +67,18 @@ namespace POP_SF_62_2017.Model {
         public override string ToString() {
             string tmp = "";
             foreach (int namestajNaAkciji in NamestajNaAkcijiID) {
-                if (UtilNamestaj.GetById(namestajNaAkciji) != null)
-                    tmp += $"\n\t{UtilNamestaj.GetById(namestajNaAkciji).Naziv}";
+                if (NamestajDataProvider.Instance.GetByID(namestajNaAkciji) != null)
+                    tmp += $"\n\t{((Namestaj)NamestajDataProvider.Instance.GetByID(namestajNaAkciji)).Naziv}";
             }
             return $"({Pocetak.ToString("dd.MM.yyyy.")} - {Kraj.ToString("dd.MM.yyyy.")}) - Popust = {Popust}%:" + tmp;
         }
 
+        public bool IfAkcijaByNamestajID(int id) {
+            foreach (int namestajID in NamestajNaAkcijiID) {
+                if (id == namestajID) return true;
+            }
+            return false;
+        }
 
         protected void onPropertyChanged(string properyName) {
             if (PropertyChanged != null) {

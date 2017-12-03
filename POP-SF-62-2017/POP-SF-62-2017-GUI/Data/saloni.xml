@@ -2,11 +2,11 @@
 <ArrayOfSalon xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Salon>
     <ID>0</ID>
-    <Naziv>Salon </Naziv>
+    <Naziv>0</Naziv>
     <Adresa>Neka Adresa 420/69</Adresa>
     <Mail>kontakt@salon.com</Mail>
     <Sajt>http://www.salon.com</Sajt>
-    <Telefon>069-420-69-42</Telefon>
+    <Telefon>069-420-69-424</Telefon>
     <PIB>3141592</PIB>
     <MatBr>112358</MatBr>
     <ZiroRacun>132124</ZiroRacun>

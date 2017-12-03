@@ -1,21 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using POP_SF_62_2017.Model;
-using POP_SF_62_2017.Util.Model;
+using POP_SF_62_2017_GUI.DataAccess;
 
-namespace POP_SF_62_2017_GUI.GUI.RadSaModelom
-{
+namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
     /// <summary>
     /// Interaction logic for RadSaTipomNamestaja.xaml
     /// </summary>
@@ -23,17 +11,19 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom
     {
         bool izmena = false;
         TipNamestaja tipNamestaja = new TipNamestaja();
+
+        //Konstruktor u slučaju da argument nije prosleđen (dodavanje novog objekta)
         public RadSaTipomNamestaja()
         {
             InitializeComponent();
             tbNaziv.Focus();
         }
 
+        //Konstruktor u slučaju da je argument prosleđen (izmena postojećeg)
         public RadSaTipomNamestaja(TipNamestaja tipNamestaja) {
             izmena = true;
             InitializeComponent();
 
-            //TODO: Praviti kopiju objekta
             this.tipNamestaja = tipNamestaja;
             tbId.DataContext = this.tipNamestaja;
             tbNaziv.DataContext = this.tipNamestaja;
@@ -49,10 +39,10 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e) {
             if (izmena) {
-                UtilTipNamestaja.ChangeById(getFromGUI(), Int32.Parse(tbId.Text));
+                TipNamestajaDataProvider.Instance.EditByID(getFromGUI(), Int32.Parse(tbId.Text));
                 Close();
             } else {
-                UtilTipNamestaja.Add(getFromGUI());
+                TipNamestajaDataProvider.Instance.Add(getFromGUI());
                 Close();
             }
         }

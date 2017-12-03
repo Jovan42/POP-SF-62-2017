@@ -1,20 +1,8 @@
 ﻿using POP_SF_62_2017.Model;
-using POP_SF_62_2017.Util.Model;
+using POP_SF_62_2017_GUI.DataAccess;
 using POP_SF_62_2017_GUI.Enums;
 using POP_SF_62_2017_GUI.GUI.RadSaModelom;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace POP_SF_62_2017_GUI.GUI {
     /// <summary>
@@ -72,7 +60,7 @@ namespace POP_SF_62_2017_GUI.GUI {
         }
 
         private void btnRadSaSalonima_Click(object sender, RoutedEventArgs e) {
-            new RadSaSalonom(UtilSalon.GetById(0)).ShowDialog();
+            new RadSaSalonom(((Salon)SalonDataProvider.Instance.GetByID(0))).ShowDialog();
         }
     }
 }

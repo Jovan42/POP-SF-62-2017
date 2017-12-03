@@ -1,20 +1,9 @@
-﻿    using POP_SF_62_2017.Model;
-using POP_SF_62_2017.Util.Model;
-using POP_SF_62_2017_GUI.GUI.RadSaModelom;
+﻿using POP_SF_62_2017.Model;
+using POP_SF_62_2017_GUI.DataAccess;
+using POP_SF_62_2017_GUI.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace POP_SF_62_2017_GUI.GUI {
     /// <summary>
@@ -24,7 +13,8 @@ namespace POP_SF_62_2017_GUI.GUI {
     public partial class RadSaNamestajem : Window {
         bool izmena = false;
         Namestaj namestaj = new Namestaj();
-        ObservableCollection<TipNamestaja> tipNamestaja;
+
+        //Konstruktor u slučaju da argument niej prosleđem (dodavanje novog objekta)
         public RadSaNamestajem() {
             InitializeComponent();
             tbNaziv.Focus();
@@ -40,15 +30,15 @@ namespace POP_SF_62_2017_GUI.GUI {
 
             //TODO: Rad sa kopijom mi daje gresku
             this.namestaj = namestaj;
-            this.tipNamestaja = UtilTipNamestaja.getAll();
-
+            
+            //this.tipNamestaja = TipNamestajaDataProvider.Instance.getAll
             tbId.DataContext = this.namestaj;
             tbNaziv.DataContext = this.namestaj;
             tbCena.DataContext = this.namestaj;
             tbKolicina.DataContext = this.namestaj;
 
-            comboTip.ItemsSource = tipNamestaja;
-            comboTip.DataContext = this.namestaj;
+            comboTip.ItemsSource = TipNamestajaDataProvider.Instance.GetAll();
+            //comboTip.DataContext = this.namestaj;
             
         }
 
@@ -61,11 +51,11 @@ namespace POP_SF_62_2017_GUI.GUI {
                 if (!Double.TryParse(tbCena.Text, out b))
                     throw new Exception("Cena namestaja je pogrešno uneta.");
                 if (izmena) {
-                    UtilNamestaj.ChangeById(getNamestajFromGUI(), Int32.Parse(tbId.Text));
+                    NamestajDataProvider.Instance.EditByID(getNamestajFromGUI(), Int32.Parse(tbId.Text));
                     
                     Close();
                 } else {
-                    UtilNamestaj.Add(getNamestajFromGUI());
+                    NamestajDataProvider.Instance.Add(getNamestajFromGUI());
                     Close();
                 }
             } catch (Exception ex) {
@@ -95,7 +85,7 @@ namespace POP_SF_62_2017_GUI.GUI {
         }
 
         private void populateComboBox() {
-            foreach (TipNamestaja tip in UtilTipNamestaja.getAll()) {
+            foreach (TipNamestaja tip in TipNamestajaDataProvider.Instance.GetAll()) {
                 comboTip.Items.Add(tip);
             }
         }

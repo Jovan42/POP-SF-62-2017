@@ -57,13 +57,13 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             return false;
         }
 
-        public ObservableCollection<Entitet> GetAll() {
+        public ObservableCollection<Korisnik> GetAll() {
             ObservableCollection<Korisnik> korisnici = new ObservableCollection<Korisnik>();
             foreach (Korisnik korisnk in Projekat.Instance.Korisnici) {
                 if (!korisnk.Obrisan)
                     korisnici.Add(korisnk);
             }
-            return new ObservableCollection<Entitet>(korisnici);
+            return korisnici;
         }
 
         public Entitet GetByID(int id) {
@@ -80,8 +80,18 @@ namespace POP_SF_62_2017_GUI.DataAccess {
         }
         #endregion
 
+        // Proverava da li je korisnik admin
+        public bool IsAdmin(string username) {
+            foreach (Korisnik korisnik in Projekat.Instance.Korisnici) {
+                if (korisnik.KorIme == username) {
+                    return korisnik.Admin;
+                }
+            }
+            return false;
+        }
+
         // Proverava da li je username i password
-        public static bool CheckPass(string user, string pass) {
+        public bool CheckPass(string user, string pass) {
             ObservableCollection<Korisnik> korisnici = Projekat.Instance.Korisnici;
 
             foreach (Korisnik korisnik in korisnici) {

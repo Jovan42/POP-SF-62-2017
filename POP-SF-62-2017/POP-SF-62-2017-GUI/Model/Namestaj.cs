@@ -1,4 +1,5 @@
-﻿using POP_SF_62_2017_GUI.Model;
+﻿using POP_SF_62_2017_GUI.DataAccess;
+using POP_SF_62_2017_GUI.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -71,9 +72,12 @@ namespace POP_SF_62_2017.Model  {
         [XmlIgnore]
         public TipNamestaja TipNamestaja {
             get {
-                if (tipNamestaja == null)
+                if (tipNamestaja == null) {
+                    TipNamestaja tmp = (TipNamestaja)TipNamestajaDataProvider.Instance.GetByID(tipNamestajaID);
+                    return tmp;
+                }
                     
-                return Util.Model.UtilTipNamestaja.GetById(tipNamestajaID);
+               
                 else
                     return tipNamestaja;
             }

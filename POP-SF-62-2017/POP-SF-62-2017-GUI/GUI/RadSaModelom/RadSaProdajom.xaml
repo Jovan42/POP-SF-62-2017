@@ -9,6 +9,7 @@
              SizeToContent="WidthAndHeight"
         Name="window" ResizeMode="NoResize" >
     <Grid Background="#FF252526" Height="Auto" Width="Auto">
+        <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
@@ -31,22 +32,23 @@
                     <TextBox Name="tbDodatneUsluge" Width="100" Height="50" Margin="5" TextWrapping="Wrap"
                              AcceptsReturn="True" Text="{Binding Path=DodatneUsluge}"></TextBox>
                 </StackPanel>
-                <Grid>
-                    <Button Content="Dodaj" Name="btnDodaj" Height="25" Width="60" HorizontalAlignment="Right" Margin="5"
-                        Click="btnDodaj_Click"  Background="Gray" BorderBrush="White" Foreground="White"></Button>
-                    <Button Content="Odustani" Name="btnOdustani" Height="25" Width="60" HorizontalAlignment="Left"
-                        Margin="5" Click="btnOdustani_Click"  Background="Gray" BorderBrush="White" Foreground="White"></Button>
-                </Grid>
+               
             </StackPanel>
-            <StackPanel Name="spNamestaji" Orientation="Vertical">
-                <StackPanel HorizontalAlignment="Left">
-                    <Label Content="Namestaji: " Width="70" Height="25" Margin="5" Foreground="White">
-                    </Label>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="250">
+            <StackPanel Name="spNamestaji" Orientation="Vertical" >
+                    <StackPanel HorizontalAlignment="Left">
+                        <Label Content="Namestaji: " Width="70" Height="25" Margin="5" Foreground="White">
+                        </Label>
+                    </StackPanel>
                 </StackPanel>
-                
-                
-
-            </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+        <Grid>
+            <Button Content="Dodaj" Name="btnDodaj" Height="25" Width="60" HorizontalAlignment="Right" Margin="5"
+                        Click="btnDodaj_Click"  Background="Gray" BorderBrush="White" Foreground="White"></Button>
+            <Button Content="Odustani" Name="btnOdustani" Height="25" Width="60" HorizontalAlignment="Left"
+                        Margin="5" Click="btnOdustani_Click"  Background="Gray" BorderBrush="White" Foreground="White"></Button>
+        </Grid>
         </StackPanel>
     </Grid>
 </Window>

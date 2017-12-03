@@ -56,15 +56,6 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             return false;
         }
 
-        public ObservableCollection<Entitet> GetAll() {
-            ObservableCollection<Akcija> akcije = new ObservableCollection<Akcija>();
-            foreach (Akcija akcija in Projekat.Instance.Akcije) {
-                if (!akcija.Obrisan)
-                    akcije.Add(akcija);
-            }
-            return new ObservableCollection<Entitet>(akcije);
-        }
-
         public Entitet GetByID(int id) {
             foreach (Akcija akcija in Projekat.Instance.Akcije) {
                 if (akcija.ID == id) {
@@ -77,6 +68,16 @@ namespace POP_SF_62_2017_GUI.DataAccess {
         public void Initialize() {
             throw new NotImplementedException();
         }
-#endregion
+
+        #endregion
+
+        public ObservableCollection<Akcija> GetAll() {
+            ObservableCollection<Akcija> akcije = new ObservableCollection<Akcija>();
+            foreach (Akcija akcija in Projekat.Instance.Akcije) {
+                if (!akcija.Obrisan)
+                    akcije.Add(akcija);
+            }
+            return akcije;
+        }
     }
 }

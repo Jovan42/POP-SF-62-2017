@@ -48,22 +48,20 @@ namespace POP_SF_62_2017_GUI.DataAccess {
                     prodaja.Kupac = p.Kupac;
                     prodaja.ProdatNamestaj = p.ProdatNamestaj;
                     prodaja.Obrisan = p.Obrisan;
-                    prodaja.Kolicina = p.Kolicina;
                     Projekat.Instance.Prodaje = prodaje;
                     return true;
-
                 }
             }
             return false;
         }
 
-        public ObservableCollection<Entitet> GetAll() {
+        public ObservableCollection<Prodaja> GetAll() {
             ObservableCollection<Prodaja> prodaja = new ObservableCollection<Prodaja>();
             foreach (Prodaja korisnk in Projekat.Instance.Prodaje) {
                 if (!korisnk.Obrisan)
                     prodaja.Add(korisnk);
             }
-            return new ObservableCollection<Entitet>(prodaja);
+            return prodaja;
         }
 
         public Entitet GetByID(int id) {

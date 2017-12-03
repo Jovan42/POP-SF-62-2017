@@ -85,13 +85,8 @@
       <DependentUpon>RadSaTipomNamestaja.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Entitet.cs" />
+    <Compile Include="Model\ProdatNamestaj.cs" />
     <Compile Include="Util\GenericSerializer.cs" />
-    <Compile Include="Util\Model\UtilAkcija.cs" />
-    <Compile Include="Util\Model\UtilKorisnik.cs" />
-    <Compile Include="Util\Model\UtilNamestaj.cs" />
-    <Compile Include="Util\Model\UtilProdaja.cs" />
-    <Compile Include="Util\Model\UtilSalon.cs" />
-    <Compile Include="Util\Model\UtilTipNamestaja.cs" />
     <Page Include="GUI\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,10 +169,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\akcije.xml" />
-    <Resource Include="Data\korisnici.xml" />
     <Resource Include="Data\namestaji.xml" />
     <Resource Include="Data\saloni.xml" />
     <Resource Include="Data\tipovi_namestaja.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\korisnici.xml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\prodaje.xml" />

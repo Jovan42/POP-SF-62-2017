@@ -60,13 +60,13 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             return false;
         }
 
-        public ObservableCollection<Entitet> GetAll() {
+        public ObservableCollection<Salon> GetAll() {
             ObservableCollection<Salon> salon = new ObservableCollection<Salon>();
             foreach (Salon korisnk in Projekat.Instance.Saloni) {
                 if (!korisnk.Obrisan)
                     salon.Add(korisnk);
             }
-            return new ObservableCollection<Entitet>(salon);
+            return salon;
         }
 
         public Entitet GetByID(int id) {
