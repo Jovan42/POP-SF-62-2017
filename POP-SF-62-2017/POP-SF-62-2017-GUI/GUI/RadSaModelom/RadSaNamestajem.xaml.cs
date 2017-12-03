@@ -6,10 +6,6 @@ using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace POP_SF_62_2017_GUI.GUI {
-    /// <summary>
-    /// Interaction logic for RadSaNamestajem.xaml
-    /// </summary>
-    /// 
     public partial class RadSaNamestajem : Window {
         bool izmena = false;
         Namestaj namestaj = new Namestaj();
@@ -28,17 +24,15 @@ namespace POP_SF_62_2017_GUI.GUI {
             
             btnDodaj.Content = "Izmeni";
 
-            //TODO: Rad sa kopijom mi daje gresku
             this.namestaj = namestaj;
             
-            //this.tipNamestaja = TipNamestajaDataProvider.Instance.getAll
-            tbId.DataContext = this.namestaj;
-            tbNaziv.DataContext = this.namestaj;
-            tbCena.DataContext = this.namestaj;
-            tbKolicina.DataContext = this.namestaj;
+            tbId.DataContext = namestaj;
+            tbNaziv.DataContext = namestaj;
+            tbCena.DataContext = namestaj;
+            tbKolicina.DataContext = namestaj;
 
             comboTip.ItemsSource = TipNamestajaDataProvider.Instance.GetAll();
-            //comboTip.DataContext = this.namestaj;
+            comboTip.DataContext = namestaj;
             
         }
 

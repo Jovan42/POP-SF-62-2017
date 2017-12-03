@@ -9,7 +9,7 @@
     <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
-    <Naziv>Stolica</Naziv>
+    <Naziv>Stolicaaaa</Naziv>
     <ID>1</ID>
     <Cena>6200</Cena>
     <Kolicina>50</Kolicina>
@@ -37,15 +37,31 @@
     <ID>4</ID>
     <Cena>5000</Cena>
     <Kolicina>50</Kolicina>
-    <TipNamestajaID>0</TipNamestajaID>
-    <Obrisan>false</Obrisan>
+    <TipNamestajaID>4</TipNamestajaID>
+    <Obrisan>true</Obrisan>
   </Namestaj>
   <Namestaj>
     <Naziv>sadksa</Naziv>
     <ID>5</ID>
-    <Cena>500</Cena>
+    <Cena>5000</Cena>
     <Kolicina>50</Kolicina>
     <TipNamestajaID>1</TipNamestajaID>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Naziv>kkkk</Naziv>
+    <ID>6</ID>
+    <Cena>5000</Cena>
+    <Kolicina>5</Kolicina>
+    <TipNamestajaID>1</TipNamestajaID>
+    <Obrisan>true</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Naziv>asa</Naziv>
+    <ID>7</ID>
+    <Cena>500</Cena>
+    <Kolicina>5</Kolicina>
+    <TipNamestajaID>4</TipNamestajaID>
     <Obrisan>false</Obrisan>
   </Namestaj>
 </ArrayOfNamestaj>

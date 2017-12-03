@@ -84,6 +84,7 @@
     <Compile Include="GUI\RadSaModelom\RadSaTipomNamestaja.xaml.cs">
       <DependentUpon>RadSaTipomNamestaja.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\DodatnaUsluga.cs" />
     <Compile Include="Model\Entitet.cs" />
     <Compile Include="Model\ProdatNamestaj.cs" />
     <Compile Include="Util\GenericSerializer.cs" />

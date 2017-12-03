@@ -8,7 +8,7 @@
   <TipNamestaja>
     <ID>1</ID>
     <Naziv>Kupatilo</Naziv>
-    <Obrisan>false</Obrisan>
+    <Obrisan>true</Obrisan>
   </TipNamestaja>
   <TipNamestaja>
     <ID>2</ID>
@@ -19,5 +19,15 @@
     <ID>3</ID>
     <Naziv>Dnevna Soba</Naziv>
     <Obrisan>true</Obrisan>
+  </TipNamestaja>
+  <TipNamestaja>
+    <ID>4</ID>
+    <Naziv>asDnevna soba</Naziv>
+    <Obrisan>false</Obrisan>
+  </TipNamestaja>
+  <TipNamestaja>
+    <ID>5</ID>
+    <Naziv>sadsda</Naziv>
+    <Obrisan>false</Obrisan>
   </TipNamestaja>
 </ArrayOfTipNamestaja>

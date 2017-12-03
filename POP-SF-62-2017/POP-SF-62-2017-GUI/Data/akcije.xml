@@ -50,4 +50,15 @@
     </NamestajNaAkcijiID>
     <Popust>20</Popust>
   </Akcija>
+  <Akcija>
+    <ID>5</ID>
+    <Pocetak>2017-11-01T00:00:00</Pocetak>
+    <Kraj>2017-12-03T00:00:00+01:00</Kraj>
+    <Obrisan>true</Obrisan>
+    <NamestajNaAkcijiID>
+      <int>1</int>
+      <int>2</int>
+    </NamestajNaAkcijiID>
+    <Popust>21</Popust>
+  </Akcija>
 </ArrayOfAkcija>

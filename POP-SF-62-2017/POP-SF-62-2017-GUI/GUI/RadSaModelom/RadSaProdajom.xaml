@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_62_2017_GUI.GUI.RadSaModelom"
         mc:Ignorable="d"
-        Title="Rad Sa Akcijom" MaxHeight="600"
+        Title="Rad Sa Akcijom" MaxHeight="800"
              SizeToContent="WidthAndHeight"
         Name="window" ResizeMode="NoResize" >
     <Grid Background="#FF252526" Height="Auto" Width="Auto">
@@ -20,20 +20,12 @@
                     <Label Content="Datum: " Width="60" Height="25" Margin="5" Foreground="White"></Label>
                     <TextBox Name="tbDatum" Width="100" Height="25" Margin="5" IsEnabled="False" Text="{Binding Path=DatumProdaje, StringFormat=dd-MM-yyyy}"></TextBox>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Kupac: " Width="60" Height="25" Margin="5" Foreground="White"></Label>
-                    <TextBox Name="tbKupac" Width="100" Height="25" Margin="5" Text="{Binding Path=Kupac}"></TextBox>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Kupac: " Width="60" Height="25" Margin="5" Foreground="White"></Label>
+                        <TextBox Name="tbKupac" Width="100" Height="25" Margin="5" Text="{Binding Path=Kupac}"></TextBox>
+                    </StackPanel>
+
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label MaxWidth="100" Width="60" VerticalAlignment="Stretch" Margin="5" 
-                           Foreground="White" >
-                        <TextBlock>Dodatne<LineBreak/>Usluge</TextBlock>
-                    </Label>
-                    <TextBox Name="tbDodatneUsluge" Width="100" Height="50" Margin="5" TextWrapping="Wrap"
-                             AcceptsReturn="True" Text="{Binding Path=DodatneUsluge}"></TextBox>
-                </StackPanel>
-               
-            </StackPanel>
                 <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="250">
             <StackPanel Name="spNamestaji" Orientation="Vertical" >
                     <StackPanel HorizontalAlignment="Left">
@@ -42,8 +34,26 @@
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
-        </StackPanel>
-        <Grid>
+
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <Button Content="Dodaj" Name="btnDodajUslugu" Width="100" HorizontalAlignment="Center" Margin="5"
+                          Background="Gray" BorderBrush="White" Foreground="White" Click="btnDodajUslugu_Click"></Button>
+                    <StackPanel HorizontalAlignment="Left">
+                        <Label Content="Dodatne Usluge: " Width="150" Height="35" Margin="5" Foreground="White">
+                        </Label>
+                    </StackPanel>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="250" >
+                        <StackPanel Name="spDodatneUsluge" Orientation="Vertical" >
+                           
+                        </StackPanel>
+                    </ScrollViewer>
+                    <Button Content="Restart" Name="btnReset" Width="100" HorizontalAlignment="Center" Margin="5"
+                          Background="Gray" BorderBrush="White" Foreground="White" Click="btnReset_Click"></Button>
+                </StackPanel>
+
+            </StackPanel>
+            
+            <Grid>
             <Button Content="Dodaj" Name="btnDodaj" Height="25" Width="60" HorizontalAlignment="Right" Margin="5"
                         Click="btnDodaj_Click"  Background="Gray" BorderBrush="White" Foreground="White"></Button>
             <Button Content="Odustani" Name="btnOdustani" Height="25" Width="60" HorizontalAlignment="Left"

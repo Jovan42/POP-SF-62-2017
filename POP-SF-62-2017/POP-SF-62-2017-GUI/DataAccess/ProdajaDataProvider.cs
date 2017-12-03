@@ -77,11 +77,5 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             throw new NotImplementedException();
         }
         #endregion
-
-        // Vraća ukupnu cenu računa
-        //TODO: GetUkupnaCena()
-        public double GetUkupnaCena() {
-            return 0;
-        }
     }
 }

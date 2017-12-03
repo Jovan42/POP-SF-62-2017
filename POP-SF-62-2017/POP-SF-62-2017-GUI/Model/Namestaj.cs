@@ -75,14 +75,13 @@ namespace POP_SF_62_2017.Model  {
                 if (tipNamestaja == null) {
                     TipNamestaja tmp = (TipNamestaja)TipNamestajaDataProvider.Instance.GetByID(tipNamestajaID);
                     return tmp;
-                }
-                    
-               
+                }               
                 else
                     return tipNamestaja;
             }
             set {
                 tipNamestaja = value;
+                if (tipNamestaja != null)
                 TipNamestajaID = tipNamestaja.ID;
                 OnPropertyChanged("TipNamestaja");
             }

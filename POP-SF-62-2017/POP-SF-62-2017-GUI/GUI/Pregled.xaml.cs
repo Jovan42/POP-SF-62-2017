@@ -127,6 +127,7 @@ namespace POP_SF_62_2017_GUI.GUI {
         }
 
         private void btnIzmeni_Click(object sender, RoutedEventArgs e) {
+            if (izabrano == null) return;
             switch (tip) {
                 case TipKlase.NAMESTAJ:
                 new RadSaNamestajem((Namestaj)Izabrano.Clone()).ShowDialog();
@@ -213,9 +214,12 @@ namespace POP_SF_62_2017_GUI.GUI {
         }
 
         private void dgNamestaji_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e) {
-            if (e.Column.Header.ToString() == "ID" || e.Column.Header.ToString() == "TipNamestajaID" || e.Column.Header.ToString() == "Obrisan") {
+            if (e.Column.Header.ToString() == "ID" || e.Column.Header.ToString() == "TipNamestajaID" 
+                || e.Column.Header.ToString() == "Obrisan" || e.Column.Header.ToString() == "NamestajNaAkcijiID"
+                || e.Column.Header.ToString() == "Lozinka") {
                 e.Cancel = true;
-            }            
+            }
+            
         }
     }
 }

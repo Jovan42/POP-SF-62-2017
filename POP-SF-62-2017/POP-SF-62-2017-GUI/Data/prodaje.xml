@@ -2,34 +2,42 @@
 <ArrayOfProdaja xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Prodaja>
     <ID>0</ID>
-    <DatumProdaje>2017-12-03T15:24:26.8373414+01:00</DatumProdaje>
+    <DatumProdaje>2017-12-03T20:13:27.960457+01:00</DatumProdaje>
     <ProdatNamestaj>
       <ProdatNamestaj>
         <NamestajID>0</NamestajID>
-        <Kolicina>5</Kolicina>
+        <Kolicina>50</Kolicina>
+      </ProdatNamestaj>
+      <ProdatNamestaj>
+        <NamestajID>1</NamestajID>
+        <Kolicina>100</Kolicina>
       </ProdatNamestaj>
     </ProdatNamestaj>
-    <Kupac>Kupac</Kupac>
+    <Kupac>sasasa</Kupac>
     <DodatneUsluge>
-      <string>SAAS</string>
+      <DodatnaUsluga>
+        <Naziv>aaaaaa</Naziv>
+        <Cena>5</Cena>
+      </DodatnaUsluga>
     </DodatneUsluge>
     <Obrisan>false</Obrisan>
   </Prodaja>
   <Prodaja>
     <ID>1</ID>
-    <DatumProdaje>2017-12-03T16:16:56.5468316+01:00</DatumProdaje>
+    <DatumProdaje>2017-12-03T20:14:27.1074122+01:00</DatumProdaje>
     <ProdatNamestaj>
       <ProdatNamestaj>
         <NamestajID>0</NamestajID>
-        <Kolicina>20</Kolicina>
-      </ProdatNamestaj>
-      <ProdatNamestaj>
-        <NamestajID>1</NamestajID>
-        <Kolicina>20</Kolicina>
+        <Kolicina>12</Kolicina>
       </ProdatNamestaj>
     </ProdatNamestaj>
-    <Kupac>hhhhh</Kupac>
-    <DodatneUsluge />
+    <Kupac>sasda</Kupac>
+    <DodatneUsluge>
+      <DodatnaUsluga>
+        <Naziv>aaaaaaaaaaa</Naziv>
+        <Cena>50</Cena>
+      </DodatnaUsluga>
+    </DodatneUsluge>
     <Obrisan>false</Obrisan>
   </Prodaja>
 </ArrayOfProdaja>
