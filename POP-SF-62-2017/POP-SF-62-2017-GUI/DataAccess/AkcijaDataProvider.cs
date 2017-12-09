@@ -41,8 +41,6 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             akcije = Projekat.Instance.Akcije;
             foreach (Akcija akcija in akcije) {
                 if (akcija.ID == id) {
-                    if (akcija.Equals(a)) return true;
-
                     akcija.Kraj = a.Kraj;
                     akcija.NamestajNaAkcijiID = a.NamestajNaAkcijiID;
                     akcija.Obrisan = a.Obrisan;

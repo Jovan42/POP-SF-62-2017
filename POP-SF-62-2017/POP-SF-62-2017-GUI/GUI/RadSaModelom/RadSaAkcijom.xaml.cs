@@ -20,14 +20,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
         //Konstruktor u slučaju da argument niej prosleđen (dodavanje novog objekta)
         public RadSaAkcijom() {           
             InitializeComponent();
-            ObservableCollection<NamestajNaAkciji> naAkciji = new ObservableCollection<NamestajNaAkciji>();
-            foreach (Namestaj namestaj in NamestajDataProvider.Instance.GetAll()) {
-                naAkciji.Add(new NamestajNaAkciji() {
-                    Namestaj = namestaj,
-                    NaAkciji = false
-                });
-            }
-            dgNamestaji.Visibility = Visibility.Hidden;
+            SetDataContexts();
             DrawCheckBoxes();
         }
 
@@ -36,60 +29,50 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
             InitializeComponent();
             btnDodaj.Content = "Izmeni";
             izmena = true;
-            
-            dgNamestaji.Visibility = Visibility.Hidden;
 
             this.akcija = akcija;
+            SetDataContexts();
+            DrawCheckBoxes();
+        }
+
+        private void SetDataContexts() {
             tbId.DataContext = this.akcija;
             calKraj.DataContext = this.akcija;
             calPocetak.DataContext = this.akcija;
             tbPopust.DataContext = this.akcija;
-            DrawCheckBoxes();
         }
-
         private void btnOdustani_Click(object sender, RoutedEventArgs e) {
             this.Close();
         }
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e) {
+            tbPopust.BorderBrush = System.Windows.Media.Brushes.Black;
+            calKraj.BorderBrush = System.Windows.Media.Brushes.Black;
+            calPocetak.BorderBrush = System.Windows.Media.Brushes.Black;
             try {
                 double a;
-                if(!Double.TryParse(tbPopust.Text, out a))
+                if (!Double.TryParse(tbPopust.Text, out a)) {
+                    tbPopust.BorderBrush = System.Windows.Media.Brushes.Red;
+                    tbPopust.Focus();
                     throw new Exception("Popust je pogrešno unet.");
+                } 
 
-                if (izmena) {
-                    AkcijaDataProvider.Instance.EditByID(getFromGUI(), Int32.Parse(tbId.Text));
-                    Close();
-                } else {
-                    AkcijaDataProvider.Instance.Add(getFromGUI());
-                    Close();
+                if(calKraj.SelectedDate < calPocetak.SelectedDate) {
+                    calKraj.BorderBrush = System.Windows.Media.Brushes.Red;
+                    calPocetak.BorderBrush = System.Windows.Media.Brushes.Red;
+                    calKraj.Focus();
+                    throw new Exception("Datumi su pogrešno uneti.");
                 }
-            } catch (Exception ex) {
+                if (izmena) {
+                    AkcijaDataProvider.Instance.EditByID(this.akcija, Int32.Parse(tbId.Text));
+                } else {
+                    AkcijaDataProvider.Instance.Add(this.akcija);
+                }
 
+                Close();
+            } catch (Exception ex) {
                 MessageBox.Show($"{ex.Message}. Pokušajte opet.", "Greška");
             }
-        }
-
-        public Akcija getFromGUI() {
-            Akcija akcija = new Akcija() {
-                Kraj = calKraj.DisplayDate,
-                Pocetak = calPocetak.DisplayDate,
-                Popust = Double.Parse(tbPopust.Text),
-                Obrisan = false,
-                NamestajNaAkcijiID = new List<int>()
-            };
-
-            foreach (CheckBox checkBox in checkBoxes) {
-                if (checkBox.IsChecked == true) {
-                    string id = checkBox.Name.Substring(2, checkBox.Name.Length - 2);
-                    akcija.NamestajNaAkcijiID.Add(Int32.Parse(id));
-                }
-            }
-
-            if (izmena)
-                akcija.ID = Int32.Parse(tbId.Text);
-
-            return akcija;
         }
 
         public void DrawCheckBoxes() {
@@ -123,10 +106,5 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
                 spNamestaji.Children.Add(stackPanel);
             }
         }
-    }
-
-    class NamestajNaAkciji {
-        public Namestaj Namestaj { get; set; }
-        public bool NaAkciji { get; set; }
     }
 }

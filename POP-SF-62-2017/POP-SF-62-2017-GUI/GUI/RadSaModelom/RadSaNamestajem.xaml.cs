@@ -14,8 +14,9 @@ namespace POP_SF_62_2017_GUI.GUI {
         public RadSaNamestajem() {
             InitializeComponent();
             tbNaziv.Focus();
-            populateComboBox();
             comboTip.SelectedIndex = 0;
+            comboTip.ItemsSource = TipNamestajaDataProvider.Instance.GetAll();
+            SetDataContexts();
         }
 
         public RadSaNamestajem(Namestaj namestaj) {
@@ -23,9 +24,11 @@ namespace POP_SF_62_2017_GUI.GUI {
             InitializeComponent();
             
             btnDodaj.Content = "Izmeni";
-
             this.namestaj = namestaj;
-            
+            SetDataContexts();            
+        }
+
+        private void SetDataContexts() {
             tbId.DataContext = namestaj;
             tbNaziv.DataContext = namestaj;
             tbCena.DataContext = namestaj;
@@ -33,25 +36,47 @@ namespace POP_SF_62_2017_GUI.GUI {
 
             comboTip.ItemsSource = TipNamestajaDataProvider.Instance.GetAll();
             comboTip.DataContext = namestaj;
-            
         }
-
         private void btnDodaj_Click(object sender, RoutedEventArgs e) {
             int a;
             double b;
+            tbNaziv.BorderBrush = System.Windows.Media.Brushes.Black;
+            tbKolicina.BorderBrush = System.Windows.Media.Brushes.Black;
+            tbCena.BorderBrush = System.Windows.Media.Brushes.Black;
             try {
-                if (!Int32.TryParse(tbKolicina.Text, out a))
-                    throw new Exception("Kolicina namestaja je pogrešno uneta.");
-                if (!Double.TryParse(tbCena.Text, out b))
-                    throw new Exception("Cena namestaja je pogrešno uneta.");
-                if (izmena) {
-                    NamestajDataProvider.Instance.EditByID(getNamestajFromGUI(), Int32.Parse(tbId.Text));
-                    
-                    Close();
-                } else {
-                    NamestajDataProvider.Instance.Add(getNamestajFromGUI());
-                    Close();
+                if(tbNaziv.Text.Trim() == "") {
+                    tbNaziv.BorderBrush = System.Windows.Media.Brushes.Red;
+                    tbNaziv.Focus();
+                    throw new Exception("Naziv je pogrešno unet.");
                 }
+                if (!Int32.TryParse(tbKolicina.Text, out a)) {
+                    tbKolicina.BorderBrush = System.Windows.Media.Brushes.Red;
+                    tbKolicina.Focus();
+                    throw new Exception("Kolicina namestaja je pogrešno uneta.");
+                }
+                if (!Double.TryParse(tbCena.Text, out b)) {
+                    tbCena.BorderBrush = System.Windows.Media.Brushes.Red;
+                    tbCena.Focus();
+                    throw new Exception("Cena namestaja je pogrešno uneta.");
+                }
+                bool tn = false;
+                foreach (TipNamestaja tipNamestaj in comboTip.Items) {
+                    if (tipNamestaj.Naziv.Trim() == comboTip.Text.Trim()) {
+                        tn = true;
+                        break;
+                    }
+                }
+                if (!tn) {
+                    comboTip.Focus();
+                    throw new Exception("Tip namestaja je pogrešno unet.");
+                }
+                if (izmena) {
+                    NamestajDataProvider.Instance.EditByID(this.namestaj, Int32.Parse(tbId.Text));
+
+                } else {
+                    NamestajDataProvider.Instance.Add(this.namestaj);
+                }
+                Close();
             } catch (Exception ex) {
                 MessageBox.Show($"{ex.Message}. Pokušajte opet.", "Greška");
             }
@@ -60,28 +85,6 @@ namespace POP_SF_62_2017_GUI.GUI {
 
         private void btnOdustani_Click(object sender, RoutedEventArgs e) {
             this.Close();
-
-        }
-
-        private Namestaj getNamestajFromGUI() {
-            Namestaj n = new Namestaj() {
-                Naziv = tbNaziv.Text,
-                Cena = Double.Parse(tbCena.Text),
-                Kolicina = Int32.Parse(tbKolicina.Text),
-                Obrisan = false,
-            };
-            if (izmena)
-                n.ID = Int32.Parse(tbId.Text);
-
-            n.TipNamestajaID = ((TipNamestaja)comboTip.SelectedItem).ID;
-            
-            return n;
-        }
-
-        private void populateComboBox() {
-            foreach (TipNamestaja tip in TipNamestajaDataProvider.Instance.GetAll()) {
-                comboTip.Items.Add(tip);
-            }
         }
     }
 }

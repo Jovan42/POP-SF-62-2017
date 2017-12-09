@@ -41,8 +41,6 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             namestaji = Projekat.Instance.Namestaji;
             foreach (Namestaj namestaj in namestaji) {
                 if (namestaj.ID == id) {
-                    if (namestaj.Equals(n)) return true;
-
                     namestaj.Cena = n.Cena;
                     namestaj.Kolicina = n.Kolicina;
                     namestaj.Naziv = n.Naziv;

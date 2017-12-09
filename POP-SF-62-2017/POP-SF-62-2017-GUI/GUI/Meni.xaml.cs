@@ -62,5 +62,10 @@ namespace POP_SF_62_2017_GUI.GUI {
         private void btnRadSaSalonima_Click(object sender, RoutedEventArgs e) {
             new RadSaSalonom(((Salon)SalonDataProvider.Instance.GetByID(0))).ShowDialog();
         }
+
+        private void btnRadSaDodatnimUslugama_Click(object sender, RoutedEventArgs e) {
+            new Pregled(TipKlase.DODATNE_USLUGE, admin).Show();
+            this.Close();
+        }
     }
 }

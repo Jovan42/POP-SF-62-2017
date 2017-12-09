@@ -41,8 +41,6 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             korisnici = Projekat.Instance.Korisnici;
             foreach (Korisnik korisnik in korisnici) {
                 if (korisnik.ID == id) {
-                    if (korisnik.Equals(k)) return true;
-
                     korisnik.Admin = k.Admin;
                     korisnik.Ime = k.Ime;
                     korisnik.KorIme = k.KorIme;

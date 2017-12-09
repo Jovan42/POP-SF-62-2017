@@ -28,7 +28,8 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
         public RadSaProdajom() {
             InitializeComponent();
             DrawNamestaj();
-            tbDatum.Text = DateTime.Now.ToString("dd. MM. yyy.");
+            this.prodaja.DatumProdaje = DateTime.Now;
+            SetDataContexts();
         }
 
         //Konstruktor u slučaju da je argument prosleđen (izmena postojećeg)
@@ -38,14 +39,15 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
             window.Title = "Rad sa prodajom";
             izmena = true;
             btnDodaj.Content = "Izmeni";
+            SetDataContexts();
+            DrawNamestaj();
+            DrawDodatneUsluge();
+        }
 
+        private void SetDataContexts() {
             tbId.DataContext = prodaja;
             tbDatum.DataContext = prodaja;
             tbKupac.DataContext = prodaja;
-
-            
-            DrawNamestaj();
-            DrawDodatneUsluge();
         }
 
         public void DrawDodatneUsluge() {
@@ -133,14 +135,16 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
 
             prodaja.DodatneUsluge = new List<DodatnaUsluga>();
             foreach (TextBox uslugCena in tbUslugeCena) {
+                int index = tbUslugeCena.IndexOf(uslugCena);
                 DodatnaUsluga dodatna = new DodatnaUsluga();
                 try {
                     dodatna.Cena = Double.Parse(uslugCena.Text);
-                    int index = tbUslugeCena.IndexOf(uslugCena);
+                   
                     dodatna.Naziv = tbUslugeNaziv[index].Text;
                 } catch (Exception) {
                     MessageBox.Show("Pogrešno uneta cena", "Greška");
                 }
+                if(uslugCena.Text != "" && tbUslugeNaziv[index].Text != "")
                 prodaja.DodatneUsluge.Add(dodatna);
             }
             
@@ -148,12 +152,23 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
         }
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e) {
-            if (izmena) {
-                ProdajaDataProvider.Instance.EditByID(getFromGUI(), Int32.Parse(tbId.Text));
-            } else {
-                ProdajaDataProvider.Instance.Add(getFromGUI());
+            tbKupac.BorderBrush = System.Windows.Media.Brushes.Black;
+            try {
+                if(tbKupac.Text.Trim() == "") {
+                    tbKupac.BorderBrush = System.Windows.Media.Brushes.Red;
+                    tbKupac.Focus();
+                    throw new Exception("Popust je pogrešno unet.");
+                }
+
+                if (izmena) {
+                    ProdajaDataProvider.Instance.EditByID(this.prodaja, Int32.Parse(tbId.Text));
+                } else {
+                    ProdajaDataProvider.Instance.Add(this.prodaja);
+                }
+                Close();
+            } catch (Exception ex) {
+                MessageBox.Show($"{ex.Message}. Pokušajte opet.", "Greška");
             }
-            Close();
         }
 
         private void btnOdustani_Click(object sender, RoutedEventArgs e) {

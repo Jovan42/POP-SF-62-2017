@@ -57,7 +57,7 @@ namespace POP_SF_62_2017.Model  {
 
         public int TipNamestajaID {
             get { return tipNamestajaID; }
-            set { tipNamestajaID = value; OnPropertyChanged("TipNamestajaID"); }
+            set { tipNamestajaID = value; OnPropertyChanged("TipNamestaja"); }
         }
 
         private bool obrisan;

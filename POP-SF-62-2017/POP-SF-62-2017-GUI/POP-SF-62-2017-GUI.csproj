@@ -56,6 +56,7 @@
     </ApplicationDefinition>
     <Compile Include="DataAccess\AkcijaDataProvider.cs" />
     <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="DataAccess\DodatnaUslugaDataProvider.cs" />
     <Compile Include="DataAccess\KorisnikDataProvider.cs" />
     <Compile Include="DataAccess\NamestajDataProvider.cs" />
     <Compile Include="DataAccess\ProdajaDataProvider.cs" />
@@ -68,9 +69,11 @@
     <Compile Include="GUI\Pregled.xaml.cs">
       <DependentUpon>Pregled.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\RadSaModelom\ListToStringConverter.cs" />
     <Compile Include="GUI\RadSaModelom\RadSaAkcijom.xaml.cs">
       <DependentUpon>RadSaAkcijom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\RadSaModelom\RadSaDodatnomUslugom.xaml.cs">
+      <DependentUpon>RadSaDodatnomUslugom.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\RadSaModelom\RadSaKorisnikom.xaml.cs">
       <DependentUpon>RadSaKorisnikom.xaml</DependentUpon>
@@ -101,6 +104,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\RadSaModelom\RadSaAkcijom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\RadSaModelom\RadSaDodatnomUslugom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -179,6 +186,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\prodaje.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\dodatne_usluge.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

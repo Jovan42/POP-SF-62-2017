@@ -61,4 +61,40 @@
     </NamestajNaAkcijiID>
     <Popust>21</Popust>
   </Akcija>
+  <Akcija>
+    <ID>6</ID>
+    <Pocetak>2017-12-05T00:00:00</Pocetak>
+    <Kraj>2017-12-23T00:00:00</Kraj>
+    <Obrisan>false</Obrisan>
+    <NamestajNaAkcijiID />
+    <Popust>25</Popust>
+  </Akcija>
+  <Akcija>
+    <ID>7</ID>
+    <Pocetak>2017-12-09T00:00:00+01:00</Pocetak>
+    <Kraj>2018-02-01T00:00:00</Kraj>
+    <Obrisan>false</Obrisan>
+    <NamestajNaAkcijiID>
+      <int>1</int>
+    </NamestajNaAkcijiID>
+    <Popust>20</Popust>
+  </Akcija>
+  <Akcija>
+    <ID>8</ID>
+    <Pocetak>2017-12-07T00:00:00</Pocetak>
+    <Kraj>2017-12-30T00:00:00</Kraj>
+    <Obrisan>true</Obrisan>
+    <NamestajNaAkcijiID>
+      <int>8</int>
+    </NamestajNaAkcijiID>
+    <Popust>502</Popust>
+  </Akcija>
+  <Akcija>
+    <ID>9</ID>
+    <Pocetak>0001-01-01T00:00:00</Pocetak>
+    <Kraj>0001-01-01T00:00:00</Kraj>
+    <Obrisan>false</Obrisan>
+    <NamestajNaAkcijiID />
+    <Popust>500</Popust>
+  </Akcija>
 </ArrayOfAkcija>

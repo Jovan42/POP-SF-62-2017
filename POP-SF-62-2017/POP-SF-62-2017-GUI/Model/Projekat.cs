@@ -1,4 +1,5 @@
 ﻿using POP_SF_62_2017.Util;
+using POP_SF_62_2017_GUI.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,6 +17,7 @@ namespace POP_SF_62_2017.Model {
         public ObservableCollection<Korisnik> Korisnici { get; set; }
         public ObservableCollection<Prodaja> Prodaje { get; set; }
         public ObservableCollection<Salon> Saloni { get; set; }
+        public ObservableCollection<DodatnaUsluga> DodatneUsluge { get; set; }
 
         //Deserijalizacija
         private Projekat() {
@@ -25,6 +27,7 @@ namespace POP_SF_62_2017.Model {
             Prodaje = GenericSerializer.Deserialize<Prodaja>("prodaje.xml");
             Korisnici = GenericSerializer.Deserialize<Korisnik>("korisnici.xml");
             Saloni = GenericSerializer.Deserialize<Salon>("saloni.xml");
+            DodatneUsluge = GenericSerializer.Deserialize<DodatnaUsluga>("dodatne_usluge.xml");
         }    
         
         //Serijalizacija
@@ -45,6 +48,9 @@ namespace POP_SF_62_2017.Model {
         }
         public void SetSaloni(ObservableCollection<Salon> saloni) {
             GenericSerializer.Serialize<Salon>("saloni.xml", saloni);
+        }
+        public void SetDodatneUsluge(ObservableCollection<DodatnaUsluga> dodatneUsluge) {
+            GenericSerializer.Serialize<DodatnaUsluga>("dodatne_usluge.xml", dodatneUsluge);
         }
     }
 }

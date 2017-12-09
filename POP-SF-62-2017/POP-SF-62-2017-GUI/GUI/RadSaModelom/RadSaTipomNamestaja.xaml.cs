@@ -16,6 +16,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
         public RadSaTipomNamestaja()
         {
             InitializeComponent();
+            SetDataContexts();
             tbNaziv.Focus();
         }
 
@@ -25,24 +26,26 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
             InitializeComponent();
 
             this.tipNamestaja = tipNamestaja;
-            tbId.DataContext = this.tipNamestaja;
-            tbNaziv.DataContext = this.tipNamestaja;
-            
+            SetDataContexts();
             btnDodaj.Content = "Izmeni";
             this.tipNamestaja = tipNamestaja;
             tbNaziv.Focus();
         }
 
+        private void SetDataContexts() {
+            tbId.DataContext = this.tipNamestaja;
+            tbNaziv.DataContext = this.tipNamestaja;
+        }
         private void btnOdustani_Click(object sender, RoutedEventArgs e) {
             this.Close();
         }
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e) {
             if (izmena) {
-                TipNamestajaDataProvider.Instance.EditByID(getFromGUI(), Int32.Parse(tbId.Text));
+                TipNamestajaDataProvider.Instance.EditByID(this.tipNamestaja, Int32.Parse(tbId.Text));
                 Close();
             } else {
-                TipNamestajaDataProvider.Instance.Add(getFromGUI());
+                TipNamestajaDataProvider.Instance.Add(this.tipNamestaja);
                 Close();
             }
         }

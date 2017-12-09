@@ -40,4 +40,10 @@
     </DodatneUsluge>
     <Obrisan>false</Obrisan>
   </Prodaja>
+  <Prodaja>
+    <ID>2</ID>
+    <DatumProdaje>2017-12-09T18:24:49.1930014+01:00</DatumProdaje>
+    <Kupac>iojdsajkdsa</Kupac>
+    <Obrisan>false</Obrisan>
+  </Prodaja>
 </ArrayOfProdaja>

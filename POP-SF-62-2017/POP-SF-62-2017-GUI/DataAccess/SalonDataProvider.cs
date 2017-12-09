@@ -41,8 +41,7 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             saloni = Projekat.Instance.Saloni;
             foreach (Salon salon in saloni) {
                 if (salon.ID == id) {
-                    if (salon.Equals(s)) return true;
-
+                    
                     salon.Naziv = s.Naziv;
                     salon.Mail = s.Mail;
                     salon.MatBr = s.MatBr;

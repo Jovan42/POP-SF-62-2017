@@ -41,8 +41,6 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             tipoviNamestaja = Projekat.Instance.TipoviNamestaja;
             foreach (TipNamestaja tipNamestaja in tipoviNamestaja) {
                 if (tipNamestaja.ID == id) {
-                    if (tipNamestaja.Equals(t)) return true;
-
                     tipNamestaja.Naziv = t.Naziv;
                     tipNamestaja.Obrisan = t.Obrisan;
                     Projekat.Instance.SetTipoveNamestaja(tipoviNamestaja);

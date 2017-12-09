@@ -13,9 +13,9 @@ using System.Threading.Tasks;
 //  - string Mail
 //  - string Sajt
 //  - string Telefon
-//  - int PIB
-//  - int MatBrint
-//  - int ZiroRacun
+//  - string PIB
+//  - string MatBrint
+//  - string ZiroRacun
 //  - bool Obrisan
 
 namespace POP_SF_62_2017.Model {
@@ -64,23 +64,23 @@ namespace POP_SF_62_2017.Model {
             set { telefon = value; onPropertyChanged("Telefon"); }
         }
 
-        private int pib;
+        private string pib;
 
-        public int PIB {
+        public string PIB {
             get { return pib; }
             set { pib = value; onPropertyChanged("PIB"); }
         }
 
-        private int matBr;
+        private string matBr;
 
-        public int MatBr {
+        public string MatBr {
             get { return matBr; }
             set { matBr = value; onPropertyChanged("MatBr"); }
         }
 
-        private int ziroRacun;
+        private string ziroRacun;
 
-        public int ZiroRacun {
+        public string ZiroRacun {
             get { return ziroRacun; }
             set { ziroRacun = value; onPropertyChanged("ZiroRacun"); }
         }

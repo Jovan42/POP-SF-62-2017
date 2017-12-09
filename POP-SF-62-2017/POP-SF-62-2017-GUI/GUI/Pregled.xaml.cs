@@ -38,7 +38,6 @@ namespace POP_SF_62_2017_GUI.GUI {
             InitializeComponent();
 
             OsveziPrikaz();
-
             if (tip == TipKlase.PRODAJA) {
                 btnObrisi.IsEnabled = false;
             }
@@ -81,6 +80,11 @@ namespace POP_SF_62_2017_GUI.GUI {
                 dgNamestaji.IsSynchronizedWithCurrentItem = true;
                 //window.Title = $"Pregled tipova nameštaja";
                 break;
+                case TipKlase.DODATNE_USLUGE:
+                dgNamestaji.ItemsSource = DodatnaUslugaDataProvider.Instance.GetAll();
+                dgNamestaji.DataContext = this;
+                dgNamestaji.IsSynchronizedWithCurrentItem = true;
+                break;
                 default:
                 break;
             }
@@ -119,6 +123,9 @@ namespace POP_SF_62_2017_GUI.GUI {
                 case TipKlase.TIP_NAMESTAJA:
                 new RadSaTipomNamestaja().ShowDialog();
                 break;
+                case TipKlase.DODATNE_USLUGE:
+                new RadSaDodatnomUslugom().ShowDialog();
+                break;
                 default:
                 break;
             }
@@ -146,6 +153,9 @@ namespace POP_SF_62_2017_GUI.GUI {
                 case TipKlase.TIP_NAMESTAJA:
                 new RadSaTipomNamestaja((TipNamestaja)Izabrano.Clone()).ShowDialog();
                 break;
+                case TipKlase.DODATNE_USLUGE:
+                new RadSaDodatnomUslugom((DodatnaUsluga)Izabrano.Clone()).ShowDialog();
+                break;
                 default:
                 break;
             }
@@ -164,21 +174,21 @@ namespace POP_SF_62_2017_GUI.GUI {
                 }
                 break;
                 case TipKlase.AKCIJA:
-                Akcija akcija = (Akcija)dgNamestaji.SelectedItem;
+                Akcija akcija = (Akcija)Izabrano;
                 dialogResult = MessageBox.Show($"Jeste li sigurni da želite da obrišete nameštaj akciju: ", "Brisanje akcije", MessageBoxButton.YesNo);
                 if (dialogResult == MessageBoxResult.Yes) {
                     AkcijaDataProvider.Instance.DeleteByID(akcija.ID);
                 }
                 break;
                 case TipKlase.KORISNIK:
-                Korisnik korisnik = (Korisnik)dgNamestaji.SelectedItem;
+                Korisnik korisnik = (Korisnik)Izabrano;
                 dialogResult = MessageBox.Show($"Jeste li sigurni da želite da obrišete nameštaj korisnika: {korisnik.KorIme} ", "Brisanje korisnika", MessageBoxButton.YesNo);
                 if (dialogResult == MessageBoxResult.Yes) {
                     KorisnikDataProvider.Instance.DeleteByID(korisnik.ID);
                 }
                 break;
                 case TipKlase.PRODAJA:
-                Prodaja prodaja = (Prodaja)dgNamestaji.SelectedItem;
+                Prodaja prodaja = (Prodaja)Izabrano;
                 dialogResult = MessageBox.Show($"Jeste li sigurni da želite da obrišete nameštaj akciju: ", "Brisanje akcije", MessageBoxButton.YesNo);
                 if (dialogResult == MessageBoxResult.Yes) {
                     AkcijaDataProvider.Instance.DeleteByID(prodaja.ID);
@@ -187,10 +197,17 @@ namespace POP_SF_62_2017_GUI.GUI {
                 case TipKlase.SALON:
                 break;
                 case TipKlase.TIP_NAMESTAJA:
-                TipNamestaja tipNamestaja = (TipNamestaja)dgNamestaji.SelectedItem;
+                TipNamestaja tipNamestaja = (TipNamestaja)Izabrano;
                 dialogResult = MessageBox.Show($"Jeste li sigurni da želite da obrišete tip nameštaja: {tipNamestaja.Naziv}", "Brisanje tipa nameštaja", MessageBoxButton.YesNo);
                 if (dialogResult == MessageBoxResult.Yes) {
                     TipNamestajaDataProvider.Instance.DeleteByID(tipNamestaja.ID);
+                }
+                break;
+                case TipKlase.DODATNE_USLUGE:
+                DodatnaUsluga dodatnaUsluga = (DodatnaUsluga)Izabrano;
+                dialogResult = MessageBox.Show($"Jeste li sigurni da želite da obrišete dodatnu uslugu: {dodatnaUsluga.Naziv}", "Brisanje tipa nameštaja", MessageBoxButton.YesNo);
+                if (dialogResult == MessageBoxResult.Yes) {
+                    DodatnaUslugaDataProvider.Instance.DeleteByID(dodatnaUsluga.ID);
                 }
                 break;
                 default:

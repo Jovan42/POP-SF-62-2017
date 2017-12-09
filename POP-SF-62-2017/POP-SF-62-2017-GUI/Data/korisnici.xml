@@ -3,7 +3,7 @@
   <Korisnik>
     <ID>0</ID>
     <Ime>Admin</Ime>
-    <Prezime />
+    <Prezime>Admin</Prezime>
     <KorIme>admin</KorIme>
     <Lozinka>admin</Lozinka>
     <Admin>true</Admin>
@@ -16,6 +16,32 @@
     <KorIme>usss</KorIme>
     <Lozinka>u</Lozinka>
     <Admin>false</Admin>
+    <Obrisan>true</Obrisan>
+  </Korisnik>
+  <Korisnik>
+    <ID>2</ID>
+    <Ime>User</Ime>
+    <Prezime>User</Prezime>
+    <KorIme>user</KorIme>
+    <Lozinka />
+    <Admin>false</Admin>
+    <Obrisan>false</Obrisan>
+  </Korisnik>
+  <Korisnik>
+    <ID>3</ID>
+    <Ime>a</Ime>
+    <Prezime>a</Prezime>
+    <KorIme>a</KorIme>
+    <Lozinka>a </Lozinka>
+    <Admin>false</Admin>
+    <Obrisan>false</Obrisan>
+  </Korisnik>
+  <Korisnik>
+    <ID>4</ID>
+    <Ime>ba</Ime>
+    <Prezime>ab</Prezime>
+    <KorIme>ab</KorIme>
+    <Admin>true</Admin>
     <Obrisan>true</Obrisan>
   </Korisnik>
 </ArrayOfKorisnik>

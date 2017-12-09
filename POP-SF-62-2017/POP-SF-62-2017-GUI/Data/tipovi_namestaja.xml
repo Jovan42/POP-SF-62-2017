@@ -22,12 +22,17 @@
   </TipNamestaja>
   <TipNamestaja>
     <ID>4</ID>
-    <Naziv>asDnevna soba</Naziv>
+    <Naziv>Dnevna soba</Naziv>
     <Obrisan>false</Obrisan>
   </TipNamestaja>
   <TipNamestaja>
     <ID>5</ID>
     <Naziv>sadsda</Naziv>
+    <Obrisan>true</Obrisan>
+  </TipNamestaja>
+  <TipNamestaja>
+    <ID>6</ID>
+    <Naziv>Kupatilo123</Naziv>
     <Obrisan>false</Obrisan>
   </TipNamestaja>
 </ArrayOfTipNamestaja>

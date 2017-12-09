@@ -41,8 +41,6 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             prodaje = Projekat.Instance.Prodaje;
             foreach (Prodaja prodaja in prodaje) {
                 if (prodaja.ID == id) {
-                    if (prodaja.Equals(p)) return true;
-
                     prodaja.DatumProdaje = p.DatumProdaje;
                     prodaja.DodatneUsluge = p.DodatneUsluge;
                     prodaja.Kupac = p.Kupac;

@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace POP_SF_62_2017_GUI.Model {
     public class DodatnaUsluga : Entitet {
+        private int id;
+
+        public int ID {
+            get { return id; }
+            set { id = value; onPropertyChanged("ID"); }
+        }
+
         private string naziv;
 
         public string Naziv {
@@ -21,6 +28,13 @@ namespace POP_SF_62_2017_GUI.Model {
             set { cena = value; onPropertyChanged("Cena"); }
         }
 
+        private bool obrisan;
+
+        public bool Obrisan {
+            get { return obrisan; }
+            set { obrisan = value; onPropertyChanged("Obrisan"); }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void onPropertyChanged(string properyName) {
@@ -30,7 +44,12 @@ namespace POP_SF_62_2017_GUI.Model {
         }
 
         public object Clone() {
-            throw new NotImplementedException();
+            return new DodatnaUsluga() {
+                ID = id,
+                Naziv = naziv,
+                Cena = cena,
+                Obrisan = obrisan
+            };
         }
     }
 }

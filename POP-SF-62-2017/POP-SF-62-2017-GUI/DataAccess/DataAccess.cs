@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace POP_SF_62_2017_GUI.DataAccess {
     interface DataAccess {
         // Vraća sve neobrisane entitete iz XML fajla
-        //ObservableCollection<T> GetAll<T>();
+        //ObservableCollection<Entitet> GetAll();
 
         // Vraća entitet iz XML fajla sa odgovarajućim ID-jem
         Entitet GetByID(int id);
