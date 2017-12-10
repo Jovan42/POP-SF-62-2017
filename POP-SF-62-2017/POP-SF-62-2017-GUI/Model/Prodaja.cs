@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 //Model.Prodaja
 //  - int ID
@@ -49,11 +50,11 @@ namespace POP_SF_62_2017.Model {
             set { kupac = value; onPropertyChanged("Kupac"); }
         }
 
-        private List<DodatnaUsluga> dodatneUsluge;
+        private List<int> dodatneUslugeID;
 
-        public List<DodatnaUsluga> DodatneUsluge {
-            get { return dodatneUsluge; }
-            set { dodatneUsluge = value; onPropertyChanged("DodatneUsluge"); }
+        public List<int> DodatneUslugeID {
+            get { return dodatneUslugeID; }
+            set { dodatneUslugeID = value; onPropertyChanged("DodatneUsluge"); }
         }
 
         private bool obrisan;
@@ -62,6 +63,34 @@ namespace POP_SF_62_2017.Model {
             get { return obrisan; }
             set { obrisan = value; onPropertyChanged("Obrisan"); }
         }
+
+        private List<DodatnaUsluga> dodatnaUsluga;
+
+        [XmlIgnore]
+        public List<DodatnaUsluga> DodatnaUsluga {
+            get {
+                if (dodatnaUsluga == null) {
+                    List<DodatnaUsluga> tmp = new List<DodatnaUsluga>();
+                    foreach (int id in dodatneUslugeID) {
+                        tmp.Add((DodatnaUsluga)DodatnaUslugaDataProvider.Instance.GetByID(id));
+                    }
+                    return tmp;
+                } else
+                    return dodatnaUsluga;
+            }
+            set {
+                dodatnaUsluga = value;
+                if (dodatnaUsluga != null) {
+                    List<int> tmp = new List<int>();
+                    foreach (DodatnaUsluga usluga in dodatnaUsluga) {
+                        tmp.Add(usluga.ID);
+                    }
+                    DodatneUslugeID = tmp;
+                }
+                onPropertyChanged("NamestajiNaAkciji");
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
@@ -92,7 +121,7 @@ namespace POP_SF_62_2017.Model {
             Prodaja prodaja = new Prodaja() {
                 ID = id,
                 DatumProdaje = datumProdaje,
-                DodatneUsluge = dodatneUsluge,
+                DodatneUslugeID = dodatneUslugeID,
                 Kupac = kupac,
                 ProdatNamestaj = prodatNamestaj,
                 Obrisan = obrisan
@@ -110,17 +139,20 @@ namespace POP_SF_62_2017.Model {
         }
 
         public double getUkupnaCena() {
-            double cena = 0;
-            foreach (ProdatNamestaj prodatNamestaj in ProdatNamestaj) {
-                cena += prodatNamestaj.Kolicina * ((Namestaj)NamestajDataProvider.Instance.GetByID(prodatNamestaj.NamestajID)).Cena;
+            //TODO dodaj dodatne usluge
+            double cena = 0, popust = 1;
+            foreach (int id in DodatneUslugeID) {
+                cena += ((DodatnaUsluga)DodatnaUslugaDataProvider.Instance.GetByID(id)).Cena;
             }
-
-            foreach(DodatnaUsluga dodatnaUsluga in DodatneUsluge) {
-                cena += dodatnaUsluga.Cena;
+            foreach (ProdatNamestaj namestaj in prodatNamestaj) {
+                popust = 1;
+                foreach (Akcija akcija in AkcijaDataProvider.Instance.GetActiveAkcije()) {
+                    if (akcija.NamestajNaAkcijiID.Contains(namestaj.NamestajID) && akcija.Popust / 100 + 1 > popust) {
+                        popust = 1 - akcija.Popust / 100;
+                    }
+                }
+                cena += namestaj.Kolicina * ((Namestaj)(NamestajDataProvider.Instance.GetByID(namestaj.NamestajID))).Cena * popust;
             }
-
-            cena *= 1.2;
-
             return cena;
         }
     }

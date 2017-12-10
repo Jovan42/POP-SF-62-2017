@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 //Model.Akcija
 //  - int ID
@@ -57,6 +58,33 @@ namespace POP_SF_62_2017.Model {
         public double Popust {
             get { return popust; }
             set { popust = value; onPropertyChanged("Popust"); }
+        }
+
+        private List<Namestaj> namestajNaAkciji;
+
+        [XmlIgnore]
+        public List<Namestaj> NamestajNaAkciji {
+            get {
+                if (namestajNaAkciji == null) {
+                    List<Namestaj> tmp = new List<Namestaj>();
+                    foreach (int id in namestajNaAkcijiID) {
+                        tmp.Add((Namestaj)NamestajDataProvider.Instance.GetByID(id));
+                    }
+                    return tmp;
+                } else
+                    return namestajNaAkciji;
+            }
+            set {
+                namestajNaAkciji = value;
+                if (namestajNaAkciji != null) {
+                    List<int> tmp = new List<int>();
+                    foreach (Namestaj namestaj in namestajNaAkciji) {
+                        tmp.Add(namestaj.ID);
+                    }
+                    NamestajNaAkcijiID = tmp;
+                }
+                onPropertyChanged("NamestajiNaAkciji");
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

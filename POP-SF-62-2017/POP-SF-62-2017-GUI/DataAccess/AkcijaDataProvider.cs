@@ -77,5 +77,14 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             }
             return akcije;
         }
+
+        public ObservableCollection<Akcija> GetActiveAkcije() {
+            ObservableCollection<Akcija> akcije = new ObservableCollection<Akcija>();
+            foreach (Akcija akcija in Projekat.Instance.Akcije) {
+                if (!akcija.Obrisan && akcija.Pocetak < DateTime.Now && akcija.Kraj > DateTime.Now)
+                    akcije.Add(akcija);
+            }
+            return akcije;
+        }
     }
 }

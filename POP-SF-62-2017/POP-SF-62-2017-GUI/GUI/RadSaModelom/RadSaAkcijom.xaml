@@ -8,40 +8,41 @@
         Title="Rad Sa Akcijom" MaxHeight="600" SizeToContent="WidthAndHeight" Name="window">
     <Grid Background="#FF252526" Height="Auto" Width="Auto">
         <StackPanel Orientation="Horizontal">
-        <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Id: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Id: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
                     <TextBox Name="tbId" IsEnabled="False" Height="25" Width="100" Margin="5" Text="{Binding Path=ID}"></TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Od: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Od: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
                     <Calendar Name="calPocetak" SelectedDate="{Binding Path=Pocetak}"></Calendar>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Do: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Do: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
                     <Calendar Name="calKraj" SelectedDate="{Binding Path=Kraj}"></Calendar>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Popust: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Popust: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
                     <TextBox Name="tbPopust" Width="100" Height="25" Margin="5" Text="{Binding Path=Popust}"></TextBox>
-            </StackPanel>
-            
-            <Grid>
-                <Button Content="Dodaj" Name="btnDodaj" Height="25" Width="60" HorizontalAlignment="Right" Margin="5"
+                </StackPanel>
+
+                <Grid>
+                    <Button Content="Dodaj" Name="btnDodaj" Height="25" Width="60" HorizontalAlignment="Right" Margin="5"
                         Click="btnDodaj_Click"  Background="Gray" BorderBrush="White" Foreground="White"></Button>
-                <Button Content="Odustani" Name="btnOdustani" Height="25" Width="60" HorizontalAlignment="Left"
+                    <Button Content="Odustani" Name="btnOdustani" Height="25" Width="60" HorizontalAlignment="Left"
                         Margin="5" Click="btnOdustani_Click"  Background="Gray" BorderBrush="White" Foreground="White"></Button>
-            </Grid>
-        </StackPanel>
-            <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="400">
-                <StackPanel Name="spNamestaji" Orientation="Vertical">
-                    <StackPanel HorizontalAlignment="Left">
-                        <Label Content="Namestaji: " Width="70" Height="25" Margin="5" Foreground="White">
-                        </Label>
+                </Grid>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Background="#606062" Width="300" Margin="5" VerticalAlignment="Stretch">
+                <Label Content="Usluge: " Width="300" Height="25" Margin="5" Foreground="White"></Label>
+                <ScrollViewer Width="300" VerticalAlignment="Stretch" MinHeight="370" Height="370">
+                    <StackPanel Orientation="Vertical" Name="spNamestaji">
                         
                     </StackPanel>
-                </StackPanel>
-            </ScrollViewer>
+                </ScrollViewer>
+                <Button Content="Dodaj Nameštaj" Name="btnDodajNamestaj" Height="25" Width="90" HorizontalAlignment="Right" Margin="5"
+                        Click="btnDodajNamestaj_Click"  Background="#FF252526" BorderBrush="White" Foreground="White"></Button>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

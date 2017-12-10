@@ -14,6 +14,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
     /// </summary>
     public partial class RadSaAkcijom : Window {
         List<CheckBox> checkBoxes = new List<CheckBox>();
+        List<Namestaj> namestaji = new List<Namestaj>();
         Akcija akcija = new Akcija();
         bool izmena = false;
 
@@ -21,7 +22,6 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
         public RadSaAkcijom() {           
             InitializeComponent();
             SetDataContexts();
-            DrawCheckBoxes();
         }
 
         //Konstruktor u slučaju da je argument prosleđen (izmena postojećeg)
@@ -32,7 +32,10 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
 
             this.akcija = akcija;
             SetDataContexts();
-            DrawCheckBoxes();
+            foreach (Namestaj namestaj in akcija.NamestajNaAkciji) {
+                DodajNamestajUAkciju(namestaj);
+            }
+
         }
 
         private void SetDataContexts() {
@@ -63,6 +66,12 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
                     calKraj.Focus();
                     throw new Exception("Datumi su pogrešno uneti.");
                 }
+                
+                if(GetNamesetajNaAkciji() == null) {
+                    throw new Exception("Jedan ili više nameštaja su uneti dva ili više puta.");
+                }
+                akcija.NamestajNaAkcijiID = GetNamesetajNaAkciji();
+
                 if (izmena) {
                     AkcijaDataProvider.Instance.EditByID(this.akcija, Int32.Parse(tbId.Text));
                 } else {
@@ -75,36 +84,53 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
             }
         }
 
-        public void DrawCheckBoxes() {
-            foreach (Namestaj namestaj in NamestajDataProvider.Instance.GetAll()) {
-                StackPanel stackPanel = new StackPanel();
-
-                CheckBox check = new CheckBox();
-                check.Margin = new Thickness(5);
-                check.Name = "cb" + namestaj.ID.ToString();
-                if (izmena) {
-                    check.IsChecked = akcija.IfAkcijaByNamestajID(namestaj.ID);
-                    foreach (int namestajID in akcija.NamestajNaAkcijiID) {
-                        foreach (CheckBox checkBox in checkBoxes) {
-                            string tmp = "cb" + namestajID.ToString();
-                            if (checkBox.Name == tmp)
-                                checkBox.IsChecked = true;
-                        }
-                    }
-                }
-
-                Label label = new Label();
-                label.Foreground = Brushes.White;
-                label.Margin = new Thickness(5);
-                stackPanel.Orientation = Orientation.Horizontal;
-                Binding binding = new Binding("Naziv");
-                BindingOperations.SetBinding(label, Label.ContentProperty, binding);
-                label.DataContext = namestaj;
-                checkBoxes.Add(check);
-                stackPanel.Children.Add(check);
-                stackPanel.Children.Add(label);
-                spNamestaji.Children.Add(stackPanel);
+        private List<int> GetNamesetajNaAkciji() {
+            List<StackPanel> stackPanels = new List<StackPanel>();
+            List<int> tmp = new List<int>();
+            foreach (StackPanel stackPanel in spNamestaji.Children) {
+                ComboBox cb = (ComboBox)stackPanel.Children[0];
+                Namestaj n = (Namestaj)cb.SelectedItem;
+                if (tmp.Contains(n.ID))
+                    return null;
+                tmp.Add(n.ID);
             }
+            
+            return tmp;
+        }
+
+        private void DodajNamestajUAkciju(Namestaj namestaj) {
+            StackPanel stackPanel = new StackPanel();
+            ComboBox comboBox = new ComboBox();
+            Button button = new Button();
+            button.Content = "-";
+            button.Width = 20;
+            button.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#FF252526");
+            button.Foreground = Brushes.White;
+
+            comboBox.Width = 240;
+            comboBox.IsEditable = true;
+            comboBox.ItemsSource = NamestajDataProvider.Instance.GetAll();
+            button.Click += new RoutedEventHandler(btnDeleteNamestaj);
+            if(namestaj != null) {
+                comboBox.SelectedItem = namestaj;
+            }
+
+            stackPanel.Orientation = Orientation.Horizontal;
+            stackPanel.Margin = new Thickness(5);
+            stackPanel.Children.Add(comboBox);
+            stackPanel.Children.Add(button);
+            spNamestaji.Children.Add(stackPanel);
+        }
+
+        private void btnDodajNamestaj_Click(object sender, RoutedEventArgs e) {
+            DodajNamestajUAkciju(null);
+        }
+
+        private void btnDeleteNamestaj(object sender, RoutedEventArgs e) {
+            Button btn = (Button)sender;
+            StackPanel sp  = (StackPanel)btn.Parent;
+            ((StackPanel)sp.Parent).Children.Remove(sp);
+            
         }
     }
 }

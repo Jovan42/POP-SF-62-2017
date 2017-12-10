@@ -2,99 +2,22 @@
 <ArrayOfAkcija xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Akcija>
     <ID>0</ID>
-    <Pocetak>2017-12-03T00:00:00+01:00</Pocetak>
-    <Kraj>2017-12-03T00:00:00+01:00</Kraj>
-    <Obrisan>true</Obrisan>
-    <NamestajNaAkcijiID />
-    <Popust>5000</Popust>
-  </Akcija>
-  <Akcija>
-    <ID>1</ID>
-    <Pocetak>2017-11-30T00:00:00+01:00</Pocetak>
-    <Kraj>2017-11-30T00:00:00+01:00</Kraj>
-    <Obrisan>true</Obrisan>
-    <NamestajNaAkcijiID>
-      <int>4</int>
-    </NamestajNaAkcijiID>
-    <Popust>23</Popust>
-  </Akcija>
-  <Akcija>
-    <ID>2</ID>
-    <Pocetak>2017-11-30T00:00:00+01:00</Pocetak>
-    <Kraj>2017-11-30T00:00:00+01:00</Kraj>
+    <Pocetak>2017-11-29T00:00:00</Pocetak>
+    <Kraj>2017-12-30T00:00:00</Kraj>
     <Obrisan>true</Obrisan>
     <NamestajNaAkcijiID>
       <int>0</int>
     </NamestajNaAkcijiID>
-    <Popust>21</Popust>
+    <Popust>10</Popust>
   </Akcija>
   <Akcija>
-    <ID>3</ID>
-    <Pocetak>2017-12-03T00:00:00+01:00</Pocetak>
-    <Kraj>2017-12-03T00:00:00+01:00</Kraj>
-    <Obrisan>false</Obrisan>
-    <NamestajNaAkcijiID>
-      <int>1</int>
-      <int>2</int>
-    </NamestajNaAkcijiID>
-    <Popust>24</Popust>
-  </Akcija>
-  <Akcija>
-    <ID>4</ID>
-    <Pocetak>2017-11-01T00:00:00</Pocetak>
-    <Kraj>2017-12-03T00:00:00+01:00</Kraj>
-    <Obrisan>false</Obrisan>
-    <NamestajNaAkcijiID>
-      <int>1</int>
-      <int>2</int>
-    </NamestajNaAkcijiID>
-    <Popust>20</Popust>
-  </Akcija>
-  <Akcija>
-    <ID>5</ID>
-    <Pocetak>2017-11-01T00:00:00</Pocetak>
-    <Kraj>2017-12-03T00:00:00+01:00</Kraj>
+    <ID>1</ID>
+    <Pocetak>2017-10-30T00:00:00</Pocetak>
+    <Kraj>2018-01-06T00:00:00</Kraj>
     <Obrisan>true</Obrisan>
     <NamestajNaAkcijiID>
-      <int>1</int>
-      <int>2</int>
-    </NamestajNaAkcijiID>
-    <Popust>21</Popust>
-  </Akcija>
-  <Akcija>
-    <ID>6</ID>
-    <Pocetak>2017-12-05T00:00:00</Pocetak>
-    <Kraj>2017-12-23T00:00:00</Kraj>
-    <Obrisan>false</Obrisan>
-    <NamestajNaAkcijiID />
-    <Popust>25</Popust>
-  </Akcija>
-  <Akcija>
-    <ID>7</ID>
-    <Pocetak>2017-12-09T00:00:00+01:00</Pocetak>
-    <Kraj>2018-02-01T00:00:00</Kraj>
-    <Obrisan>false</Obrisan>
-    <NamestajNaAkcijiID>
-      <int>1</int>
+      <int>0</int>
     </NamestajNaAkcijiID>
     <Popust>20</Popust>
-  </Akcija>
-  <Akcija>
-    <ID>8</ID>
-    <Pocetak>2017-12-07T00:00:00</Pocetak>
-    <Kraj>2017-12-30T00:00:00</Kraj>
-    <Obrisan>true</Obrisan>
-    <NamestajNaAkcijiID>
-      <int>8</int>
-    </NamestajNaAkcijiID>
-    <Popust>502</Popust>
-  </Akcija>
-  <Akcija>
-    <ID>9</ID>
-    <Pocetak>0001-01-01T00:00:00</Pocetak>
-    <Kraj>0001-01-01T00:00:00</Kraj>
-    <Obrisan>false</Obrisan>
-    <NamestajNaAkcijiID />
-    <Popust>500</Popust>
   </Akcija>
 </ArrayOfAkcija>

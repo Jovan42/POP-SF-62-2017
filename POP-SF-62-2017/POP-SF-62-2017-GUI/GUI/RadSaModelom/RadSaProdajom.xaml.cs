@@ -27,7 +27,6 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
         //Konstruktor u slučaju da argument nije prosleđen (dodavanje novog objekta)
         public RadSaProdajom() {
             InitializeComponent();
-            DrawNamestaj();
             this.prodaja.DatumProdaje = DateTime.Now;
             SetDataContexts();
         }
@@ -40,115 +39,22 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
             izmena = true;
             btnDodaj.Content = "Izmeni";
             SetDataContexts();
-            DrawNamestaj();
-            DrawDodatneUsluge();
+            foreach (ProdatNamestaj prodatNamestaj in prodaja.ProdatNamestaj) {
+                DodajNamestajUProdaju(prodatNamestaj);
+            }
+            foreach (int usluga in prodaja.DodatneUslugeID) {
+                try {
+                    DodajUsluguUProdaju((DodatnaUsluga)DodatnaUslugaDataProvider.Instance.GetByID(usluga));
+                } catch (Exception) {
+                }
+                
+            }
         }
 
         private void SetDataContexts() {
             tbId.DataContext = prodaja;
             tbDatum.DataContext = prodaja;
             tbKupac.DataContext = prodaja;
-        }
-
-        public void DrawDodatneUsluge() {
-            foreach(DodatnaUsluga dodataUsluga in prodaja.DodatneUsluge) {
-                StackPanel stackPanel = new StackPanel();
-                stackPanel.Orientation = Orientation.Horizontal;
-                TextBox tbUslugaNaziv = new TextBox();
-                tbUslugaNaziv.Foreground = Brushes.Black;
-                tbUslugaNaziv.Margin = new Thickness(5);
-                tbUslugaNaziv.Width = 100;
-                tbUslugaNaziv.Name = "tbUslugaNaziv" + prodaja.DodatneUsluge.IndexOf(dodataUsluga).ToString();
-                tbUslugaNaziv.Text = dodataUsluga.Naziv;
-                tbUslugaNaziv.DataContext = dodataUsluga;
-
-                TextBox tbUslugaCena = new TextBox();
-                tbUslugaCena.Foreground = Brushes.Black;
-                tbUslugaCena.Margin = new Thickness(5);
-                tbUslugaCena.Width = 30;
-                tbUslugaCena.Name = "tbUslugaNaziv" + prodaja.DodatneUsluge.IndexOf(dodataUsluga).ToString();
-                tbUslugaCena.Text = dodataUsluga.Cena.ToString();
-                tbUslugaCena.DataContext = dodataUsluga;
-                stackPanel.Children.Add(tbUslugaNaziv);
-                stackPanel.Children.Add(tbUslugaCena);
-                spDodatneUsluge.Children.Add(stackPanel);
-
-                tbUslugeNaziv.Add(tbUslugaNaziv);
-                tbUslugeCena.Add(tbUslugaCena);
-            }
-        }
-
-        public void DrawNamestaj() {
-            foreach (Entitet entitet in NamestajDataProvider.Instance.GetAll()) {
-                StackPanel stackPanel = new StackPanel();
-                Namestaj namestaj = (Namestaj)entitet;
-                Label label = new Label();
-                label.Foreground = Brushes.White;
-                label.Margin = new Thickness(5);
-                stackPanel.Orientation = Orientation.Horizontal;
-                Binding binding = new Binding("Naziv");
-                BindingOperations.SetBinding(label, Label.ContentProperty, binding);
-                label.DataContext = namestaj;
-
-                TextBox text = new TextBox();
-                text.Height = 25;
-                text.Width = 40;
-                text.Name = "tb" + namestaj.ID.ToString();
-                label.Margin = new Thickness(5);
-                try {
-                    text.Text = prodaja.getKolicinaFromNamestajID(namestaj.ID).ToString();
-                } catch (Exception) {
-                    text.Text = "";
-                }
-                
-                tbNamestajiCena.Add(text);
-
-                stackPanel.Children.Add(text);
-                stackPanel.Children.Add(label);
-                spNamestaji.Children.Add(stackPanel);
-            }
-        }
-
-        public Prodaja getFromGUI() {
-            Prodaja prodaja = new Prodaja() {
-                Kupac = tbKupac.Text,
-                ID = 0,
-                Obrisan = false,
-                DodatneUsluge = new List<DodatnaUsluga>(),
-                ProdatNamestaj = new ObservableCollection<ProdatNamestaj>(),
-            };
-
-            if (izmena)
-                prodaja.DatumProdaje = this.prodaja.DatumProdaje;
-            else
-                prodaja.DatumProdaje = DateTime.Now;
-                       
-            foreach (TextBox text in tbNamestajiCena) {
-                if (text.Text != null && text.Text != "" && Int32.Parse(text.Text) != 0) {
-                    string id = text.Name.Substring(2, text.Name.Length - 2);
-                    prodaja.ProdatNamestaj.Add(new ProdatNamestaj() {
-                        NamestajID = Int32.Parse(id),
-                        Kolicina = Int32.Parse(text.Text)
-                    });
-                }
-            }
-
-            prodaja.DodatneUsluge = new List<DodatnaUsluga>();
-            foreach (TextBox uslugCena in tbUslugeCena) {
-                int index = tbUslugeCena.IndexOf(uslugCena);
-                DodatnaUsluga dodatna = new DodatnaUsluga();
-                try {
-                    dodatna.Cena = Double.Parse(uslugCena.Text);
-                   
-                    dodatna.Naziv = tbUslugeNaziv[index].Text;
-                } catch (Exception) {
-                    MessageBox.Show("Pogrešno uneta cena", "Greška");
-                }
-                if(uslugCena.Text != "" && tbUslugeNaziv[index].Text != "")
-                prodaja.DodatneUsluge.Add(dodatna);
-            }
-            
-            return prodaja;
         }
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e) {
@@ -159,6 +65,15 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
                     tbKupac.Focus();
                     throw new Exception("Popust je pogrešno unet.");
                 }
+                if (GetProdatNamestaj() == null) {
+                    throw new Exception("Jedana ili više cena nameštaja je unesena pogrešno.");
+                }
+                prodaja.ProdatNamestaj = GetProdatNamestaj();
+
+                if (GetDodatneUsluge() == null) {
+                    throw new Exception("Jedana ili više usluga su uneti dva ili više puta.");
+                }
+                prodaja.DodatneUslugeID = GetDodatneUsluge();
 
                 if (izmena) {
                     ProdajaDataProvider.Instance.EditByID(this.prodaja, Int32.Parse(tbId.Text));
@@ -176,46 +91,101 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
         }
 
         private void btnDodajUslugu_Click(object sender, RoutedEventArgs e) {
-            foreach(TextBox naziv in tbUslugeNaziv) {
-                if(naziv.Text == "") {
-                    MessageBox.Show("Popunete prethodna polaj da bi ste dodali novu uslugu", "Greška");
-                    return;
-                }
-            }
-            foreach (TextBox naziv in tbUslugeCena) {
-                if (naziv.Text == "") {
-                    MessageBox.Show("Popunete prethodna polaj da bi ste dodali novu uslugu", "Greška");
-                    return;
-                }
-            }
-            StackPanel stackPanel = new StackPanel();
-            stackPanel.Orientation = Orientation.Horizontal;
-            TextBox tbUslugaNaziv = new TextBox();
-            tbUslugaNaziv.Foreground = Brushes.White;
-            tbUslugaNaziv.Margin = new Thickness(5);
-            tbUslugaNaziv.Width = 100;
-            tbUslugaNaziv.Name = "tbUslugaNaziv" + tbUslugeNaziv.Count;
-            tbUslugaNaziv.Foreground = Brushes.Black;
-            tbUslugeNaziv.Add(tbUslugaNaziv);
-            stackPanel.Children.Add(tbUslugaNaziv);
-
-            TextBox tbUslugaCena = new TextBox();
-            tbUslugaCena.Foreground = Brushes.White;
-            tbUslugaCena.Margin = new Thickness(5);
-            tbUslugaCena.Width = 30;
-            tbUslugaCena.Foreground = Brushes.Black;
-            tbUslugaCena.Name = "tbUslugaCena" + tbUslugeCena.Count;
-            tbUslugeCena.Add(tbUslugaCena);
-            stackPanel.Children.Add(tbUslugaCena);
-
-            spDodatneUsluge.Children.Add(stackPanel);
+            DodajUsluguUProdaju(null);
         }
 
-        private void btnReset_Click(object sender, RoutedEventArgs e) {
-            spDodatneUsluge.Children.RemoveRange(0, spDodatneUsluge.Children.Count);
-            tbUslugeNaziv = new List<TextBox>();
-            tbUslugeCena = new List<TextBox>();
-            btnObrisi = new List<Button>();
+        private void DodajUsluguUProdaju(DodatnaUsluga usluga) {
+            StackPanel stackPanel = new StackPanel();
+            ComboBox comboBox = new ComboBox();
+            Button button = new Button();
+            button.Content = "-";
+            button.Width = 20;
+            button.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#FF252526");
+            button.Foreground = Brushes.White;
+
+            comboBox.Width = 100;
+            comboBox.IsEditable = true;
+            comboBox.ItemsSource = DodatnaUslugaDataProvider.Instance.GetAll();
+            button.Click += new RoutedEventHandler(btnDeleteNamestaj);
+            if (prodaja != null) {
+                comboBox.SelectedItem = usluga;
+            }
+
+            stackPanel.Orientation = Orientation.Horizontal;
+            stackPanel.Margin = new Thickness(5);
+            stackPanel.Children.Add(comboBox);
+            stackPanel.Children.Add(button);
+            spUsluge.Children.Add(stackPanel);
+        }
+        private void btnDodajNamestaj_Click(object sender, RoutedEventArgs e) {
+            DodajNamestajUProdaju(null);
+        }
+        private void DodajNamestajUProdaju(ProdatNamestaj namestaj) {
+            StackPanel stackPanel = new StackPanel();
+            ComboBox comboBox = new ComboBox();
+            Button button = new Button();
+            TextBox textBox = new TextBox();
+            button.Content = "-";
+            button.Width = 20;
+            button.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#FF252526");
+            button.Foreground = Brushes.White;
+
+            comboBox.Width = 200;
+            comboBox.IsEditable = true;
+            comboBox.ItemsSource = NamestajDataProvider.Instance.GetAll();
+            button.Click += new RoutedEventHandler(btnDeleteNamestaj);
+            if (namestaj != null) {
+                comboBox.SelectedItem = NamestajDataProvider.Instance.GetByID(namestaj.NamestajID);
+                textBox.Text = namestaj.Kolicina.ToString();
+            }
+
+            textBox.Width = 50;
+
+            stackPanel.Orientation = Orientation.Horizontal;
+            stackPanel.Margin = new Thickness(5);
+            stackPanel.Children.Add(comboBox);
+            stackPanel.Children.Add(textBox);
+            stackPanel.Children.Add(button);
+            spNamestaji.Children.Add(stackPanel);
+        }
+
+        private void btnDeleteNamestaj(object sender, RoutedEventArgs e) {
+            Button btn = (Button)sender;
+            StackPanel sp = (StackPanel)btn.Parent;
+            ((StackPanel)sp.Parent).Children.Remove(sp);
+        }
+
+        private ObservableCollection<ProdatNamestaj> GetProdatNamestaj() {
+            List<StackPanel> stackPanels = new List<StackPanel>();
+            ObservableCollection<ProdatNamestaj> tmp = new ObservableCollection<ProdatNamestaj>();
+            foreach (StackPanel stackPanel in spNamestaji.Children) {
+                ComboBox cb = (ComboBox)stackPanel.Children[0];
+                TextBox tb = (TextBox)stackPanel.Children[1];
+                Namestaj n = (Namestaj)cb.SelectedItem;
+                int a;
+                if (!Int32.TryParse(tb.Text, out a))
+                    return null;
+
+                tmp.Add(new ProdatNamestaj() {
+                    NamestajID = n.ID,
+                    Kolicina = Int32.Parse(tb.Text)
+                });
+            }
+            return tmp;
+        }
+
+        private List<int> GetDodatneUsluge() {
+            List<StackPanel> stackPanels = new List<StackPanel>();
+            List<int> tmp = new List<int>();
+            foreach (StackPanel stackPanel in spUsluge.Children) {
+                ComboBox cb = (ComboBox)stackPanel.Children[0];
+                DodatnaUsluga n = (DodatnaUsluga)cb.SelectedItem;
+                if (tmp.Contains(n.ID))
+                    return null;
+                tmp.Add(n.ID);
+            }
+
+            return tmp;
         }
     }
 } 

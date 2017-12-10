@@ -42,7 +42,7 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             foreach (Prodaja prodaja in prodaje) {
                 if (prodaja.ID == id) {
                     prodaja.DatumProdaje = p.DatumProdaje;
-                    prodaja.DodatneUsluge = p.DodatneUsluge;
+                    prodaja.DodatneUslugeID = p.DodatneUslugeID;
                     prodaja.Kupac = p.Kupac;
                     prodaja.ProdatNamestaj = p.ProdatNamestaj;
                     prodaja.Obrisan = p.Obrisan;

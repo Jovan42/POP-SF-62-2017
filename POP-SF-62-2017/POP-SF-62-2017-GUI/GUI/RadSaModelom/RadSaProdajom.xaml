@@ -26,29 +26,25 @@
                     </StackPanel>
 
                 </StackPanel>
-                <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="250">
-            <StackPanel Name="spNamestaji" Orientation="Vertical" >
-                    <StackPanel HorizontalAlignment="Left">
-                        <Label Content="Namestaji: " Width="70" Height="25" Margin="5" Foreground="White">
-                        </Label>
-                    </StackPanel>
-                </StackPanel>
-            </ScrollViewer>
+                <StackPanel Orientation="Vertical" Background="#606062" Width="300" Margin="5" VerticalAlignment="Stretch">
+                    <Label Content="Namestaji: " Width="300" Height="25" Margin="5" Foreground="White"></Label>
+                    <ScrollViewer Width="300" VerticalAlignment="Stretch" MinHeight="370" Height="370">
+                        <StackPanel Orientation="Vertical" Name="spNamestaji">
 
-                <StackPanel Orientation="Vertical" Margin="5">
-                    <Button Content="Dodaj" Name="btnDodajUslugu" Width="100" HorizontalAlignment="Center" Margin="5"
-                          Background="Gray" BorderBrush="White" Foreground="White" Click="btnDodajUslugu_Click"></Button>
-                    <StackPanel HorizontalAlignment="Left">
-                        <Label Content="Dodatne Usluge: " Width="150" Height="35" Margin="5" Foreground="White">
-                        </Label>
-                    </StackPanel>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="250" >
-                        <StackPanel Name="spDodatneUsluge" Orientation="Vertical" >
-                           
                         </StackPanel>
                     </ScrollViewer>
-                    <Button Content="Restart" Name="btnReset" Width="100" HorizontalAlignment="Center" Margin="5"
-                          Background="Gray" BorderBrush="White" Foreground="White" Click="btnReset_Click"></Button>
+                    <Button Content="Dodaj Nameštaj" Name="btnDodajNamestaj" Height="25" Width="90" HorizontalAlignment="Right" Margin="5"
+                        Click="btnDodajNamestaj_Click"  Background="#FF252526" BorderBrush="White" Foreground="White"></Button>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Background="#606062" Width="150" Margin="5" VerticalAlignment="Stretch">
+                    <Label Content="Usluge: " Width="150" Height="25" Margin="5" Foreground="White"></Label>
+                    <ScrollViewer Width="150" VerticalAlignment="Stretch" MinHeight="370" Height="370">
+                        <StackPanel Orientation="Vertical" Name="spUsluge">
+
+                        </StackPanel>
+                    </ScrollViewer>
+                    <Button Content="Dodaj Uslugu" Name="btnDodajUslugu" Height="25" Width="90" HorizontalAlignment="Right" Margin="5"
+                        Click="btnDodajUslugu_Click"  Background="#FF252526" BorderBrush="White" Foreground="White"></Button>
                 </StackPanel>
 
             </StackPanel>

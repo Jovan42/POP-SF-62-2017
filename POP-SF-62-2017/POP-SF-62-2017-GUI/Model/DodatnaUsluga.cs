@@ -43,6 +43,10 @@ namespace POP_SF_62_2017_GUI.Model {
             }
         }
 
+        public override string ToString() {
+            return $"{naziv}, {cena}";
+        }
+
         public object Clone() {
             return new DodatnaUsluga() {
                 ID = id,

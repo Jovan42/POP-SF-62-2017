@@ -5,12 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_62_2017_GUI.GUI"
         mc:Ignorable="d"  Name="window"
-         Height="540"  Width="500">
+         Height="540"  Width="600">
     <Grid Background="#FF252526" Height="500" Width="Auto" HorizontalAlignment="Stretch" >
         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" >
-            <DataGrid Name="dgNamestaji" VerticalAlignment="Top" HorizontalAlignment="Left" Width ="500"
+
+            <StackPanel Orientation="Horizontal" Name="spDataGrid">
+                <DataGrid Name="dgNamestaji" VerticalAlignment="Top" HorizontalAlignment="Left" Width ="500"
                      IsReadOnly="True" CanUserAddRows="False" MinHeight="425" MaxHeight="40"
                       SelectedItem="{Binding Path=Izabrano}" AutoGeneratingColumn="dgNamestaji_AutoGeneratingColumn"></DataGrid>
+                
+            </StackPanel>
             <Grid HorizontalAlignment="Stretch" >
             <Button Content="Dodaj" Width="80" Height="25" Margin="5" Name="btnDodaj" Click="btnDodaj_Click"
                     Background="Gray" BorderBrush="White" Foreground="White" HorizontalAlignment="Left"></Button>
@@ -19,8 +23,9 @@
             <Button Content="Obrisi" Width="80" Height="25" Margin="5" Name="btnObrisi" Click="btnObrisi_Click"
                     Background="Gray" BorderBrush="White" Foreground="White" HorizontalAlignment="Right"></Button>
             </Grid>
-        
-        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Stretch"  >
+                
+            
+            <Grid VerticalAlignment="Bottom" HorizontalAlignment="Stretch"  >
             <Button Content="Odjavi se" Width="80" Height="25" Margin="5" Name="btnOdajviSe" Click="btnOdajviSe_Click"
                     Background="Gray" BorderBrush="White" Foreground="White" HorizontalAlignment="Left"></Button>
                 <Button Content="Nazad" Width="80" Height="25" Margin="5" Name="btnNazad" Click="btnNazad_Click"
