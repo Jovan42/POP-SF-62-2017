@@ -82,7 +82,7 @@ namespace POP_SF_62_2017.Model {
             TipoviNamestaja = TipNamestajaDataProvider.Instance.GetAll();
             Namestaji = NamestajDataProvider.Instance.GetAll();
             Akcije = AkcijaDataProvider.Instance.GetAll();
-            Prodaje = GenericSerializer.Deserialize<Prodaja>("prodaje.xml");
+            Prodaje = ProdajaDataProvider.Instance.GetAll();
             Korisnici = KorisnikDataProvider.Instance.GetAll();
             Saloni = new ObservableCollection<Salon>();
             Saloni.Add((Salon)SalonDataProvider.Instance.GetByID(1));

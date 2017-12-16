@@ -10,8 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-//TODO: ProdatNamestaj i Dodatne Usluge
 namespace POP_SF_62_2017_GUI.DataAccess {
     class ProdajaDataProvider {
         public static ProdajaDataProvider Instance { get; } = new ProdajaDataProvider();
@@ -27,8 +25,10 @@ namespace POP_SF_62_2017_GUI.DataAccess {
                 cmd.Parameters.AddWithValue("Kupac", p.Kupac);
                 cmd.Parameters.AddWithValue("DatumProdaje", p.DatumProdaje);
                 int newID = Int32.Parse(cmd.ExecuteScalar().ToString());
-
                 p.ID = newID;
+                IzvrsenaDodatnaUslugaDataProvider.Instance.Add(p.DodatneUslugeID, p.ID);
+                ProdatNamsetajDataProvider.Instance.Add(p.ProdatNamestaj, p.ID);
+                
                 Projekat.Instance.Prodaje.Add(p);
             }
         }
@@ -57,17 +57,21 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString)) {
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "UPDATE Prodaja SET Kupac=@Kupac, DatumProdaje=@DatumProdaj, Obrisan=@Obrisan WHERE Id=@Id";
+                cmd.CommandText = "UPDATE Prodaja SET Kupac=@Kupac, DatumProdaje=@DatumProdaje, Obrisan=@Obrisan WHERE Id=@Id";
                 cmd.Parameters.AddWithValue("Id", p.ID);
                 cmd.Parameters.AddWithValue("Kupac", p.Kupac);
                 cmd.Parameters.AddWithValue("DatumProdaje", p.DatumProdaje);
                 cmd.Parameters.AddWithValue("Obrisan", p.Obrisan);
 
                 cmd.ExecuteNonQuery();
+                IzvrsenaDodatnaUslugaDataProvider.Instance.Edit(p.DodatneUslugeID, p.ID);
+                ProdatNamsetajDataProvider.Instance.Edit(p.ProdatNamestaj, p.ID);
 
                 foreach (Prodaja prodaja in Projekat.Instance.Prodaje) {
                     if (prodaja.ID == p.ID) {
                         prodaja.DatumProdaje = p.DatumProdaje;
+                        prodaja.DodatneUslugeID = IzvrsenaDodatnaUslugaDataProvider.Instance.Get(p.ID);
+                        prodaja.ProdatNamestaj = ProdatNamsetajDataProvider.Instance.Get(p.ID);
                         prodaja.Kupac = p.Kupac;
                         prodaja.Obrisan = p.Obrisan;
                         break;
@@ -90,13 +94,14 @@ namespace POP_SF_62_2017_GUI.DataAccess {
                 adapter.SelectCommand = cmd;
                 adapter.Fill(dataSet, "Prodaja");
 
-                foreach (DataRow row in dataSet.Tables["Korisnik"].Rows) {
+                foreach (DataRow row in dataSet.Tables["Prodaja"].Rows) {
                     Prodaja p = new Prodaja();
                     p.ID = int.Parse(row["Id"].ToString());
                     p.Kupac = row["Kupac"].ToString();
                     p.DatumProdaje = DateTime.Parse(row["DatumProdaje"].ToString());
                     p.Obrisan = Boolean.Parse(row["Obrisan"].ToString());
-                    
+                    p.DodatneUslugeID = IzvrsenaDodatnaUslugaDataProvider.Instance.Get(p.ID);
+                    p.ProdatNamestaj = ProdatNamsetajDataProvider.Instance.Get(p.ID);
                     prodaje.Add(p);
                 }
             }
@@ -120,6 +125,8 @@ namespace POP_SF_62_2017_GUI.DataAccess {
                     p.Kupac = row["Kupac"].ToString();
                     p.DatumProdaje = DateTime.Parse(row["DatumProdaje"].ToString());
                     p.Obrisan = Boolean.Parse(row["Obrisan"].ToString());
+                    p.DodatneUslugeID = IzvrsenaDodatnaUslugaDataProvider.Instance.Get(id);
+                    p.ProdatNamestaj = ProdatNamsetajDataProvider.Instance.Get(p.ID);
                 }
             }
             return p;

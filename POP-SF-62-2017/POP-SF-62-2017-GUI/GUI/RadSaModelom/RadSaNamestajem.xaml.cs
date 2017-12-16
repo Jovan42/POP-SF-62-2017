@@ -36,6 +36,7 @@ namespace POP_SF_62_2017_GUI.GUI {
 
             comboTip.ItemsSource = TipNamestajaDataProvider.Instance.GetAll();
             comboTip.DataContext = namestaj;
+            comboTip.SelectedIndex = namestaj.TipNamestajaID - 1;
         }
         private void btnDodaj_Click(object sender, RoutedEventArgs e) {
             int a;

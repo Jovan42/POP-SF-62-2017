@@ -94,7 +94,7 @@ namespace POP_SF_62_2017.Model  {
         //"<Naziv>, <Cena>, <TipNamestaja.Naziv>"
         public override string ToString() {
 
-            return $"{Naziv}, {Cena}, {TipNamestaja.GetById(TipNamestajaID).Naziv}";
+            return $"{Naziv}, {Cena}";
         }
         
         protected void OnPropertyChanged(string properyName) {

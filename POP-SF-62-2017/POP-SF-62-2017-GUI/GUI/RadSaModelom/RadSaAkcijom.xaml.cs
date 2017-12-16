@@ -112,7 +112,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
             comboBox.ItemsSource = NamestajDataProvider.Instance.GetAll();
             button.Click += new RoutedEventHandler(btnDeleteNamestaj);
             if(namestaj != null) {
-                comboBox.SelectedItem = namestaj;
+                comboBox.SelectedIndex = namestaj.ID - 1;
             }
 
             stackPanel.Orientation = Orientation.Horizontal;

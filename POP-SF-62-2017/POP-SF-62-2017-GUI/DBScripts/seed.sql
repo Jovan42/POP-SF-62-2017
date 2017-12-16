@@ -20,7 +20,7 @@ INSERT INTO Korisnik (Ime, Prezime, KorIme, Lozinka, Admin)
 INSERT INTO DodatnaUsluga(Naziv, Cena) VALUES ('Prevoz', 5000);
 INSERT INTO DodatnaUsluga(Naziv, Cena) VALUES ('Sklapanje', 2000);
 
-INSERT INTO Akcija (Pocetak, Kraj) VALUES ('1/1/2016', '1/1/2018');
+INSERT INTO Akcija (Pocetak, Kraj, Popust) VALUES ('1/1/2016', '1/1/2018', 20);
 
 INSERT INTO Prodaja (DatumProdaje, Kupac) VALUES ('1/1/2001', 'Kupac1');
 INSERT INTO Prodaja (DatumProdaje, Kupac) VALUES ('2/2/2002', 'Kupac2');
@@ -30,6 +30,7 @@ INSERT INTO ProdatNamestaj (NamestajId, ProdajaId, Kolicina) VALUES (1, 1, 50);
 INSERT INTO ProdatNamestaj (NamestajId, ProdajaId, Kolicina) VALUES (1, 2, 50);
 INSERT INTO ProdatNamestaj (NamestajId, ProdajaId, Kolicina) VALUES (2, 1, 100);
 INSERT INTO ProdatNamestaj (NamestajId, ProdajaId, Kolicina) VALUES (3, 2, 50);
+INSERT INTO ProdatNamestaj (NamestajId, ProdajaId, Kolicina) VALUES (3, 3, 200);
 
 INSERT INTO NamestajNaAkciji (NamestajId, AkcijaId) VALUES (1, 1);
 

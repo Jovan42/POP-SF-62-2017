@@ -108,7 +108,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
             comboBox.ItemsSource = DodatnaUslugaDataProvider.Instance.GetAll();
             button.Click += new RoutedEventHandler(btnDeleteNamestaj);
             if (prodaja != null) {
-                comboBox.SelectedItem = usluga;
+                comboBox.SelectedIndex = usluga.ID -1;
             }
 
             stackPanel.Orientation = Orientation.Horizontal;
@@ -135,7 +135,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
             comboBox.ItemsSource = NamestajDataProvider.Instance.GetAll();
             button.Click += new RoutedEventHandler(btnDeleteNamestaj);
             if (namestaj != null) {
-                comboBox.SelectedItem = NamestajDataProvider.Instance.GetByID(namestaj.NamestajID);
+                comboBox.SelectedIndex = namestaj.NamestajID-1;
                 textBox.Text = namestaj.Kolicina.ToString();
             }
 

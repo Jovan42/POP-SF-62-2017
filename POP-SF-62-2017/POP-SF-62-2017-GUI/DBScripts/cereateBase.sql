@@ -5,7 +5,6 @@
 	)
 GO
 
-
 CREATE TABLE Namestaj (
 	Id INT PRIMARY KEY IDENTITY (1, 1),
 	TipNamestajaID INT NOT NULL,
@@ -20,6 +19,7 @@ GO
 CREATE TABLE Akcija(
 	Id INT PRIMARY KEY IDENTITY (1, 1),
 	Pocetak DATE NOT NULL,
+	Popust NUMERIC(9, 2),
 	Kraj DATE NOT NULL,
 	Obrisan BIT NOT NULL DEFAULT 0
 )

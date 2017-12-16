@@ -11,8 +11,8 @@
     <Grid Background="#FF252526" Height="Auto" Width="Auto">
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-                <Label Content="Id: " Width="60" Height="25" Margin="5" Foreground="White"></Label>
-                <TextBox Name="tbId" IsEnabled="False" Height="25" Width="100" Margin="5" Text="{Binding Path=ID}"></TextBox>
+                <Label Content="Id: " Width="60" Height="25" Margin="5" Foreground="White" Visibility="Hidden"></Label>
+                <TextBox Name="tbId" IsEnabled="False" Height="25" Width="100" Margin="5" Text="{Binding Path=ID}" Visibility="Hidden"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Ime: " Width="60" Height="25" Margin="5" Foreground="White"></Label>

@@ -87,6 +87,7 @@ namespace POP_SF_62_2017_GUI.DataAccess {
                 adapter.Fill(dataSet, "DodatnaUsluga");
 
                 foreach (DataRow row in dataSet.Tables["DodatnaUsluga"].Rows) {
+                    dodatnaUsluga.ID = int.Parse(row["Id"].ToString());
                     dodatnaUsluga.Naziv= row["Naziv"].ToString();
                     dodatnaUsluga.Cena = Double.Parse(row["Cena"].ToString());
                 }
@@ -114,6 +115,7 @@ namespace POP_SF_62_2017_GUI.DataAccess {
 
                 foreach (DataRow row in dataSet.Tables["DodatnaUsluga"].Rows) {
                     DodatnaUsluga dodatnaUsluga = new DodatnaUsluga();
+                    dodatnaUsluga.ID = int.Parse(row["Id"].ToString());
                     dodatnaUsluga.Naziv = row["Naziv"].ToString();
                     dodatnaUsluga.Cena = Double.Parse(row["Cena"].ToString());
 

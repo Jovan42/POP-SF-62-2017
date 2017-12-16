@@ -13,7 +13,9 @@ namespace POP_SF_62_2017_GUI.GUI {
     /// </summary>
     public partial class Login : Window {
         public Login() {
+
             InitializeComponent();
+            var a = ProdajaDataProvider.Instance.GetAll();
         }
         int brPokusaja = 3;
         private void btnLogIn_Click(object sender, RoutedEventArgs e) {

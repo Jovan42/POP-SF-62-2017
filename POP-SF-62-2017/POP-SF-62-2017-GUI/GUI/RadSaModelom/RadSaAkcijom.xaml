@@ -10,8 +10,8 @@
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Id: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
-                    <TextBox Name="tbId" IsEnabled="False" Height="25" Width="100" Margin="5" Text="{Binding Path=ID}"></TextBox>
+                    <Label Content="Id: " Width="50" Height="25" Margin="5" Foreground="White" Visibility="Hidden"></Label>
+                    <TextBox Name="tbId" IsEnabled="False" Height="25" Width="100" Margin="5" Visibility="Hidden" Text="{Binding Path=ID}"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Od: " Width="50" Height="25" Margin="5" Foreground="White"></Label>

@@ -22,13 +22,15 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString)) {
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "INSERT INTO Akcija(Pocetak, Kraj) VALUES (@Pocetak, @Kraj);";
+                cmd.CommandText = "INSERT INTO Akcija(Pocetak, Kraj, Popust) VALUES (@Pocetak, @Kraj, @Popust);";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY(); ";
                 cmd.Parameters.AddWithValue("Pocetak", a.Pocetak);
                 cmd.Parameters.AddWithValue("Kraj", a.Kraj);
-
+                cmd.Parameters.AddWithValue("Popust", a.Popust);
                 int newID = Int32.Parse(cmd.ExecuteScalar().ToString());
-
+                NamestajNaAkcijiDataProvider.Instance.Add(a.NamestajNaAkcijiID, newID);
+                a.NamestajNaAkcijiID = NamestajNaAkcijiDataProvider.Instance.Get(newID);
+                
                 a.ID = newID;
                 Projekat.Instance.Akcije.Add(a);
             }
@@ -58,17 +60,21 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString)) {
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "UPDATE Akcija SET Pocetak=@Pocetak, Kraj=@Kraj WHERE Id=@Id";
+                cmd.CommandText = "UPDATE Akcija SET Pocetak=@Pocetak, Kraj=@Kraj, Popust=@Popust WHERE Id=@Id";
                 cmd.Parameters.AddWithValue("Id", a.ID);
                 cmd.Parameters.AddWithValue("Pocetak", a.Pocetak);
                 cmd.Parameters.AddWithValue("Kraj", a.Kraj);
+                cmd.Parameters.AddWithValue("Popust", a.Popust);
 
                 cmd.ExecuteNonQuery();
 
+                NamestajNaAkcijiDataProvider.Instance.Edit(a.NamestajNaAkcijiID, a.ID);
                 foreach (Akcija akcija in Projekat.Instance.Akcije) {
                     if (akcija.ID == a.ID) {
                         akcija.Pocetak = a.Pocetak;
                         akcija.Kraj = a.Kraj;
+                        akcija.Popust = a.Popust;
+                        akcija.NamestajNaAkcijiID = NamestajNaAkcijiDataProvider.Instance.Get(akcija.ID);
                         break;
                     }
                 }
@@ -87,10 +93,12 @@ namespace POP_SF_62_2017_GUI.DataAccess {
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.SelectCommand = cmd;
                 adapter.Fill(dataSet, "Akcija");
-                
-                foreach (DataRow row in dataSet.Tables["Akcija"].Rows) { 
+                foreach (DataRow row in dataSet.Tables["Akcija"].Rows) {
+                    akcija.ID = int.Parse(row["Id"].ToString());
+                    akcija.Popust = double.Parse(row["Popust"].ToString());
                     akcija.Pocetak = DateTime.Parse(row["Pocetak"].ToString());
                     akcija.Kraj = DateTime.Parse(row["Kraj"].ToString());
+                    akcija.NamestajNaAkcijiID = NamestajNaAkcijiDataProvider.Instance.Get(akcija.ID);
                 }
             }
             return akcija;
@@ -116,9 +124,11 @@ namespace POP_SF_62_2017_GUI.DataAccess {
 
                 foreach (DataRow row in dataSet.Tables["Akcija"].Rows) {
                     Akcija akcija = new Akcija();
+                    akcija.ID = int.Parse(row["Id"].ToString());
                     akcija.Pocetak = DateTime.Parse(row["Pocetak"].ToString());
                     akcija.Kraj = DateTime.Parse(row["Kraj"].ToString());
-                    
+                    akcija.Popust = double.Parse(row["Popust"].ToString());
+                    akcija.NamestajNaAkcijiID = NamestajNaAkcijiDataProvider.Instance.Get(akcija.ID);
 
                     akcije.Add(akcija);
                 }
@@ -140,10 +150,13 @@ namespace POP_SF_62_2017_GUI.DataAccess {
 
                 foreach (DataRow row in dataSet.Tables["Akcija"].Rows) {
                     Akcija akcija = new Akcija();
+                    akcija.ID = int.Parse(row["Id"].ToString());
                     akcija.Pocetak = DateTime.Parse(row["Pocetak"].ToString());
                     akcija.Kraj = DateTime.Parse(row["Kraj"].ToString());
+                    akcija.Popust = double.Parse(row["Popust"].ToString());
+                    akcija.NamestajNaAkcijiID = NamestajNaAkcijiDataProvider.Instance.Get(akcija.ID);
 
-                    if(akcija.Kraj > DateTime.Now)
+                    if (akcija.Kraj > DateTime.Now)
                         akcije.Add(akcija);
                 }
             }
