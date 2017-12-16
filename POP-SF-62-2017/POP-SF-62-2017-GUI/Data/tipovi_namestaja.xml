@@ -7,32 +7,17 @@
   </TipNamestaja>
   <TipNamestaja>
     <ID>1</ID>
-    <Naziv>Kupatilo</Naziv>
-    <Obrisan>true</Obrisan>
-  </TipNamestaja>
-  <TipNamestaja>
-    <ID>2</ID>
     <Naziv>Dnevna Soba</Naziv>
-    <Obrisan>true</Obrisan>
-  </TipNamestaja>
-  <TipNamestaja>
-    <ID>3</ID>
-    <Naziv>Dnevna Soba</Naziv>
-    <Obrisan>true</Obrisan>
-  </TipNamestaja>
-  <TipNamestaja>
-    <ID>4</ID>
-    <Naziv>Dnevna soba</Naziv>
     <Obrisan>false</Obrisan>
   </TipNamestaja>
   <TipNamestaja>
-    <ID>5</ID>
-    <Naziv>sadsda</Naziv>
-    <Obrisan>true</Obrisan>
+    <ID>2</ID>
+    <Naziv>Spavaca Soba</Naziv>
+    <Obrisan>false</Obrisan>
   </TipNamestaja>
   <TipNamestaja>
-    <ID>6</ID>
-    <Naziv>Kupatilo123</Naziv>
+    <ID>3</ID>
+    <Naziv>Trpezarija</Naziv>
     <Obrisan>false</Obrisan>
   </TipNamestaja>
 </ArrayOfTipNamestaja>

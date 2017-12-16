@@ -18,18 +18,12 @@ namespace POP_SF_62_2017_GUI.GUI {
     /// Interaction logic for PregledNamestaja.xaml
     /// </summary>
     public partial class Pregled : Window, INotifyPropertyChanged {
+        
         DataGrid dgNaAkciji = new DataGrid();
         DataGrid dgProdatNamestaj = new DataGrid();
         DataGrid dgDodatneUsluge = new DataGrid();
         Label lblCenaBez = new Label();
         Label lblCenaSa = new Label();
-        private Entitet izabrano;
-
-        public Entitet Izabrano {
-            get { return izabrano; }
-            set { izabrano = value; onPropertyChanged("Izabrano"); }
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void onPropertyChanged(string properyName) {
@@ -55,12 +49,14 @@ namespace POP_SF_62_2017_GUI.GUI {
                 //Izabrano = (Entitet)dgNamestaji.Items[0];
                 DataGrid dgNaAkciji = new DataGrid();
                 dgNaAkciji.Margin = new Thickness(5);
-                Binding binding = new Binding("NamestajiNaAkcijiID");
+                window.Width = 1000;
+                Binding binding = new Binding("NamestajNaAkciji");
                 BindingOperations.SetBinding(dgNaAkciji, DataGrid.ItemsSourceProperty, binding);
-                dgNaAkciji.IsSynchronizedWithCurrentItem = true;
+                
                 try {
-                    dgNaAkciji.DataContext = ((Akcija)Izabrano);
-                    dgNaAkciji.ItemsSource = ((Akcija)Izabrano).NamestajNaAkciji;
+                    dgNaAkciji.DataContext = ((Akcija)Projekat.Instance.Izabrano);
+                    dgNaAkciji.IsSynchronizedWithCurrentItem = true;
+                    //dgNaAkciji.ItemsSource = ((Akcija)Projekat.Instance.Izabrano).NamestajNaAkciji;
                 } catch (Exception) {
                 }
                 dgNaAkciji.IsReadOnly = true;
@@ -87,12 +83,13 @@ namespace POP_SF_62_2017_GUI.GUI {
                 //Izabrano = (Entitet)dgNamestaji.Items[0];
                 DataGrid dgProdatNamestaj = new DataGrid();
                 dgProdatNamestaj.Margin = new Thickness(5);
-                Binding binding = new Binding("NamestajiNaAkcijiID");
+                Binding binding = new Binding("ProdatNamestaj");
+                window.Width = 1000;
                 BindingOperations.SetBinding(dgProdatNamestaj, DataGrid.ItemsSourceProperty, binding);
-                dgProdatNamestaj.IsSynchronizedWithCurrentItem = true;
                 try {
-                    dgProdatNamestaj.DataContext = ((Prodaja)Izabrano);
-                    dgProdatNamestaj.ItemsSource = ((Prodaja)Izabrano).ProdatNamestaj;
+                    dgProdatNamestaj.DataContext = ((Prodaja)Projekat.Instance.Izabrano);
+                    dgProdatNamestaj.IsSynchronizedWithCurrentItem = true;
+                    //dgProdatNamestaj.ItemsSource = ((Prodaja)Projekat.Instance.Izabrano).ProdatNamestaj;
                 } catch (Exception) {
                 }
                 dgProdatNamestaj.IsReadOnly = true;
@@ -118,20 +115,21 @@ namespace POP_SF_62_2017_GUI.GUI {
                 DataGrid dgDodatneUsluge = new DataGrid();
                 dgDodatneUsluge.Margin = new Thickness(5);
                 Binding binding2 = new Binding("DodatneUsluge");
-                BindingOperations.SetBinding(dgProdatNamestaj, DataGrid.ItemsSourceProperty, binding2);
-                dgDodatneUsluge.IsSynchronizedWithCurrentItem = true;
+                BindingOperations.SetBinding(dgDodatneUsluge, DataGrid.ItemsSourceProperty, binding2);
+                
                 try {
-                    dgDodatneUsluge.DataContext = ((Prodaja)Izabrano);
-                    dgDodatneUsluge.ItemsSource = ((Prodaja)Izabrano).DodatneUslugeID;
+                    dgDodatneUsluge.DataContext = ((Prodaja)Projekat.Instance.Izabrano);
+                    dgDodatneUsluge.IsSynchronizedWithCurrentItem = true;
+                    //dgDodatneUsluge.ItemsSource = ((Prodaja)Projekat.Instance.Izabrano).DodatneUslugeID;
                 } catch (Exception) {
                 }
                 dgDodatneUsluge.IsReadOnly = true;
                 dgDodatneUsluge.CanUserAddRows = false;
                 dgDodatneUsluge.AutoGeneratingColumn += new EventHandler<DataGridAutoGeneratingColumnEventArgs>(dgNaAkciji_AutoGeneratingColumn);
-                dgDodatneUsluge.Width = 100;
+                dgDodatneUsluge.Width = 150;
                 dgDodatneUsluge.Height = 300;
                 dgDodatneUsluge.MaxHeight = 300;
-                dgDodatneUsluge.MaxWidth = 100;
+                dgDodatneUsluge.MaxWidth = 150;
                 Label label2 = new Label();
                 label2.Content = "Dodatne usluge:";
                 label2.Foreground = Brushes.White;
@@ -173,15 +171,17 @@ namespace POP_SF_62_2017_GUI.GUI {
         private void selectionChanged(object sender, SelectionChangedEventArgs e) {
             if (tip == TipKlase.AKCIJA) {
                 try {
-                    dgNaAkciji.ItemsSource = ((Akcija)Izabrano).NamestajNaAkciji;
+                    dgNaAkciji.DataContext = ((Akcija)Projekat.Instance.Izabrano);
                 } catch (Exception) {
                 }
             }
             if(tip == TipKlase.PRODAJA) {
                 try {
-                    dgDodatneUsluge.ItemsSource = ((Prodaja)Izabrano).DodatnaUsluga;
-                    dgProdatNamestaj.ItemsSource = ((Prodaja)Izabrano).ProdatNamestaj;
-                    double cena = ((Prodaja)Izabrano).getUkupnaCena();
+                    dgProdatNamestaj.DataContext = ((Prodaja)Projekat.Instance.Izabrano);
+                    dgDodatneUsluge.DataContext = ((Prodaja)Projekat.Instance.Izabrano);
+                    //dgDodatneUsluge.ItemsSource = ((Prodaja)Projekat.Instance.Izabrano).DodatnaUsluga;
+                    //dgProdatNamestaj.ItemsSource = ((Prodaja)Projekat.Instance.Izabrano).ProdatNamestaj;
+                    double cena = ((Prodaja)Projekat.Instance.Izabrano).getUkupnaCena();
                     lblCenaBez.Content = $"Cena bez PDV-a: {cena.ToString()}";
                     cena *= 1.2;
                     lblCenaSa.Content = $"Cena sa PDV-om:  {cena.ToString()}";
@@ -192,52 +192,39 @@ namespace POP_SF_62_2017_GUI.GUI {
         }
 
         private void OsveziPrikaz() {
-            dgNamestaji.ItemsSource = null;
+            //dgNamestaji.ItemsSource = null;
+            Binding binding = new Binding("");
             switch (tip) {
-                case TipKlase.NAMESTAJ:                  
-                dgNamestaji.ItemsSource = NamestajDataProvider.Instance.GetAll();
-                dgNamestaji.DataContext = this;
-                dgNamestaji.IsSynchronizedWithCurrentItem = true;
+                case TipKlase.NAMESTAJ:
+                binding = new Binding("Namestaji");
                 break;
                 case TipKlase.AKCIJA:
-                dgNamestaji.Width = double.NaN;
-                dgNamestaji.ItemsSource = AkcijaDataProvider.Instance.GetAll();
-                dgNamestaji.DataContext = this;
-                dgNamestaji.IsSynchronizedWithCurrentItem = true;
-
+                binding = new Binding("Akcije");
                 break;
                 case TipKlase.KORISNIK:
-                dgNamestaji.ItemsSource = KorisnikDataProvider.Instance.GetAll();
-                dgNamestaji.DataContext = this;
-                dgNamestaji.IsSynchronizedWithCurrentItem = true;
+                binding = new Binding("Korisnici");
                 //window.Title += "a";
                 break;
                 case TipKlase.PRODAJA:
-                dgNamestaji.Width = double.NaN;
-                dgNamestaji.ItemsSource = ProdajaDataProvider.Instance.GetAll();
-                dgNamestaji.DataContext = this;
-                dgNamestaji.IsSynchronizedWithCurrentItem = true;
+                binding = new Binding("Prodaje");
                 break;
                 case TipKlase.SALON:
-                dgNamestaji.ItemsSource = SalonDataProvider.Instance.GetAll();
-                dgNamestaji.DataContext = this;
-                dgNamestaji.IsSynchronizedWithCurrentItem = true;
+                binding = new Binding("Saloni");
                 //window.Title += "a";
                 break;
                 case TipKlase.TIP_NAMESTAJA:
-                dgNamestaji.ItemsSource = TipNamestajaDataProvider.Instance.GetAll();
-                dgNamestaji.DataContext = this;
-                dgNamestaji.IsSynchronizedWithCurrentItem = true;
+                binding = new Binding("TipoviNamestaja");
                 //window.Title = $"Pregled tipova nameštaja";
                 break;
                 case TipKlase.DODATNE_USLUGE:
-                dgNamestaji.ItemsSource = DodatnaUslugaDataProvider.Instance.GetAll();
-                dgNamestaji.DataContext = this;
-                dgNamestaji.IsSynchronizedWithCurrentItem = true;
+                binding = new Binding("DodatneUsluge");
                 break;
                 default:
                 break;
             }
+            BindingOperations.SetBinding(dgNamestaji, DataGrid.ItemsSourceProperty, binding);
+            dgNamestaji.DataContext = Projekat.Instance;
+            dgNamestaji.IsSynchronizedWithCurrentItem = true;
             dgNamestaji.SelectedIndex = 0;
         }
 
@@ -284,27 +271,27 @@ namespace POP_SF_62_2017_GUI.GUI {
         }
 
         private void btnIzmeni_Click(object sender, RoutedEventArgs e) {
-            if (izabrano == null) return;
+            if (Projekat.Instance.Izabrano == null) return;
             switch (tip) {
                 case TipKlase.NAMESTAJ:
-                new RadSaNamestajem((Namestaj)Izabrano.Clone()).ShowDialog();
+                new RadSaNamestajem((Namestaj)Projekat.Instance.Izabrano.Clone()).ShowDialog();
                 break;
                 case TipKlase.AKCIJA:
-                new RadSaAkcijom((Akcija)Izabrano.Clone()).ShowDialog();
+                new RadSaAkcijom((Akcija)Projekat.Instance.Izabrano.Clone()).ShowDialog();
                 break;
                 case TipKlase.KORISNIK:
-                new RadSaKorisnikom((Korisnik)Izabrano.Clone()).ShowDialog();
+                new RadSaKorisnikom((Korisnik)Projekat.Instance.Izabrano.Clone()).ShowDialog();
                 break;
                 case TipKlase.PRODAJA:
-                new RadSaProdajom((Prodaja)Izabrano.Clone()).ShowDialog();
+                new RadSaProdajom((Prodaja)Projekat.Instance.Izabrano.Clone()).ShowDialog();
                 break;
                 case TipKlase.SALON:
                 break;
                 case TipKlase.TIP_NAMESTAJA:
-                new RadSaTipomNamestaja((TipNamestaja)Izabrano.Clone()).ShowDialog();
+                new RadSaTipomNamestaja((TipNamestaja)Projekat.Instance.Izabrano.Clone()).ShowDialog();
                 break;
                 case TipKlase.DODATNE_USLUGE:
-                new RadSaDodatnomUslugom((DodatnaUsluga)Izabrano.Clone()).ShowDialog();
+                new RadSaDodatnomUslugom((DodatnaUsluga)Projekat.Instance.Izabrano.Clone()).ShowDialog();
                 break;
                 default:
                 break;
@@ -317,28 +304,28 @@ namespace POP_SF_62_2017_GUI.GUI {
             MessageBoxResult dialogResult;
             switch (tip) {
                 case TipKlase.NAMESTAJ:
-                Namestaj namestaj = (Namestaj)Izabrano;
+                Namestaj namestaj = (Namestaj)Projekat.Instance.Izabrano;
                 dialogResult = MessageBox.Show($"Jeste li sigurni da želite da obrišete nameštaj: {namestaj.Naziv}", "Brisanje nameštaja", MessageBoxButton.YesNo);
                 if (dialogResult == MessageBoxResult.Yes) {
                     NamestajDataProvider.Instance.DeleteByID(namestaj.ID);
                 }
                 break;
                 case TipKlase.AKCIJA:
-                Akcija akcija = (Akcija)Izabrano;
+                Akcija akcija = (Akcija)Projekat.Instance.Izabrano;
                 dialogResult = MessageBox.Show($"Jeste li sigurni da želite da obrišete nameštaj akciju: ", "Brisanje akcije", MessageBoxButton.YesNo);
                 if (dialogResult == MessageBoxResult.Yes) {
                     AkcijaDataProvider.Instance.DeleteByID(akcija.ID);
                 }
                 break;
                 case TipKlase.KORISNIK:
-                Korisnik korisnik = (Korisnik)Izabrano;
+                Korisnik korisnik = (Korisnik)Projekat.Instance.Izabrano;
                 dialogResult = MessageBox.Show($"Jeste li sigurni da želite da obrišete nameštaj korisnika: {korisnik.KorIme} ", "Brisanje korisnika", MessageBoxButton.YesNo);
                 if (dialogResult == MessageBoxResult.Yes) {
                     KorisnikDataProvider.Instance.DeleteByID(korisnik.ID);
                 }
                 break;
                 case TipKlase.PRODAJA:
-                Prodaja prodaja = (Prodaja)Izabrano;
+                Prodaja prodaja = (Prodaja)Projekat.Instance.Izabrano;
                 dialogResult = MessageBox.Show($"Jeste li sigurni da želite da obrišete nameštaj akciju: ", "Brisanje akcije", MessageBoxButton.YesNo);
                 if (dialogResult == MessageBoxResult.Yes) {
                     AkcijaDataProvider.Instance.DeleteByID(prodaja.ID);
@@ -347,14 +334,14 @@ namespace POP_SF_62_2017_GUI.GUI {
                 case TipKlase.SALON:
                 break;
                 case TipKlase.TIP_NAMESTAJA:
-                TipNamestaja tipNamestaja = (TipNamestaja)Izabrano;
+                TipNamestaja tipNamestaja = (TipNamestaja)Projekat.Instance.Izabrano;
                 dialogResult = MessageBox.Show($"Jeste li sigurni da želite da obrišete tip nameštaja: {tipNamestaja.Naziv}", "Brisanje tipa nameštaja", MessageBoxButton.YesNo);
                 if (dialogResult == MessageBoxResult.Yes) {
                     TipNamestajaDataProvider.Instance.DeleteByID(tipNamestaja.ID);
                 }
                 break;
                 case TipKlase.DODATNE_USLUGE:
-                DodatnaUsluga dodatnaUsluga = (DodatnaUsluga)Izabrano;
+                DodatnaUsluga dodatnaUsluga = (DodatnaUsluga)Projekat.Instance.Izabrano;
                 dialogResult = MessageBox.Show($"Jeste li sigurni da želite da obrišete dodatnu uslugu: {dodatnaUsluga.Naziv}", "Brisanje tipa nameštaja", MessageBoxButton.YesNo);
                 if (dialogResult == MessageBoxResult.Yes) {
                     DodatnaUslugaDataProvider.Instance.DeleteByID(dodatnaUsluga.ID);

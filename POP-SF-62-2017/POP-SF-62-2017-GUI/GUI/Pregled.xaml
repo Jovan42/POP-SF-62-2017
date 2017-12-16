@@ -11,7 +11,7 @@
 
             <StackPanel Orientation="Horizontal" Name="spDataGrid">
                 <DataGrid Name="dgNamestaji" VerticalAlignment="Top" HorizontalAlignment="Left" Width ="500"
-                     IsReadOnly="True" CanUserAddRows="False" MinHeight="425" MaxHeight="40"
+                     IsReadOnly="True" CanUserAddRows="False" MinHeight="425" MaxHeight="40" ItemsSource="{Binding Path=Namestaji}"
                       SelectedItem="{Binding Path=Izabrano}" AutoGeneratingColumn="dgNamestaji_AutoGeneratingColumn"></DataGrid>
                 
             </StackPanel>

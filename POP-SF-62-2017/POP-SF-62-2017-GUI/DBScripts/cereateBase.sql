@@ -1,0 +1,97 @@
+﻿CREATE TABLE TipNamestaja (
+	Id INT PRIMARY KEY IDENTITY (1, 1),
+	Naziv VARCHAR(80),
+	Obrisan BIT DEFAULT 0
+	)
+GO
+
+
+CREATE TABLE Namestaj (
+	Id INT PRIMARY KEY IDENTITY (1, 1),
+	TipNamestajaID INT NOT NULL,
+	Naziv VARCHAR(100) NOT NULL,
+	Kolicina INT NOT NULL,
+	Cena NUMERIC(9, 2) NOT NULL,
+	Obrisan BIT NOT NULL DEFAULT 0,
+	FOREIGN KEY (TipNamestajaID) REFERENCES TipNamestaja(Id)
+	)
+GO
+
+CREATE TABLE Akcija(
+	Id INT PRIMARY KEY IDENTITY (1, 1),
+	Pocetak DATE NOT NULL,
+	Kraj DATE NOT NULL,
+	Obrisan BIT NOT NULL DEFAULT 0
+)
+GO
+
+CREATE TABLE DodatnaUsluga (
+	Id INT PRIMARY KEY IDENTITY (1, 1),
+	Naziv VARCHAR(100) NOT NULL,
+	Cena NUMERIC(9, 2) NOT NULL,
+	Obrisan BIT NOT NULL DEFAULT 0
+)
+GO
+
+CREATE TABLE Korisnik (
+	Id INT PRIMARY KEY IDENTITY (1, 1),
+	Ime VARCHAR(40) NOT NULL,
+	Prezime VARCHAR(40) NOT NULL,
+	KorIme VARCHAR(40) NOT NULL,
+	Lozinka VARCHAR(40) NOT NULL,
+	Admin BIT NOT NULL,
+	Obrisan BIT NOT NULL DEFAULT 0
+)
+GO
+
+CREATE TABLE Prodaja (
+	Id INT PRIMARY KEY IDENTITY (1, 1),
+	DatumProdaje DATE NOT NULL,
+	Kupac VARCHAR(40) NOT NULL,
+	Obrisan BIT NOT NULL DEFAULT 0
+)
+GO
+
+CREATE TABLE ProdatNamestaj (
+	NamestajId INT NOT NULL,
+	ProdajaId INT NOT NULL,
+	Kolicina INT NOT NULL,
+	PRIMARY KEY(NamestajId, ProdajaId),
+	FOREIGN KEY (NamestajId) REFERENCES Namestaj(Id),
+	FOREIGN KEY (ProdajaId) REFERENCES Prodaja(Id)
+)
+GO
+
+CREATE TABLE NamestajNaAkciji (
+	NamestajId INT NOT NULL,
+	AkcijaId INT NOT NULL,
+	PRIMARY KEY(NamestajId, AkcijaId),
+	FOREIGN KEY (NamestajId) REFERENCES Namestaj(Id),
+	FOREIGN KEY (AkcijaId) REFERENCES Akcija(Id)
+)
+GO 
+
+CREATE TABLE IzvrsenaDodatnaUsluga (
+	DodatnaUslugaId INT NOT NULL,
+	ProdajaId INT NOT NULL,
+	PRIMARY KEY(DodatnaUslugaId, ProdajaId),
+	FOREIGN KEY (DodatnaUslugaId) REFERENCES DodatnaUsluga(Id),
+	FOREIGN KEY (ProdajaId) REFERENCES Prodaja(Id)
+)
+GO
+
+CREATE TABLE Salon(
+	Id INT PRIMARY KEY IDENTITY (1, 1),
+	Naziv VARCHAR(40) NOT NULL,
+	Adresa VARCHAR(40) NOT NULL,
+	Mail VARCHAR(40) NOT NULL,
+	Sajt VARCHAR(40) NOT NULL,
+	Telefon VARCHAR(40) NOT NULL,
+	PIB VARCHAR(40) NOT NULL,
+	MatBr VARCHAR(40) NOT NULL,
+	ZiroRacun VARCHAR(40) NOT NULL,
+	Obrisan BIT NOT NULL DEFAULT 0
+)
+GO
+
+

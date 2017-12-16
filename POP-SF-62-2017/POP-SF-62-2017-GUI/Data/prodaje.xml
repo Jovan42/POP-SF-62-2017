@@ -2,31 +2,61 @@
 <ArrayOfProdaja xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Prodaja>
     <ID>0</ID>
-    <DatumProdaje>2017-12-10T02:06:28.6813944+01:00</DatumProdaje>
+    <DatumProdaje>2017-12-10T03:11:50.5029639+01:00</DatumProdaje>
     <ProdatNamestaj>
       <ProdatNamestaj>
+        <NamestajID>0</NamestajID>
+        <Kolicina>1</Kolicina>
+      </ProdatNamestaj>
+      <ProdatNamestaj>
         <NamestajID>2</NamestajID>
-        <Kolicina>50</Kolicina>
+        <Kolicina>5</Kolicina>
       </ProdatNamestaj>
     </ProdatNamestaj>
     <Kupac>Kupac</Kupac>
-    <DodatneUslugeID>
-      <int>0</int>
-    </DodatneUslugeID>
+    <DodatneUslugeID />
     <Obrisan>false</Obrisan>
   </Prodaja>
   <Prodaja>
     <ID>1</ID>
-    <DatumProdaje>2017-12-10T02:47:32.5173231+01:00</DatumProdaje>
+    <DatumProdaje>2017-12-10T03:14:55.7030566+01:00</DatumProdaje>
     <ProdatNamestaj>
+      <ProdatNamestaj>
+        <NamestajID>3</NamestajID>
+        <Kolicina>10</Kolicina>
+      </ProdatNamestaj>
+    </ProdatNamestaj>
+    <Kupac>Kupav</Kupac>
+    <DodatneUslugeID>
+      <int>1</int>
+    </DodatneUslugeID>
+    <Obrisan>false</Obrisan>
+  </Prodaja>
+  <Prodaja>
+    <ID>2</ID>
+    <DatumProdaje>2017-12-12T11:32:03.9380739+01:00</DatumProdaje>
+    <ProdatNamestaj>
+      <ProdatNamestaj>
+        <NamestajID>1</NamestajID>
+        <Kolicina>10</Kolicina>
+      </ProdatNamestaj>
+      <ProdatNamestaj>
+        <NamestajID>2</NamestajID>
+        <Kolicina>10</Kolicina>
+      </ProdatNamestaj>
+      <ProdatNamestaj>
+        <NamestajID>3</NamestajID>
+        <Kolicina>10</Kolicina>
+      </ProdatNamestaj>
       <ProdatNamestaj>
         <NamestajID>0</NamestajID>
         <Kolicina>10</Kolicina>
       </ProdatNamestaj>
     </ProdatNamestaj>
-    <Kupac>Kupac</Kupac>
+    <Kupac>AAAAAAAA</Kupac>
     <DodatneUslugeID>
       <int>0</int>
+      <int>1</int>
     </DodatneUslugeID>
     <Obrisan>false</Obrisan>
   </Prodaja>

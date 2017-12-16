@@ -6,61 +6,94 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Data;
 
+
+//TODO: Akcija.NamestajNaAkcijiID popuniti iz tabele NamestjNaAkciji
 namespace POP_SF_62_2017_GUI.DataAccess {
     class AkcijaDataProvider : DataAccess {
         public static AkcijaDataProvider Instance { get; } = new AkcijaDataProvider();
 
         #region DataAccess Implementation
         public void Add(Entitet e) {
-            Akcija akcija = (Akcija)e;
-            ObservableCollection<Akcija> akcije = new ObservableCollection<Akcija>();
-            akcije = Projekat.Instance.Akcije;
-            akcija.ID = akcije.Count();
-            akcije.Add(akcija);
-            Projekat.Instance.SetAkcije(akcije);
+            Akcija a = (Akcija)e;
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString)) {
+                con.Open();
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "INSERT INTO Akcija(Pocetak, Kraj) VALUES (@Pocetak, @Kraj);";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY(); ";
+                cmd.Parameters.AddWithValue("Pocetak", a.Pocetak);
+                cmd.Parameters.AddWithValue("Kraj", a.Kraj);
+
+                int newID = Int32.Parse(cmd.ExecuteScalar().ToString());
+
+                a.ID = newID;
+                Projekat.Instance.Akcije.Add(a);
+            }
         }
 
         public bool DeleteByID(int id) {
-            ObservableCollection<Akcija> akcije = new ObservableCollection<Akcija>();
-            akcije = Projekat.Instance.Akcije;
-            foreach (Akcija akcija in akcije) {
-                if (akcija.ID == id) {
-                    akcija.Obrisan = true;
-                    Projekat.Instance.SetAkcije(akcije);
-                    return true;
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString)) {
+                con.Open();
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "UPDATE Akcija SET Obrisan=1 WHERE Id=@Id";
+                cmd.Parameters.AddWithValue("Id", id);
 
+                cmd.ExecuteNonQuery();
+
+                foreach (Akcija akcija in Projekat.Instance.Akcije) {
+                    if (akcija.ID == id) {
+                        Projekat.Instance.Akcije.Remove(akcija);
+                        break;
+                    }
                 }
+                return true;
             }
-            return false;
         }
 
         public bool EditByID(Entitet e, int id) {
             Akcija a = (Akcija)e;
-            ObservableCollection<Akcija> akcije = new ObservableCollection<Akcija>();
-            akcije = Projekat.Instance.Akcije;
-            foreach (Akcija akcija in akcije) {
-                if (akcija.ID == id) {
-                    akcija.Kraj = a.Kraj;
-                    akcija.NamestajNaAkcijiID = a.NamestajNaAkcijiID;
-                    akcija.Obrisan = a.Obrisan;
-                    akcija.Pocetak = a.Pocetak;
-                    akcija.Popust = a.Popust;
-                    Projekat.Instance.SetAkcije(akcije);
-                    return true;
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString)) {
+                con.Open();
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "UPDATE Akcija SET Pocetak=@Pocetak, Kraj=@Kraj WHERE Id=@Id";
+                cmd.Parameters.AddWithValue("Id", a.ID);
+                cmd.Parameters.AddWithValue("Pocetak", a.Pocetak);
+                cmd.Parameters.AddWithValue("Kraj", a.Kraj);
 
+                cmd.ExecuteNonQuery();
+
+                foreach (Akcija akcija in Projekat.Instance.Akcije) {
+                    if (akcija.ID == a.ID) {
+                        akcija.Pocetak = a.Pocetak;
+                        akcija.Kraj = a.Kraj;
+                        break;
+                    }
                 }
+                return true;
             }
-            return false;
         }
 
         public Entitet GetByID(int id) {
-            foreach (Akcija akcija in Projekat.Instance.Akcije) {
-                if (akcija.ID == id) {
-                    return akcija;
+            Akcija akcija = new Akcija();
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString)) {
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT * FROM Akcija WHERE Id=@Id";
+                cmd.Parameters.AddWithValue("Id", id);
+                DataSet dataSet = new DataSet();
+
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = cmd;
+                adapter.Fill(dataSet, "Akcija");
+                
+                foreach (DataRow row in dataSet.Tables["Akcija"].Rows) { 
+                    akcija.Pocetak = DateTime.Parse(row["Pocetak"].ToString());
+                    akcija.Kraj = DateTime.Parse(row["Kraj"].ToString());
                 }
             }
-            return null;
+            return akcija;
         }
 
         public void Initialize() {
@@ -71,18 +104,48 @@ namespace POP_SF_62_2017_GUI.DataAccess {
 
         public ObservableCollection<Akcija> GetAll() {
             ObservableCollection<Akcija> akcije = new ObservableCollection<Akcija>();
-            foreach (Akcija akcija in Projekat.Instance.Akcije) {
-                if (!akcija.Obrisan)
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString)) {
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT * FROM Akcija WHERE Obrisan=0";
+                DataSet dataSet = new DataSet();
+
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = cmd;
+                adapter.Fill(dataSet, "Akcija");
+
+                foreach (DataRow row in dataSet.Tables["Akcija"].Rows) {
+                    Akcija akcija = new Akcija();
+                    akcija.Pocetak = DateTime.Parse(row["Pocetak"].ToString());
+                    akcija.Kraj = DateTime.Parse(row["Kraj"].ToString());
+                    
+
                     akcije.Add(akcija);
+                }
             }
             return akcije;
         }
 
         public ObservableCollection<Akcija> GetActiveAkcije() {
             ObservableCollection<Akcija> akcije = new ObservableCollection<Akcija>();
-            foreach (Akcija akcija in Projekat.Instance.Akcije) {
-                if (!akcija.Obrisan && akcija.Pocetak < DateTime.Now && akcija.Kraj > DateTime.Now)
-                    akcije.Add(akcija);
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString)) {
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT * FROM Akcija WHERE Obrisan=0";
+                DataSet dataSet = new DataSet();
+
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = cmd;
+                adapter.Fill(dataSet, "Akcija");
+
+                foreach (DataRow row in dataSet.Tables["Akcija"].Rows) {
+                    Akcija akcija = new Akcija();
+                    akcija.Pocetak = DateTime.Parse(row["Pocetak"].ToString());
+                    akcija.Kraj = DateTime.Parse(row["Kraj"].ToString());
+
+                    if(akcija.Kraj > DateTime.Now)
+                        akcije.Add(akcija);
+                }
             }
             return akcije;
         }

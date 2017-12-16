@@ -15,7 +15,6 @@ using System.Xml.Serialization;
 //  - List<int> ProdatNamestaj
 //  - List<int> Kolicina
 //  - string Kupac
-//  - Map<string, double> DodatneUsluge //TODO 
 //  - bool Obrisan
 
 namespace POP_SF_62_2017.Model {
@@ -54,7 +53,7 @@ namespace POP_SF_62_2017.Model {
 
         public List<int> DodatneUslugeID {
             get { return dodatneUslugeID; }
-            set { dodatneUslugeID = value; onPropertyChanged("DodatneUsluge"); }
+            set { dodatneUslugeID = value; onPropertyChanged("DodatneUslugeID"); }
         }
 
         private bool obrisan;
@@ -64,30 +63,30 @@ namespace POP_SF_62_2017.Model {
             set { obrisan = value; onPropertyChanged("Obrisan"); }
         }
 
-        private List<DodatnaUsluga> dodatnaUsluga;
+        private List<DodatnaUsluga> dodatneUsluge;
 
         [XmlIgnore]
-        public List<DodatnaUsluga> DodatnaUsluga {
+        public List<DodatnaUsluga> DodatneUsluge {
             get {
-                if (dodatnaUsluga == null) {
+                if (dodatneUsluge == null) {
                     List<DodatnaUsluga> tmp = new List<DodatnaUsluga>();
                     foreach (int id in dodatneUslugeID) {
                         tmp.Add((DodatnaUsluga)DodatnaUslugaDataProvider.Instance.GetByID(id));
                     }
                     return tmp;
                 } else
-                    return dodatnaUsluga;
+                    return dodatneUsluge;
             }
             set {
-                dodatnaUsluga = value;
-                if (dodatnaUsluga != null) {
+                dodatneUsluge = value;
+                if (dodatneUsluge != null) {
                     List<int> tmp = new List<int>();
-                    foreach (DodatnaUsluga usluga in dodatnaUsluga) {
+                    foreach (DodatnaUsluga usluga in dodatneUsluge) {
                         tmp.Add(usluga.ID);
                     }
                     DodatneUslugeID = tmp;
                 }
-                onPropertyChanged("NamestajiNaAkciji");
+                onPropertyChanged("DodatneUsluge");
             }
         }
 
@@ -138,8 +137,7 @@ namespace POP_SF_62_2017.Model {
             return 0;
         }
 
-        public double getUkupnaCena() {
-            //TODO dodaj dodatne usluge
+        public double getUkupnaCena() { 
             double cena = 0, popust = 1;
             foreach (int id in DodatneUslugeID) {
                 cena += ((DodatnaUsluga)DodatnaUslugaDataProvider.Instance.GetByID(id)).Cena;

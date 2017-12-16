@@ -67,7 +67,11 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
                     tbLozinka.Focus();
                     throw new Exception("Šifre su je pogrešno unete.");
                 }
+
+                this.korisnik.Lozinka = tbLozinka.Password;
+
                 if (izmena) {
+                    
                     KorisnikDataProvider.Instance.EditByID(this.korisnik, Int32.Parse(tbId.Text));
                 } else {
                     KorisnikDataProvider.Instance.Add(this.korisnik);

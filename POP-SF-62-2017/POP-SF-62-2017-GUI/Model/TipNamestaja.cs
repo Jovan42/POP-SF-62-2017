@@ -1,6 +1,7 @@
 ﻿using POP_SF_62_2017_GUI.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -61,5 +62,9 @@ namespace POP_SF_62_2017.Model {
         public object Clone() {
             return new TipNamestaja { ID = id, Naziv = naziv, Obrisan = obrisan };
         }
+
+        #region DB
+ 
+        #endregion
     }
 }

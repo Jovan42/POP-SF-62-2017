@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,9 +58,12 @@
     <Compile Include="DataAccess\AkcijaDataProvider.cs" />
     <Compile Include="DataAccess\DataAccess.cs" />
     <Compile Include="DataAccess\DodatnaUslugaDataProvider.cs" />
+    <Compile Include="DataAccess\IzvrsenaDodatnaUslugaDataProvider.cs" />
     <Compile Include="DataAccess\KorisnikDataProvider.cs" />
     <Compile Include="DataAccess\NamestajDataProvider.cs" />
+    <Compile Include="DataAccess\NamestajNaAkcijiDataProvider.cs" />
     <Compile Include="DataAccess\ProdajaDataProvider.cs" />
+    <Compile Include="DataAccess\ProdatNamsetajDataProvider.cs" />
     <Compile Include="DataAccess\SalonDataProvider.cs" />
     <Compile Include="DataAccess\TipNamestajaDataProvider.cs" />
     <Compile Include="Enums\TipKlase.cs" />
@@ -189,6 +193,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\dodatne_usluge.xml" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DBScripts\cereateBase.sql" />
+    <Content Include="DBScripts\seed.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -17,6 +17,7 @@ namespace POP_SF_62_2017_GUI.DataAccess {
         // Dodaje entitet u XML fajl
         void Add(Entitet e);
 
+
         // Menja postojeći entitet iz XML fajla
         bool EditByID(Entitet e, int id);
 
