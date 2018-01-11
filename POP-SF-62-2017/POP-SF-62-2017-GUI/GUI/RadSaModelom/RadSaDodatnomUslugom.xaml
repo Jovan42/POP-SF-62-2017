@@ -11,8 +11,8 @@
     <Grid Background="#FF252526" Height="Auto" Width="Auto">
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-                <Label Content="Naziv: " Width="50" Height="25" Margin="5" Foreground="White" Visibility="Hidden"></Label>
-                <TextBox Name="tbNaziv" Width="100" Height="25" Margin="5" Text="{Binding Path=Naziv}" Visibility="Hidden"></TextBox>
+                <Label Content="Naziv: " Width="50" Height="25" Margin="5" Foreground="White"></Label>
+                <TextBox Name="tbNaziv" Width="100" Height="25" Margin="5" Text="{Binding Path=Naziv}"></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Cena: " Width="50" Height="25" Margin="5" Foreground="White"></Label>

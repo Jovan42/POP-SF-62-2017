@@ -176,7 +176,6 @@ namespace POP_SF_62_2017_GUI.GUI {
             }
         }
         
-        
         private void selectionChanged(object sender, SelectionChangedEventArgs e) {
             if (tip == TipKlase.AKCIJA) {
                 try {
