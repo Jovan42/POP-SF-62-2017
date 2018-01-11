@@ -45,17 +45,17 @@ namespace POP_SF_62_2017_GUI.GUI {
             tbKolicina.BorderBrush = System.Windows.Media.Brushes.Black;
             tbCena.BorderBrush = System.Windows.Media.Brushes.Black;
             try {
-                if(tbNaziv.Text.Trim() == "") {
+                if (tbNaziv.Text.Trim() == "") {
                     tbNaziv.BorderBrush = System.Windows.Media.Brushes.Red;
                     tbNaziv.Focus();
                     throw new Exception("Naziv je pogrešno unet.");
                 }
-                if (!Int32.TryParse(tbKolicina.Text, out a)) {
+                if (!Int32.TryParse(tbKolicina.Text, out a) || Int32.Parse(tbKolicina.Text) < 0) {
                     tbKolicina.BorderBrush = System.Windows.Media.Brushes.Red;
                     tbKolicina.Focus();
                     throw new Exception("Kolicina namestaja je pogrešno uneta.");
                 }
-                if (!Double.TryParse(tbCena.Text, out b)) {
+                if (!Double.TryParse(tbCena.Text, out b) || Int32.Parse(tbCena.Text) < 0) {
                     tbCena.BorderBrush = System.Windows.Media.Brushes.Red;
                     tbCena.Focus();
                     throw new Exception("Cena namestaja je pogrešno uneta.");

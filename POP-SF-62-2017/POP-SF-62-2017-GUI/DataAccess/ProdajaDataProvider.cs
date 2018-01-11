@@ -108,6 +108,34 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             return prodaje;
         }
 
+        public ObservableCollection<Prodaja> GetAll(bool obrisani) {
+            if (!obrisani) return GetAll();
+            ObservableCollection<Prodaja> prodaje = new ObservableCollection<Prodaja>();
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString)) {
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT * FROM Prodaja WHERE Obrisan=1";
+
+                DataSet dataSet = new DataSet();
+
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = cmd;
+                adapter.Fill(dataSet, "Prodaja");
+
+                foreach (DataRow row in dataSet.Tables["Prodaja"].Rows) {
+                    Prodaja p = new Prodaja();
+                    p.ID = int.Parse(row["Id"].ToString());
+                    p.Kupac = row["Kupac"].ToString();
+                    p.DatumProdaje = DateTime.Parse(row["DatumProdaje"].ToString());
+                    p.Obrisan = Boolean.Parse(row["Obrisan"].ToString());
+                    p.DodatneUslugeID = IzvrsenaDodatnaUslugaDataProvider.Instance.Get(p.ID);
+                    p.ProdatNamestaj = ProdatNamsetajDataProvider.Instance.Get(p.ID);
+                    prodaje.Add(p);
+                }
+            }
+            return prodaje;
+        }
+
         public Entitet GetByID(int id) {
             Prodaja p = new Prodaja();
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString)) {

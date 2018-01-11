@@ -30,6 +30,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
             btnDodaj.Content = "Izmeni";
             izmena = true;
 
+
             this.akcija = akcija;
             SetDataContexts();
             foreach (Namestaj namestaj in akcija.NamestajNaAkciji) {
@@ -44,6 +45,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
             calPocetak.DataContext = this.akcija;
             tbPopust.DataContext = this.akcija;
         }
+
         private void btnOdustani_Click(object sender, RoutedEventArgs e) {
             this.Close();
         }
@@ -69,6 +71,13 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
                 
                 if(GetNamesetajNaAkciji() == null) {
                     throw new Exception("Jedan ili više nameštaja su uneti dva ili više puta.");
+                }
+                double popust = Double.Parse(tbPopust.Text);
+
+                if (popust > 99 || popust < 1) {
+                    tbPopust.BorderBrush = System.Windows.Media.Brushes.Red;
+                    tbPopust.Focus();
+                    throw new Exception("Popust mora biti između 1 i 99");
                 }
                 akcija.NamestajNaAkcijiID = GetNamesetajNaAkciji();
 

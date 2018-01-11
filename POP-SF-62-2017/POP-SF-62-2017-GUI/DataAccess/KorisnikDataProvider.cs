@@ -110,6 +110,35 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             return korisnici;
         }
 
+        public ObservableCollection<Korisnik> GetAll(bool obrisani) {
+            if (!obrisani) return GetAll();
+            ObservableCollection<Korisnik> korisnici = new ObservableCollection<Korisnik>();
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString)) {
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT * FROM Korisnik WHERE Obrisan=1";
+
+                DataSet dataSet = new DataSet();
+
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = cmd;
+                adapter.Fill(dataSet, "Korisnik");
+
+                foreach (DataRow row in dataSet.Tables["Korisnik"].Rows) {
+                    Korisnik k = new Korisnik();
+                    k.ID = int.Parse(row["ID"].ToString());
+                    k.Ime = row["Ime"].ToString();
+                    k.Prezime = row["Prezime"].ToString();
+                    k.KorIme = row["KorIme"].ToString();
+                    k.Lozinka = row["Lozinka"].ToString();
+                    k.Obrisan = Boolean.Parse(row["Obrisan"].ToString());
+                    k.Admin = Boolean.Parse(row["Admin"].ToString());
+                    korisnici.Add(k);
+                }
+            }
+            return korisnici;
+        }
+
         public Entitet GetByID(int id) {
             Korisnik k = new Korisnik();
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString)) {

@@ -39,9 +39,17 @@ namespace POP_SF_62_2017_GUI.GUI {
             this.tip = tip;
             InitializeComponent();
             
+            if(!admin || tip == TipKlase.PRODAJA) {
+                cbObrisani.Visibility = Visibility.Hidden;
+                lblObrisani.Visibility = Visibility.Hidden;
+            }
             OsveziPrikaz();
             if (tip == TipKlase.PRODAJA) {
                 btnObrisi.Visibility = Visibility.Hidden;
+            }
+
+            if(tip == TipKlase.PRODAJA && admin == false) {
+                btnIzmeni.Visibility = Visibility.Hidden;
             }
 
             if (tip == TipKlase.AKCIJA) {
@@ -167,7 +175,8 @@ namespace POP_SF_62_2017_GUI.GUI {
                 e.Cancel = true;
             }
         }
-
+        
+        
         private void selectionChanged(object sender, SelectionChangedEventArgs e) {
             if (tip == TipKlase.AKCIJA) {
                 try {
@@ -191,6 +200,7 @@ namespace POP_SF_62_2017_GUI.GUI {
             
         }
 
+        //TODO Dinamicki Databinding
         private void OsveziPrikaz() {
             //dgNamestaji.ItemsSource = null;
             Binding binding = new Binding("");
@@ -372,10 +382,67 @@ namespace POP_SF_62_2017_GUI.GUI {
                 || e.Column.Header.ToString() == "Obrisan" || e.Column.Header.ToString() == "NamestajNaAkcijiID"
                 || e.Column.Header.ToString() == "Lozinka" || e.Column.Header.ToString() == "NamestajNaAkciji"
                 || e.Column.Header.ToString() == "ProdatNamestaj" || e.Column.Header.ToString() == "DodatneUslugeID"
-                || e.Column.Header.ToString() == "DodatnaUsluga") {
+                || e.Column.Header.ToString() == "DodatnaUsluga" || e.Column.Header.ToString() == "DodatneUsluge") {
                 e.Cancel = true;
             }
             
+        }
+
+        private void cbObrisani_Click(object sender, RoutedEventArgs e) {
+            if(cbObrisani.IsChecked == true) {
+                switch (tip) {
+                    case TipKlase.NAMESTAJ:
+                    Projekat.Instance.Namestaji = NamestajDataProvider.Instance.GetAll(true);
+                    break;
+                    case TipKlase.AKCIJA:
+                    Projekat.Instance.Akcije = AkcijaDataProvider.Instance.GetAll(true);
+                    break;
+                    case TipKlase.KORISNIK:
+                    Projekat.Instance.Korisnici = KorisnikDataProvider.Instance.GetAll(true);
+                    break;
+                    case TipKlase.PRODAJA:
+                    Projekat.Instance.Prodaje = ProdajaDataProvider.Instance.GetAll(true);
+                    break;
+                    case TipKlase.SALON:
+                    
+                    break;
+                    case TipKlase.TIP_NAMESTAJA:
+                    Projekat.Instance.TipoviNamestaja = TipNamestajaDataProvider.Instance.GetAll(true);
+                    break;
+                    case TipKlase.DODATNE_USLUGE:
+                    Projekat.Instance.DodatneUsluge = DodatnaUslugaDataProvider.Instance.GetAll(true);
+                    break;
+                    default:
+                    break;
+                }
+                
+            } else {
+                switch (tip) {
+                    case TipKlase.NAMESTAJ:
+                    Projekat.Instance.Namestaji = NamestajDataProvider.Instance.GetAll(false);
+                    break;
+                    case TipKlase.AKCIJA:
+                    Projekat.Instance.Akcije = AkcijaDataProvider.Instance.GetAll(false);
+                    break;
+                    case TipKlase.KORISNIK:
+                    Projekat.Instance.Korisnici = KorisnikDataProvider.Instance.GetAll(false);
+                    break;
+                    case TipKlase.PRODAJA:
+                    Projekat.Instance.Prodaje = ProdajaDataProvider.Instance.GetAll(false);
+                    break;
+                    case TipKlase.SALON:
+
+                    break;
+                    case TipKlase.TIP_NAMESTAJA:
+                    Projekat.Instance.TipoviNamestaja = TipNamestajaDataProvider.Instance.GetAll(false);
+                    break;
+                    case TipKlase.DODATNE_USLUGE:
+                    Projekat.Instance.DodatneUsluge = DodatnaUslugaDataProvider.Instance.GetAll(false);
+                    break;
+                    default:
+                    break;
+                }
+            }
         }
     }
 }

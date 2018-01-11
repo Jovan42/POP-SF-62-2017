@@ -137,6 +137,32 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             return tipoviNamestaja;
         }
 
+        public ObservableCollection<TipNamestaja> GetAll(bool obrisani) {
+            if (!obrisani) return GetAll();
+            ObservableCollection<TipNamestaja> tipoviNamestaja = new ObservableCollection<TipNamestaja>();
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString)) {
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT * FROM TipNamestaja WHERE Obrisan=1";
+
+                DataSet dataSet = new DataSet();
+
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = cmd;
+                adapter.Fill(dataSet, "TipNamestaja");
+
+                foreach (DataRow row in dataSet.Tables["TipNamestaja"].Rows) {
+                    TipNamestaja tipNamestaja = new TipNamestaja();
+                    tipNamestaja.ID = int.Parse(row["ID"].ToString());
+                    tipNamestaja.Naziv = row["Naziv"].ToString();
+                    tipNamestaja.Obrisan = Boolean.Parse(row["Obrisan"].ToString());
+
+                    tipoviNamestaja.Add(tipNamestaja);
+                }
+            }
+            return tipoviNamestaja;
+        }
+
         /*public ObservableCollection<TipNamestaja> GetAll() {
             ObservableCollection<TipNamestaja> tipoviNamestaja = new ObservableCollection<TipNamestaja>();
             foreach (TipNamestaja korisnk in Projekat.Instance.TipoviNamestaja) {

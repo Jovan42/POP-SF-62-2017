@@ -125,5 +125,31 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             }
             return dodatneUsluge;
         }
+
+        public ObservableCollection<DodatnaUsluga> GetAll(bool obrisani) {
+            if (!obrisani) return GetAll();
+            ObservableCollection<DodatnaUsluga> dodatneUsluge = new ObservableCollection<DodatnaUsluga>();
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString)) {
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT * FROM DodatnaUsluga WHERE Obrisan=1";
+                DataSet dataSet = new DataSet();
+
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = cmd;
+                adapter.Fill(dataSet, "DodatnaUsluga");
+
+                foreach (DataRow row in dataSet.Tables["DodatnaUsluga"].Rows) {
+                    DodatnaUsluga dodatnaUsluga = new DodatnaUsluga();
+                    dodatnaUsluga.ID = int.Parse(row["Id"].ToString());
+                    dodatnaUsluga.Naziv = row["Naziv"].ToString();
+                    dodatnaUsluga.Cena = Double.Parse(row["Cena"].ToString());
+
+
+                    dodatneUsluge.Add(dodatnaUsluga);
+                }
+            }
+            return dodatneUsluge;
+        }
     }
 }

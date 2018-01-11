@@ -138,6 +138,35 @@ namespace POP_SF_62_2017_GUI.DataAccess {
         public void Initialize() {
             throw new NotImplementedException();
         }
-#endregion
+
+        public ObservableCollection<Namestaj> GetAll(bool obrisani) {
+            if (!obrisani) return GetAll();
+            ObservableCollection<Namestaj> namestaji = new ObservableCollection<Namestaj>();
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString)) {
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=1";
+
+                DataSet dataSet = new DataSet();
+
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = cmd;
+                adapter.Fill(dataSet, "Namestaj");
+
+                foreach (DataRow row in dataSet.Tables["Namestaj"].Rows) {
+                    Namestaj namestaj = new Namestaj();
+                    namestaj.TipNamestajaID = int.Parse(row["TIpNamestajaId"].ToString());
+                    namestaj.ID = int.Parse(row["ID"].ToString());
+                    namestaj.Naziv = row["Naziv"].ToString();
+                    namestaj.Cena = Double.Parse(row["Cena"].ToString());
+                    namestaj.Kolicina = int.Parse(row["Kolicina"].ToString());
+                    namestaj.Obrisan = Boolean.Parse(row["Obrisan"].ToString());
+
+                    namestaji.Add(namestaj);
+                }
+            }
+            return namestaji;
+        }
+        #endregion
     }
 }

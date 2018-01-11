@@ -5,9 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Media;
-using System.ComponentModel;
 using System.Collections.ObjectModel;
 
 namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
@@ -21,6 +19,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
         List<TextBox> tbUslugeNaziv = new List<TextBox>();
         List<TextBox> tbUslugeCena =  new List<TextBox>();
         List<Button> btnObrisi = new List<Button>();
+        ObservableCollection<ProdatNamestaj> oldProdatNamestaj = new ObservableCollection<ProdatNamestaj>();
         Prodaja prodaja = new Prodaja();
         bool izmena = false;
 
@@ -47,8 +46,8 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
                     DodajUsluguUProdaju((DodatnaUsluga)DodatnaUslugaDataProvider.Instance.GetByID(usluga));
                 } catch (Exception) {
                 }
-                
             }
+            oldProdatNamestaj = GetProdatNamestaj();
         }
 
         private void SetDataContexts() {
@@ -65,11 +64,33 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
                     tbKupac.Focus();
                     throw new Exception("Popust je pogrešno unet.");
                 }
+
                 if (GetProdatNamestaj() == null) {
                     throw new Exception("Jedana ili više cena nameštaja je unesena pogrešno.");
                 }
                 prodaja.ProdatNamestaj = GetProdatNamestaj();
+               
 
+                foreach (ProdatNamestaj pNamestaj in prodaja.ProdatNamestaj) {
+                    foreach (ProdatNamestaj oldPNamestaj in oldProdatNamestaj) {
+                        if(pNamestaj.NamestajID == oldPNamestaj.NamestajID) {
+                            if(oldPNamestaj.Kolicina < pNamestaj.Kolicina) {
+                                Namestaj namestaj = (Namestaj)NamestajDataProvider.Instance.GetByID(pNamestaj.NamestajID);
+                                if (namestaj.Kolicina - pNamestaj.Kolicina < 0) {
+                                    throw new Exception($"Ne postoji dovoljno nameštaja ({namestaj.Naziv}) u magacinu.");
+                                }
+                            }
+                        }
+                    }
+                    Namestaj namestaj2 = (Namestaj)NamestajDataProvider.Instance.GetByID(pNamestaj.NamestajID);
+                    if (namestaj2.Kolicina - pNamestaj.Kolicina < 0) {
+                        throw new Exception($"Ne postoji dovoljno nameštaja ({namestaj2.Naziv}) u magacinu.");
+                    } else {
+                        namestaj2.Kolicina -= pNamestaj.Kolicina;
+                        NamestajDataProvider.Instance.EditByID(namestaj2, namestaj2.ID);
+                    }
+                    
+                }
                 if (GetDodatneUsluge() == null) {
                     throw new Exception("Jedana ili više usluga su uneti dva ili više puta.");
                 }
@@ -79,6 +100,30 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
                     ProdajaDataProvider.Instance.EditByID(this.prodaja, Int32.Parse(tbId.Text));
                 } else {
                     ProdajaDataProvider.Instance.Add(this.prodaja);
+                }
+
+                foreach (ProdatNamestaj pNamestaj in prodaja.ProdatNamestaj) {
+                    foreach (ProdatNamestaj oldPNamestaj in oldProdatNamestaj) {
+                        if (pNamestaj.NamestajID == oldPNamestaj.NamestajID) {
+                            if (oldPNamestaj.Kolicina < pNamestaj.Kolicina) {
+                                Namestaj namestaj = (Namestaj)NamestajDataProvider.Instance.GetByID(pNamestaj.NamestajID);
+                                namestaj.Kolicina -= pNamestaj.Kolicina - oldPNamestaj.Kolicina;
+                                NamestajDataProvider.Instance.EditByID(namestaj, namestaj.ID);
+                                break;
+                            } else if (oldPNamestaj.Kolicina > pNamestaj.Kolicina) {
+                                Namestaj namestaj = (Namestaj)NamestajDataProvider.Instance.GetByID(pNamestaj.NamestajID);
+                                namestaj.Kolicina += oldPNamestaj.Kolicina - pNamestaj.Kolicina;
+                                NamestajDataProvider.Instance.EditByID(namestaj, namestaj.ID);
+                                break;
+                            }
+                        }
+                    }
+                   
+                }
+
+                foreach (ProdatNamestaj pNamestaj in prodaja.ProdatNamestaj) {
+                    Namestaj namestaj = (Namestaj)NamestajDataProvider.Instance.GetByID(pNamestaj.NamestajID);
+                   
                 }
                 Close();
             } catch (Exception ex) {
@@ -107,7 +152,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
             comboBox.IsEditable = true;
             comboBox.ItemsSource = DodatnaUslugaDataProvider.Instance.GetAll();
             button.Click += new RoutedEventHandler(btnDeleteNamestaj);
-            if (prodaja != null) {
+            if (usluga != null) {
                 comboBox.SelectedIndex = usluga.ID -1;
             }
 
@@ -163,7 +208,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
                 TextBox tb = (TextBox)stackPanel.Children[1];
                 Namestaj n = (Namestaj)cb.SelectedItem;
                 int a;
-                if (!Int32.TryParse(tb.Text, out a))
+                if (!Int32.TryParse(tb.Text, out a)|| Int32.Parse(tb.Text) < 0)
                     return null;
 
                 tmp.Add(new ProdatNamestaj() {

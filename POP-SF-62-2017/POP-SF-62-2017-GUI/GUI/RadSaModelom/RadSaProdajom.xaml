@@ -46,7 +46,6 @@
                     <Button Content="Dodaj Uslugu" Name="btnDodajUslugu" Height="25" Width="90" HorizontalAlignment="Right" Margin="5"
                         Click="btnDodajUslugu_Click"  Background="#FF252526" BorderBrush="White" Foreground="White"></Button>
                 </StackPanel>
-
             </StackPanel>
             
             <Grid>

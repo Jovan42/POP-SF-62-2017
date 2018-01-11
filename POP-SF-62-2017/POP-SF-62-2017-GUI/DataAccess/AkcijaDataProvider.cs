@@ -10,8 +10,6 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 
-
-//TODO: Akcija.NamestajNaAkcijiID popuniti iz tabele NamestjNaAkciji
 namespace POP_SF_62_2017_GUI.DataAccess {
     class AkcijaDataProvider : DataAccess {
         public static AkcijaDataProvider Instance { get; } = new AkcijaDataProvider();
@@ -116,6 +114,33 @@ namespace POP_SF_62_2017_GUI.DataAccess {
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString)) {
                 SqlCommand cmd = con.CreateCommand();
                 cmd.CommandText = "SELECT * FROM Akcija WHERE Obrisan=0";
+                DataSet dataSet = new DataSet();
+
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = cmd;
+                adapter.Fill(dataSet, "Akcija");
+
+                foreach (DataRow row in dataSet.Tables["Akcija"].Rows) {
+                    Akcija akcija = new Akcija();
+                    akcija.ID = int.Parse(row["Id"].ToString());
+                    akcija.Pocetak = DateTime.Parse(row["Pocetak"].ToString());
+                    akcija.Kraj = DateTime.Parse(row["Kraj"].ToString());
+                    akcija.Popust = double.Parse(row["Popust"].ToString());
+                    akcija.NamestajNaAkcijiID = NamestajNaAkcijiDataProvider.Instance.Get(akcija.ID);
+
+                    akcije.Add(akcija);
+                }
+            }
+            return akcije;
+        }
+
+        public ObservableCollection<Akcija> GetAll(bool obrisani) {
+            if (!obrisani) return GetAll();
+            ObservableCollection<Akcija> akcije = new ObservableCollection<Akcija>();
+
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString)) {
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = "SELECT * FROM Akcija WHERE Obrisan=1";
                 DataSet dataSet = new DataSet();
 
                 SqlDataAdapter adapter = new SqlDataAdapter();

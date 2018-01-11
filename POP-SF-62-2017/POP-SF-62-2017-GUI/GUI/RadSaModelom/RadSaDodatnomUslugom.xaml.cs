@@ -54,7 +54,7 @@ namespace POP_SF_62_2017_GUI.GUI.RadSaModelom {
                     throw new Exception("Naziv je pogrešno unet.");
                 }
 
-                if (!Double.TryParse(tbCena.Text, out a)) {
+                if (!Double.TryParse(tbCena.Text, out a) || Double.Parse(tbCena.Text) < 0) {
                     tbCena.BorderBrush = System.Windows.Media.Brushes.Red;
                     tbCena.Focus();
                     throw new Exception("Cena namestaja je pogrešno uneta.");
